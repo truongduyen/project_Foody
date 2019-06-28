@@ -1,0 +1,315 @@
+.btn {
+    padding: 14px 28px;
+    font-size: 16px;
+	cursor: pointer;
+}
+	
+.warning {
+    border-color: #fec503;
+    color: #fec503;
+}
+  
+.warning:hover {
+    background: #fec503;
+    color: white;
+}
+.success {
+	background-color: #4CAF50;
+	border: none;
+}
+.success:hover {
+	background-color: #46a049;
+}
+
+/*login*/
+*,:after,:before{box-sizing:border-box}
+.clearfix:after,.clearfix:before{content:'';display:table}
+.clearfix:after{clear:both;display:block}
+a{color:inherit;text-decoration:none}
+
+.login-wrap{
+	width: 100%;
+	margin:auto;
+	max-width:525px;
+	min-height:727px;
+	position:relative;
+	background:url(../images/login.jpg) no-repeat center;
+	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+}
+.login-html{
+	width:100%;
+	height:100%;
+	position:absolute;
+	padding:90px 70px 50px 70px;
+	background:rgba(31, 33, 37, 0.9);
+}
+.login-html .sign-in-htm,
+.login-html .sign-up-htm{
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	position:absolute;
+	transform:rotateY(180deg);
+	backface-visibility:hidden;
+	transition:all .4s linear;
+}
+.login-html .sign-in,
+.login-html .sign-up,
+.login-form .group .check{
+	display:none;
+}
+.login-html .tab,
+.login-form .group .label,
+.login-form .group .button{
+	text-transform:uppercase;
+}
+.login-html .tab{
+	font-size:22px;
+	margin-right:15px;
+	padding-bottom:5px;
+	margin:0 15px 10px 0;
+	display:inline-block;
+	border-bottom:2px solid transparent;
+}
+.login-html .tab{
+	color: rgb(161, 156, 156);
+}
+.login-html .sign-in:checked + .tab,
+.login-html .sign-up:checked + .tab{
+	color:#fec503;
+	border-color:#1161ee;
+}
+.login-form{
+	min-height:345px;
+	position:relative;
+	perspective:1000px;
+	transform-style:preserve-3d;
+}
+.login-form .group{
+	margin-bottom:15px;
+}
+.login-form .group .label,
+.login-form .group .input,
+.login-form .group .button{
+	width:100%;
+	color:#fff;
+	display:block;
+}
+.login-form .group .input,
+.login-form .group .button{
+	border:none;
+	padding:15px 20px;
+	border-radius:25px;
+	background:rgba(255,255,255,.1);
+}
+.login-form .group input[data-type="password"]{
+	text-rendering:circle;
+	-webkit-text-security:circle;
+}
+.login-form .group .label{
+	color: #eee;
+	font-size:14px;
+}
+.login-form .group .button{
+	background: #fec503;
+	font-size: 18px;
+}
+.login-form .group .button:hover{
+	background: #fdad00;
+}
+.login-form .group label .icon{
+	width:15px;
+	height:15px;
+	border-radius:2px;
+	position:relative;
+	display:inline-block;
+	background:rgba(255,255,255,.1);
+}
+.login-form .group label .icon:before,
+.login-form .group label .icon:after{
+	content:'';
+	width:10px;
+	height:2px;
+	background:#fff;
+	position:absolute;
+	transition:all .2s ease-in-out 0s;
+}
+.login-form .group label .icon:before{
+	left:3px;
+	width:5px;
+	bottom:6px;
+	transform:scale(0) rotate(0);
+}
+.login-form .group label .icon:after{
+	top:6px;
+	right:0;
+	transform:scale(0) rotate(0);
+}
+.login-form .group .check:checked + label{
+	color:#fff;
+}
+.login-form .group .check:checked + label .icon{
+	background:#1161ee;
+}
+.login-form .group .check:checked + label .icon:before{
+	transform:scale(1) rotate(45deg);
+}
+.login-form .group .check:checked + label .icon:after{
+	transform:scale(1) rotate(-45deg);
+}
+.login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
+	transform:rotate(0);
+}
+.login-html .sign-up:checked + .tab + .login-form .sign-up-htm{
+	transform:rotate(0);
+}
+.hr{
+	height:2px;
+	margin:60px 0 50px 0;
+	background:rgba(255,255,255,.2);
+}
+.foot-lnk {
+	text-align:center;
+	color: #eee;
+}
+
+/* team member*/
+.team {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.team img {
+  width: 115px;
+  height: 115px;
+  border: 5px solid #fff;
+}
+
+.team h4 {	
+  margin-top: 25px;
+  margin-bottom: 0;
+  text-transform: none;
+}
+
+.team p {
+  margin-top: 0;
+}
+
+/* sidenav */
+.sidenav {
+  width: 360px;
+  float: right;
+  background: #eee;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #2196F3;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #064579;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+/* team small */
+.teamsmall {
+  margin-bottom: 2px;
+  text-align: left;
+}
+
+.teamsmall img {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #fff;
+}
+
+.teamsmall h4 {	
+  margin-top: 25px;
+  margin-bottom: 0;
+  text-transform: none;
+}
+
+.teamsmall p {
+  margin-top: 0;
+}
+
+.search-container button {
+  float: right;
+  padding: 6px 10px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+.search-container button:hover {
+  background: #fec503;
+}
+.search-container input[type=text] {
+	padding: 4px;
+	width: 313px;
+	font-size: 17px;
+}
+.checked {
+	color: #fec503;
+}
+/* page */
+.cards{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+	text-align: center;
+	background: rgb(180, 245, 189);
+}
+.row{
+	justify-content: center;
+}
+.rounded-circle{
+	width: 200px;
+	height: 200px;
+}
+.topnav {
+  background-color:white;
+  overflow: hidden;
+  margin-left: 350px;
+  
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color:green;
+  text-align: center;
+  padding: 16px 16px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: white;
+  color: black;
+  border-bottom: 3px solid #fec503;
+}
+
+.card{
+	height: 285px;
+}
+
+/* Add a color to the active/current link */
+
+.table input{
+	width: 600px;
+}
+.fa, .fas{
+	color: white;
+}

@@ -38,7 +38,6 @@ class Admin_Member extends Component {
                 .catch(err => console.log(err))
         }
     }
-    
     componentDidMount() {
         this.getItems()
         console.log(this.state.items)
@@ -51,22 +50,23 @@ class Admin_Member extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12">
-                                <div className="float-right">
+                                <form className="form-inline float-right">
+                                    <CSVLink
+                                        data={this.state.items}
+                                        filename={"db_user.csv"}
+                                        type="button"
+                                        className="btn btn-success"
+                                        target="_blank"> 
+                                        <i className="fa fa-file-export"> Xuất file</i>
+                                    </CSVLink>
+                                    &nbsp;
                                     <div className="search-container">
                                         <form action="/sss">
                                             <input type="text" placeholder="Nội dung..." name="search" />
                                             <button type="submit"><i className="fa fa-search"></i></button>
                                         </form>
                                     </div>
-                                    <CSVLink
-                                        data={this.state.items}
-                                        filename={"db_user.csv"}
-                                        type="button"
-                                        className="btn btn-success fa fa-trash"
-                                        target="_blank"> Xuất file
-                                    </CSVLink>
-                                    
-                                </div>
+                                </form>
                             </div>
                         </div>
                         <div className="row">

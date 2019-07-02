@@ -14,7 +14,7 @@ class Login extends Component {
     }
     submitFormLogin = e => {
         e.preventDefault()
-        console.log(this.state.email)
+        // console.log(this.state.email)
         fetch('http://localhost:4000/admin', {
             method: 'POST',
             headers: {
@@ -26,24 +26,25 @@ class Login extends Component {
                 password: this.state.password
             })
         })
-            .then(() => {
-                alert('Đăng nhập thành công')
+            .then(result => {
                 if (result === null) {
-                    res.render('Login', { mess: "Lỗi ĐN" })
+                    location.reload()
                 }
                 else {
                     var rs = result.role;
-                    // console.log(rs);
-                    if (rs === 1)
-                        res.redirect('/admin');
-                    else res.redirect('/user')
+                    console.log(rs);
+                    if (rs === 1) {
+                        alert("Đăng nhập thành công");
+                        window.location.href = '/admin';
+                    }
+                    else window.location.href = '/user';
                 }
             })
             .catch(err => console.log(err))
     }
     submitFormAdd = e => {
         e.preventDefault()
-        // console.log(this.state.username)
+        console.log(this.state.username)
         fetch('http://localhost:4000/admin', {
             method: 'POST',
             headers: {
@@ -58,8 +59,17 @@ class Login extends Component {
             })
         })
             .then(() => {
-                alert('Đăng ký thành công')
-                location.reload()
+                alert(`${this.state.username} đăng ký thành công`);
+                if (result === null) {
+                    res.render('err')
+                }
+                else {
+                    var rs = result.role;
+                    console.log(rs);
+                    if (rs === 1)
+                        res.redirect('/admin');
+                    else res.redirect('/user')
+                }
             })
             .catch(err => console.log(err))
     }
@@ -89,7 +99,7 @@ class Login extends Component {
                                                 <label htmlFor="pass" className="label">Mật khẩu</label>
                                                 <input name="password" type="password" className="input" data-type="password" onChange={this.onChange} value={this.state.password} required />
                                             </div>
-                                            <div class="group">
+                                            <div className="group">
                                                 <input type="checkbox" name="vehicle3" defaultValue="Boat" className="check" defaultChecked />
                                                 <label htmlFor="check"><span className="icon"></span> Ghi nhớ</label>
                                             </div>

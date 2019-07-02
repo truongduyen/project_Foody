@@ -4,6 +4,9 @@ var user = require('../models/user');
 var post = require('../models/post');
 var bodyParser = require('body-parser');
 var cors = require('cors');
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+
 router.use(bodyParser.json()); // to support JSON bodies
 router.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 
@@ -63,90 +66,55 @@ router.delete('/post', (req, res) => {
 })
 //=====update post
 router.put('/post', (req, res) => {
-  post.update({
-    where: {
-      id: req.body.id
-    }
-  })
-    .then(() => {
-      console.log("update")
-      res.sendStatus(200)
-    })
-    .catch(err => console.log(err))
-});
-
-//=====sign up
-router.post('/admin', (req, res) => {
-  var { username, password, salt, email } = req.body;
-  user.create({ username, password, salt, email })
-    .then(() => {
-      console.log("signup")
-      res.sendStatus(200)
-    })
-    .catch(err => console.log(err))
-})
-
-//====login
-router.post('/admin', (req, res) => {
-  let email = req.body.email;
-  let password = req.body.password;
-
-  user.findOne({
-    where: {
-      email: email,
-      password: password
-    },
-    attributes: ['role']
-  })
-    .then(result => {
-      return res.end(JSON.stringify(result))
-      
-    })
-    .catch(err => console.log(err))
-})
-
-
-
-
-
-
-
-
-
-
-
-router.get('/', function (req, res, next) {
-  res.render('index');
-});
-//user
-router.get('/user/user_info', (req, res) => {
-  console.log(sess.email)
-  user.findAll({
-    attributes: ['username', 'email', 'createdAt'],
-    where: {
-      email: sess.email
-    }
-  })
-    .then(result => {
-      console.log(result)
-      res.render('components/User/User_info', { result });
-    })
-    .catch(err => console.log(err))
-});
-
-router.post('/user/page/add_post', (req, res) => {
-  const database = {
+  var dt = {
     title: req.body.title,
     content: req.body.content,
-  };
-  let { title, content } = database;
-  //insert into table 
-  post.create({ title, content })
-    .then(result => res.redirect('/user/page'))
+    image: req.body.image
+  }
+  post.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dt => {
+      console.log(this.props.id)
+      res.sendStatus(200)
+    })
+    .catch(err => console.log(err))
+});
+//=====sign up
+router.post('/admin', (req, res) => {
+  const dataUser = {
+    username: req.body.username,
+    password: req.body.password,
+    salt: req.body.salt,
+    email: req.body.email
+  }
+  user.findOne({
+    where: {
+      email: req.body.email
+    }
+  })
+    .then(result => {
+      if (!result) {
+        bcrypt.hash(req.body.password, 10, (err, hash) => {
+          dataUser.password = hash
+          user.create(dataUser)
+            .then(result => {
+              res.json({ status: user.email + ' registered' })
+            })
+            .catch(err => console.log(err))
+        })
+      }
+      else {
+        res.json({ error: "User already exists" })
+      }
+    })
     .catch(err => console.log(err))
 })
-//login
-router.post('/login', (req, res) => {
+
+//=====login
+router.post('/admin', (req, res) => {
   let email = req.body.email;
   let pw = req.body.password;
 
@@ -158,121 +126,89 @@ router.post('/login', (req, res) => {
     attributes: ['role']
   })
     .then(result => {
-      console.log(result)
-      if (result === null) {
-        res.render('Login', { mess: "Lỗi ĐN" })
+        bcrypt.compare(pw, result.password, (err, hash) => {
+          if (hash === true) {
+            res.send(JSON.stringify(result));
+          }
+        })
       }
-      else {
-        var rs = result.role;
-        // console.log(rs);
-        if (rs === 1)
-          res.redirect('/admin');
-        else res.redirect('/user')
-
-        sess = req.session
-        sess.email = email;
-        req.session.save()
-        console.log(sess.email)
-      }
-    })
+    )
     .catch(err => console.log(err))
 
 })
 
-//sign up
-router.post('/signup', (req, res) => {
-  const data = {
-    username: req.body.username,
-    password: req.body.password,
-    salt: req.body.salt,
-    email: req.body.email
-  };
-  let { username, password, salt, email } = data;
-  //insert into table
-  user.create({ username, password, salt, email })
-    .then(result => res.redirect('/login'))
-    .catch(err => console.log(err))
-
-})
-
-///////post
-// select post
-router.get('/admin/post', (req, res) => {
-  post.findAll()
-    .then(result => {
-      console.log(result);
-      res.render('components/Admin/Admin_Post', { result });
-    })
-    .catch(err => console.log(err))
-});
-//add post
-router.post('/admin/post/add', (req, res) => {
-  console.log(sess.email)
-  const database = {
-    title: req.body.title,
-    content: req.body.content,
-  };
-  console.log(database)
-  let { title, content } = database;
-  //insert into table
-  post.create({ title, content })
-    .then(result => res.redirect('/admin/post'))
-    .catch(err => console.log(err))
-})
-//delete post
-router.get('/admin/post/delete/:id', (req, res) => {
-  post.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-    .then(result => {
-      console.log(`Delete completed `);
-      res.redirect('/admin/post')
-    })
-    .catch(err => console.log(err))
-})
-//update post
-router.get('/admin/post/update/:id', (req, res) => {
-  console.log(sess.email)
-  post.findAll({
-    attributes: ['title', 'content'],
-    where: {
-      id: req.params.id
-    }
-    // post.destroy({  
-    //   where: {
-    //     id: req.params.id
-    // }
-  })
-    .then(result => {
-      console.log(result)
-      res.render('components/User/User_info', { result });
-    })
-    .catch(err => console.log(err))
-
-});
 
 
-//select user
-router.get('/admin/admin_member', (req, res) => {
-  user.findAll()
-    .then(result => {
-      res.render('Admin/Admin_Member', { result });
-    })
-    .catch(err => console.log(err))
-});
-//delete
-router.get('/admin/user/delete/:id', (req, res) => {
-  user.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-    .then(result => {
-      console.log(`Delete completed `);
-      res.redirect('/admin/user')
-    })
-    .catch(err => console.log(err))
-})
+
+
+
+
+
+
+//user
+// router.get('/user/user_info', (req, res) => {
+//   console.log(sess.email)
+//   user.findAll({
+//     attributes: ['username', 'email', 'createdAt'],
+//     where: {
+//       email: sess.email
+//     }
+//   })
+//     .then(result => {
+//       console.log(result)
+//       res.render('components/User/User_info', { result });
+//     })
+//     .catch(err => console.log(err))
+// });
+
+
+// //login
+// router.post('/login', (req, res) => {
+//   let email = req.body.email;
+//   let pw = req.body.password;
+
+//   user.findOne({
+//     where: {
+//       email: email,
+//       password: pw
+//     },
+//     attributes: ['role']
+//   })
+//     .then(result => {
+//       console.log(result)
+//       if (result === null) {
+//         res.render('Login', { mess: "Lỗi ĐN" })
+//       }
+//       else {
+//         var rs = result.role;
+//         // console.log(rs);
+//         if (rs === 1)
+//           res.redirect('/admin');
+//         else res.redirect('/user')
+
+//         sess = req.session
+//         sess.email = email;
+//         req.session.save()
+//         console.log(sess.email)
+//       }
+//     })
+//     .catch(err => console.log(err))
+
+// })
+
+// //sign up
+// router.post('/signup', (req, res) => {
+//   const data = {
+//     username: req.body.username,
+//     password: req.body.password,
+//     salt: req.body.salt,
+//     email: req.body.email
+//   };
+//   let { username, password, salt, email } = data;
+//   //insert into table
+//   user.create({ username, password, salt, email })
+//     .then(result => res.redirect('/login'))
+//     .catch(err => console.log(err))
+// })
+
 module.exports = router;

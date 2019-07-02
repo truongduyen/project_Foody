@@ -7,7 +7,8 @@ class Admin_Post extends Component {
         items: [],
         title: '',
         content: '',
-        image: ''
+        image: '',
+        // updatePost: []
     }
     getItems() {
         fetch('http://localhost:4000/post', {
@@ -23,6 +24,10 @@ class Admin_Post extends Component {
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
+
+    // setUpdateItem = (post) => {
+    //     this.setState({ updatePost: post })
+    // }
 
     submitFormAdd = e => {
         e.preventDefault()
@@ -68,31 +73,31 @@ class Admin_Post extends Component {
     }
     submitFormUpdate = e => {
         e.preventDefault()
-        alert(this.state.title)
         fetch('http://localhost:4000/post', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                title: this.state.title,
-                content: this.state.content,
-                image: this.state.image
+                title: this.state.updatePost.title,
+                content: this.state.updatePost.content,
+                image: this.state.updatePost.image
             })
         })
             .then(() => {
                 alert(`Update thành công bài viết ${this.state.title}`)
                 location.reload()
             })
+            .catch(err => console.log(err))
     }
     componentDidMount() {
         this.getItems()
-        // console.log(this.state.items)
-        // if (this.props.items) {
-        //     const { title, content, image } = this.props.items
-        //     this.setState({ title, content, image })
-        //     console.log(this.props.title)
-        // }
+
+        if (this.props.items) {
+            const { title, content} = this.props.items
+            this.setState({ title, content})
+            console.log(this.props.title)
+        }
     }
     render() {
         return (
@@ -131,6 +136,7 @@ class Admin_Post extends Component {
                                                     <td>{dateFormat(post.createdAt, "dddd, mmmm dS, yyyy, h:MM:ss TT")}</td>
                                                     <td>
                                                         <a className="btn btn-info" data-toggle="modal" data-target="#Modal_Update"><i className="fas fa-edit"></i></a>
+                                                        {/* onClick={() => this.setUpdateItem(post)}  */}
                                                         <a name="btnDelete" className="btn btn-danger" onClick={() => this.deleteItems(post.id)}><i className="fa fa-trash" /></a>
                                                     </td>
                                                 </tr>
@@ -184,13 +190,13 @@ class Admin_Post extends Component {
                                         <div className="control-group form-group">
                                             <div className="controls">
                                                 <label>Tiêu đề: </label>
-                                                <input type="text" className="form-control" name="title" onChange={this.onChange} value={this.state.title} required autoFocus />
+                                                <textarea type="text" className="form-control" name="title" onChange={this.onChange} value={this.state.title} required autoFocus />
                                             </div>
                                         </div>
                                         <div className="control-group form-group">
                                             <div className="controls">
                                                 <label>Nội dung:</label>
-                                                <input rows={10} cols={100} className="form-control" name="content" onChange={this.onChange} value={this.state.content} required maxLength={999} style={{ resize: 'none' }} />
+                                                <textarea rows={10} cols={100} className="form-control" name="content" onChange={this.onChange} value={this.state.content} required maxLength={999} style={{ resize: 'none' }} />
                                             </div>
                                         </div>
                                         <div className="control-group form-group">

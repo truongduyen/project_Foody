@@ -7,15 +7,17 @@ class Login extends Component {
         password: '',
         salt: '',
         email: '',
+        role:'',
         check: true
     }
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
+    
     submitFormLogin = e => {
         e.preventDefault()
-        // console.log(this.state.email)
-        fetch('http://localhost:4000/admin', {
+        console.log(this.state.password)
+        fetch('http://localhost:4000/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -26,7 +28,9 @@ class Login extends Component {
                 password: this.state.password
             })
         })
+            .then(response => response.json())
             .then(result => {
+                // console.log(result)
                 if (result === null) {
                     location.reload()
                 }
@@ -37,7 +41,10 @@ class Login extends Component {
                         alert("Đăng nhập thành công");
                         window.location.href = '/admin';
                     }
-                    else window.location.href = '/user';
+                    else{
+                        alert("Đăng nhập thành công");
+                        window.location.href = '/user';
+                    } 
                 }
             })
             .catch(err => console.log(err))
@@ -60,16 +67,7 @@ class Login extends Component {
         })
             .then(() => {
                 alert(`${this.state.username} đăng ký thành công`);
-                if (result === null) {
-                    res.render('err')
-                }
-                else {
-                    var rs = result.role;
-                    console.log(rs);
-                    if (rs === 1)
-                        res.redirect('/admin');
-                    else res.redirect('/user')
-                }
+                location.reload()
             })
             .catch(err => console.log(err))
     }

@@ -90,17 +90,18 @@ router.post('/admin', (req, res) => {
     salt: req.body.salt,
     email: req.body.email
   }
+  console.log(email)
   user.findOne({
     where: {
       email: req.body.email
     }
   })
-    .then(result => {
-      if (!result) {
+    .then(user => {
+      if (!user) {
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           dataUser.password = hash
           user.create(dataUser)
-            .then(result => {
+            .then(user => {
               res.json({ status: user.email + ' registered' })
             })
             .catch(err => console.log(err))
@@ -114,16 +115,15 @@ router.post('/admin', (req, res) => {
 })
 
 //=====login
-router.post('/admin', (req, res) => {
+router.post('/login', (req, res) => {
   let email = req.body.email;
   let pw = req.body.password;
+  console.log(email)
 
   user.findOne({
     where: {
-      email: email,
-      password: pw
-    },
-    attributes: ['role']
+      email: email
+    }
   })
     .then(result => {
         bcrypt.compare(pw, result.password, (err, hash) => {
@@ -134,7 +134,6 @@ router.post('/admin', (req, res) => {
       }
     )
     .catch(err => console.log(err))
-
 })
 
 

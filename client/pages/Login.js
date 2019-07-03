@@ -65,9 +65,10 @@ class Login extends Component {
                 email: this.state.email
             })
         })
-            .then(() => {
+            .then(response => response.json())
+            .then((user) => {
                 alert(`${this.state.username} đăng ký thành công`);
-                location.reload()
+                // location.reload()
             })
             .catch(err => console.log(err))
     }

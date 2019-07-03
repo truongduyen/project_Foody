@@ -90,18 +90,18 @@ router.post('/admin', (req, res) => {
     salt: req.body.salt,
     email: req.body.email
   }
-  console.log(email)
+  console.log(dataUser)
   user.findOne({
     where: {
       email: req.body.email
     }
   })
-    .then(user => {
-      if (!user) {
+    .then(data => {
+      if (!data) {
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           dataUser.password = hash
           user.create(dataUser)
-            .then(user => {
+            .then(data => {
               res.json({ status: user.email + ' registered' })
             })
             .catch(err => console.log(err))
@@ -126,12 +126,12 @@ router.post('/login', (req, res) => {
     }
   })
     .then(result => {
-        bcrypt.compare(pw, result.password, (err, hash) => {
-          if (hash === true) {
-            res.send(JSON.stringify(result));
-          }
-        })
-      }
+      bcrypt.compare(pw, result.password, (err, hash) => {
+        if (hash === true) {
+          res.send(JSON.stringify(result));
+        }
+      })
+    }
     )
     .catch(err => console.log(err))
 })

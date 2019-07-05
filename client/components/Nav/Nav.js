@@ -20,7 +20,7 @@ class Nav extends Component {
                         <a className="nav-link js-scroll-trigger" href="/posts">CÔNG THỨC</a>
                         </li>
                         <li className="nav-item">
-                        <a className="nav-link js-scroll-trigger" href="/Member">THÀNH VIÊN</a>
+                        <a className="nav-link js-scroll-trigger" href="/member">THÀNH VIÊN</a>
                         </li>
                         <li className="nav-item">
                         <a className="nav-link js-scroll-trigger" href="/blog">BLOG</a>

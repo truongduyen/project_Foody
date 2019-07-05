@@ -186,16 +186,6 @@ a{color:inherit;text-decoration:none}
   border: 5px solid #fff;
 }
 
-.team h4 {	
-  margin-top: 25px;
-  margin-bottom: 0;
-  text-transform: none;
-}
-
-.team p {
-  margin-top: 0;
-}
-
 /* sidenav */
 .sidenav {
   width: 360px;
@@ -226,7 +216,6 @@ a{color:inherit;text-decoration:none}
   margin-bottom: 2px;
   text-align: left;
 }
-
 .teamsmall img {
   width: 50px;
   height: 50px;
@@ -243,6 +232,7 @@ a{color:inherit;text-decoration:none}
   margin-top: 0;
 }
 
+/* search */
 .search-container button {
   float: right;
   padding: 6px 10px;
@@ -265,13 +255,18 @@ a{color:inherit;text-decoration:none}
 /* page */
 .cards{
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
+  	max-width: 300px;
+  	margin: auto;
 	text-align: center;
 	background: rgb(180, 245, 189);
 }
 .row{
 	justify-content: center;
+}
+.show{
+	display: grid;
+	grid-template-columns: repeat(5,1fr);
+	grid-gap: 1fr;
 }
 .rounded-circle{
 	width: 200px;

@@ -53,7 +53,7 @@ class Admin_Member extends Component {
             })
             .catch(err => console.log(err))
     }
-    //delete
+    //delete    
     deleteItem = id => {
         let confirmDelete = window.confirm('Xóa thành viên này?')
         if (confirmDelete) {
@@ -132,7 +132,7 @@ class Admin_Member extends Component {
                                                     <td>{item.email}</td>
                                                     <td>{dateFormat(item.createdAt, "dddd, mmmm dS, yyyy, h:MM:ss TT")}</td>
                                                     <td>
-                                                    <a className="btn btn-info" data-toggle="modal" data-target="#Modal_Update" onClick={() => this.setUpdateItem(item)}><i className="fas fa-edit"></i></a>    
+                                                        <a className="btn btn-info" data-toggle="modal" data-target="#Modal_Update" onClick={() => this.setUpdateItem(item)}><i className="fas fa-edit"></i></a>    
                                                         <a name="btnDelete" className="btn btn-danger" onClick={()=>this.deleteItem(item.id)}><i className="fas fa-trash" /></a>
                                                     </td>
                                                 </tr>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class MemberSmall extends Component {
+class  MemberSmall extends Component {
     state = {
         items: []
     }
@@ -21,12 +21,14 @@ class MemberSmall extends Component {
     }
     render() {
         return (
-            <div className="col-sm-2">
-                <div className="team">
-                    <img className="mx-auto rounded-circle" src="#" alt />
-                    <h6>Larry Parker</h6>
-                    <p className="text-muted">Lead Marketer</p>
+            <div className="show">
+                {this.state.items.map((item,key) =>
+                <div className="team" key={key}>
+                    <img className="mx-auto rounded-circle" src="/static/images/member1.jpg" alt />
+                    <h6>{item.username}</h6>
+                    {/* <p className="text-muted">Lead Marketer</p> */}
                 </div>
+                 )}
             </div>
         );
     }

@@ -33,6 +33,25 @@ router.delete('/admin', (req, res) => {
     )
     .catch(err => console.log(err))
 })
+//=====update user
+router.put('/admin', (req, res) => {
+  var data= {
+    username: req.body.username,
+    email: req.body.email
+  }
+  // console.log(req.body)
+  user.update(data,
+    {
+      where: {
+        id: req.body.id
+      }
+    })
+    .then(data => {
+      console.log("update")
+      res.sendStatus(200)
+    })
+    .catch(err => console.log(err))
+});
 
 //=====post
 router.get('/post', (req, res) => {
@@ -84,6 +103,7 @@ router.put('/post', (req, res) => {
     })
     .catch(err => console.log(err))
 });
+
 //=====sign up
 router.post('/admin', (req, res) => {
   const dataUser = {

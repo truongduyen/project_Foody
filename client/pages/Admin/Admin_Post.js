@@ -112,8 +112,15 @@ class Admin_Post extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12">
-                                <div className="float-right">
+                                <div className="form-inline float-right">
                                     <button type="button" className="btn btn-success" data-toggle="modal" data-target="#Modal_Add"><i className="fas fa-pencil-alt">Thêm bài viết</i></button>
+                                    &nbsp;
+                                    <div className="search-container">
+                                        <form action="/sss">
+                                            <input type="text" placeholder="Nội dung..." name="search" />
+                                            <button type="submit"><i className="fas fa-search"></i></button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

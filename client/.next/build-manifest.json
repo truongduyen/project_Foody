@@ -15,7 +15,7 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/login": [
+    "/admin/admin_post": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

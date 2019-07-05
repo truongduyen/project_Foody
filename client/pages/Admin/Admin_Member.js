@@ -5,7 +5,10 @@ var dateFormat = require('dateformat');
 
 class Admin_Member extends Component {
     state = {
-        items: []
+        items: [],
+        id:'',
+        username:'',
+        email:''
     }
     getItems() {
         fetch('http://localhost:4000/admin', {
@@ -18,6 +21,39 @@ class Admin_Member extends Component {
         .then(items => this.setState({items}))
         .catch(err => console.log("err "+ err))
     }
+    //update
+    onChange = e => { this.setState({ [e.target.name]: e.target.value})
+    }
+
+    setUpdateItem = (item) => {
+        this.setState({ 
+            id: item.id,
+            username: item.username,
+            email: item.email
+        })
+    }
+    submitFormUpdate = e => {
+        e.preventDefault()
+        console.log(this.state.username)
+        fetch('http://localhost:4000/admin', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: this.state.id, 
+                username: this.state.username,
+                email: this.state.email
+            })
+        })
+            .then((data) => {
+                console.log(data)
+                alert(`Cập nhật thành viên ${this.state.username} thành công`)
+                location.reload()
+            })
+            .catch(err => console.log(err))
+    }
+    //delete
     deleteItem = id => {
         let confirmDelete = window.confirm('Xóa thành viên này?')
         if (confirmDelete) {
@@ -40,7 +76,12 @@ class Admin_Member extends Component {
     }
     componentDidMount() {
         this.getItems()
-        console.log(this.state.items)
+        // console.log(this.state.items)
+        if (this.props.items) {
+            const { username, email} = this.props.items
+            this.setState({ username, email})
+            console.log(this.props.username)
+        }
     } 
 
     render() {
@@ -80,7 +121,6 @@ class Admin_Member extends Component {
                                                 <th>Tên người dùng</th>
                                                 <th>Email</th>
                                                 <th>Ngày đăng ký</th>
-                                                <th>UpdatedAT</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -91,8 +131,8 @@ class Admin_Member extends Component {
                                                     <td>{item.username}</td>
                                                     <td>{item.email}</td>
                                                     <td>{dateFormat(item.createdAt, "dddd, mmmm dS, yyyy, h:MM:ss TT")}</td>
-                                                    <td>{dateFormat(item.updatedAt, "dddd, mmmm dS, yyyy, h:MM:ss TT")}</td>
                                                     <td>
+                                                    <a className="btn btn-info" data-toggle="modal" data-target="#Modal_Update" onClick={() => this.setUpdateItem(item)}><i className="fas fa-edit"></i></a>    
                                                         <a name="btnDelete" className="btn btn-danger" onClick={()=>this.deleteItem(item.id)}><i className="fas fa-trash" /></a>
                                                     </td>
                                                 </tr>
@@ -102,6 +142,34 @@ class Admin_Member extends Component {
                                 </div>
                             </div>
                         </div>
+                        <form className="modal fade" id="Modal_Update" method="POST" onSubmit={this.submitFormUpdate} >
+                            <div className="modal-dialog modal-lg">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h4 className="modal-title">Chỉnh sửa thông tin thành viên</h4>
+                                        <button type="button" className="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <div className="control-group form-group">
+                                            <div className="controls">
+                                                <label>Tên người dùng: </label>
+                                                <input type="text" className="form-control" name="username" onChange={this.onChange} value={this.state.username} required autoFocus />
+                                            </div>
+                                        </div>
+                                        <div className="control-group form-group">
+                                            <div className="controls">
+                                                <label>Email: </label>
+                                                <input type="text" className="form-control" name="email" onChange={this.onChange} value={this.state.email} required  />
+                                            </div>
+                                        </div>  
+                                    </div>
+                                    <div className="modal-footer">
+                                        <a type="button" className="btn btn default" data-dismiss="modal">Hủy bỏ</a>
+                                        <button type="submit" className="btn btn-success">Cập nhật thông tin</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </section>
             </LayoutAdmin>

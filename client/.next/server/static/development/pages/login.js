@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1119,10 +1119,9 @@ function (_Component) {
           salt: _this.state.salt,
           email: _this.state.email
         })
-      }).then(function (response) {
-        return response.json();
       }).then(function (user) {
-        alert("".concat(_this.state.username, " \u0111\u0103ng k\xFD th\xE0nh c\xF4ng")); // location.reload()
+        alert("".concat(_this.state.username, " \u0111\u0103ng k\xFD th\xE0nh c\xF4ng"));
+        location.reload();
       }).catch(function (err) {
         return console.log(err);
       });
@@ -1138,63 +1137,63 @@ function (_Component) {
         title: "\u0110\u0103ng nh\u1EADp",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 77
+          lineNumber: 76
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("section", {
         id: "services",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 78
+          lineNumber: 77
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 79
+          lineNumber: 78
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("ol", {
         className: "breadcrumb",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 80
+          lineNumber: 79
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("li", {
         className: "breadcrumb-item",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 81
+          lineNumber: 80
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("a", {
         href: "/",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 82
+          lineNumber: 81
         },
         __self: this
       }, "Trang ch\u1EE7")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("li", {
         className: "breadcrumb-item active",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 84
+          lineNumber: 83
         },
         __self: this
       }, "\u0110\u0103ng nh\u1EADp")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "login-wrap",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 86
+          lineNumber: 85
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "login-html",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 87
+          lineNumber: 86
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
@@ -1205,7 +1204,7 @@ function (_Component) {
         defaultChecked: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 88
+          lineNumber: 87
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
@@ -1213,7 +1212,7 @@ function (_Component) {
         className: "tab",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 88
+          lineNumber: 87
         },
         __self: this
       }, "\u0110\u0103ng nh\u1EADp"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
@@ -1223,7 +1222,7 @@ function (_Component) {
         className: "sign-up",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 89
+          lineNumber: 88
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
@@ -1231,14 +1230,14 @@ function (_Component) {
         className: "tab",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 89
+          lineNumber: 88
         },
         __self: this
       }, "\u0110\u0103ng k\xFD"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "login-form",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 90
+          lineNumber: 89
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("form", {
@@ -1247,21 +1246,21 @@ function (_Component) {
         onSubmit: this.submitFormLogin,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 91
+          lineNumber: 90
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "sign-in-htm",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 92
+          lineNumber: 91
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "group",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 93
+          lineNumber: 92
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
@@ -1269,7 +1268,7 @@ function (_Component) {
         className: "label",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 94
+          lineNumber: 93
         },
         __self: this
       }, "Email"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
@@ -1281,14 +1280,14 @@ function (_Component) {
         required: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 95
+          lineNumber: 94
         },
         __self: this
       })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "group",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 97
+          lineNumber: 96
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
@@ -1296,7 +1295,7 @@ function (_Component) {
         className: "label",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 98
+          lineNumber: 97
         },
         __self: this
       }, "M\u1EADt kh\u1EA9u"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
@@ -1309,14 +1308,14 @@ function (_Component) {
         required: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 99
+          lineNumber: 98
         },
         __self: this
       })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "group",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 101
+          lineNumber: 100
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
@@ -1327,28 +1326,28 @@ function (_Component) {
         defaultChecked: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 102
+          lineNumber: 101
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
         htmlFor: "check",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 103
+          lineNumber: 102
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("span", {
         className: "icon",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 103
+          lineNumber: 102
         },
         __self: this
       }), " Ghi nh\u1EDB")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "group",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 105
+          lineNumber: 104
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
@@ -1357,28 +1356,28 @@ function (_Component) {
         value: "\u0110\u0103ng nh\u1EADp",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 106
+          lineNumber: 105
         },
         __self: this
       })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "hr",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 108
+          lineNumber: 107
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "foot-lnk",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 109
+          lineNumber: 108
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("a", {
         href: "#forgot",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 110
+          lineNumber: 109
         },
         __self: this
       }, "Qu\xEAn M\u1EADt kh\u1EA9u?")))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("form", {
@@ -1387,21 +1386,21 @@ function (_Component) {
         onSubmit: this.submitFormAdd,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 114
+          lineNumber: 113
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "sign-up-htm",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 115
+          lineNumber: 114
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "group",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 116
+          lineNumber: 115
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
@@ -1409,7 +1408,7 @@ function (_Component) {
         className: "label",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 117
+          lineNumber: 116
         },
         __self: this
       }, "T\xEAn ng\u01B0\u1EDDi d\xF9ng"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
@@ -1421,14 +1420,14 @@ function (_Component) {
         required: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 118
+          lineNumber: 117
         },
         __self: this
       })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "group",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 120
+          lineNumber: 119
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
@@ -1436,7 +1435,7 @@ function (_Component) {
         className: "label",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 121
+          lineNumber: 120
         },
         __self: this
       }, "M\u1EADt kh\u1EA9u"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
@@ -1449,14 +1448,14 @@ function (_Component) {
         required: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 122
+          lineNumber: 121
         },
         __self: this
       })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "group",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 124
+          lineNumber: 123
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
@@ -1464,7 +1463,7 @@ function (_Component) {
         className: "label",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 125
+          lineNumber: 124
         },
         __self: this
       }, "Nh\u1EADp l\u1EA1i m\u1EADt kh\u1EA9u"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
@@ -1477,14 +1476,14 @@ function (_Component) {
         required: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 126
+          lineNumber: 125
         },
         __self: this
       })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "group",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 128
+          lineNumber: 127
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
@@ -1492,7 +1491,7 @@ function (_Component) {
         className: "label",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 129
+          lineNumber: 128
         },
         __self: this
       }, "Email"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
@@ -1504,14 +1503,14 @@ function (_Component) {
         required: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 130
+          lineNumber: 129
         },
         __self: this
       })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "group",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 132
+          lineNumber: 131
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
@@ -1520,28 +1519,28 @@ function (_Component) {
         value: "\u0110\u0103ng k\xFD",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 133
+          lineNumber: 132
         },
         __self: this
       })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "hr",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 135
+          lineNumber: 134
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "foot-lnk",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 136
+          lineNumber: 135
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
         htmlFor: "tab-1",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 137
+          lineNumber: 136
         },
         __self: this
       }, "\u0110\xE3 l\xE0 th\xE0nh vi\xEAn?"))))))))));
@@ -1555,7 +1554,7 @@ function (_Component) {
 
 /***/ }),
 
-/***/ 5:
+/***/ 8:
 /*!******************************!*\
   !*** multi ./pages/login.js ***!
   \******************************/

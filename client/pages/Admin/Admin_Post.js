@@ -5,10 +5,10 @@ var dateFormat = require('dateformat');
 class Admin_Post extends Component {
     state = {
         items: [],
+        id:'',
         title: '',
         content: '',
         image: '',
-        // updatePost: []
     }
     getItems() {
         fetch('http://localhost:4000/post', {
@@ -21,14 +21,16 @@ class Admin_Post extends Component {
             .then(items => this.setState({ items }))
             .catch(err => console.log("err " + err))
     }
-    onChange = e => {
-        this.setState({ [e.target.name]: e.target.value })
+    onChange = e => { this.setState({ [e.target.name]: e.target.value})
     }
 
-    // setUpdateItem = (post) => {
-    //     this.setState({ updatePost: post })
-    // }
-
+    setUpdateItem = (post) => {
+        this.setState({ 
+            id: post.id,
+            title: post.title,
+            content: post.content
+        })
+    }
     submitFormAdd = e => {
         e.preventDefault()
         // console.log(this.state.content)
@@ -73,18 +75,21 @@ class Admin_Post extends Component {
     }
     submitFormUpdate = e => {
         e.preventDefault()
+        console.log(this.state.content)
         fetch('http://localhost:4000/post', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                title: this.state.updatePost.title,
-                content: this.state.updatePost.content,
-                image: this.state.updatePost.image
+                id: this.state.id, 
+                title: this.state.title,
+                content: this.state.content,
+                image: this.state.image
             })
         })
-            .then(() => {
+            .then((dt) => {
+                console.log(dt)
                 alert(`Update thành công bài viết ${this.state.title}`)
                 location.reload()
             })
@@ -98,8 +103,9 @@ class Admin_Post extends Component {
             this.setState({ title, content})
             console.log(this.props.title)
         }
-    }
+    }    
     render() {
+        // console.log(this.state)
         return (
             <LayoutAdmin title="Quản lý bài viết">
                 <section id="services">
@@ -135,9 +141,8 @@ class Admin_Post extends Component {
                                                     <td>{post.user_id}</td>
                                                     <td>{dateFormat(post.createdAt, "dddd, mmmm dS, yyyy, h:MM:ss TT")}</td>
                                                     <td>
-                                                        <a className="btn btn-info" data-toggle="modal" data-target="#Modal_Update"><i className="fas fa-edit"></i></a>
-                                                        {/* onClick={() => this.setUpdateItem(post)}  */}
-                                                        <a name="btnDelete" className="btn btn-danger" onClick={() => this.deleteItems(post.id)}><i className="fa fa-trash" /></a>
+                                                        <a className="btn btn-info" data-toggle="modal" data-target="#Modal_Update" onClick={() => this.setUpdateItem(post)}><i className="fas fa-edit"></i></a>                                                     
+                                                        <a name="btnDelete" className="btn btn-danger" onClick={() => this.deleteItems(post.id)}><i className="fas fa-trash" /></a>
                                                     </td>
                                                 </tr>
                                             )}
@@ -190,7 +195,7 @@ class Admin_Post extends Component {
                                         <div className="control-group form-group">
                                             <div className="controls">
                                                 <label>Tiêu đề: </label>
-                                                <textarea type="text" className="form-control" name="title" onChange={this.onChange} value={this.state.title} required autoFocus />
+                                                <input type="text" className="form-control" name="title" onChange={this.onChange} value={this.state.title} required autoFocus />
                                             </div>
                                         </div>
                                         <div className="control-group form-group">

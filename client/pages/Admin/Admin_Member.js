@@ -63,7 +63,7 @@ class Admin_Member extends Component {
                                     <div className="search-container">
                                         <form action="/sss">
                                             <input type="text" placeholder="Nội dung..." name="search" />
-                                            <button type="submit"><i className="fa fa-search"></i></button>
+                                            <button type="submit"><i className="fas fa-search"></i></button>
                                         </form>
                                     </div>
                                 </form>
@@ -93,7 +93,7 @@ class Admin_Member extends Component {
                                                     <td>{dateFormat(item.createdAt, "dddd, mmmm dS, yyyy, h:MM:ss TT")}</td>
                                                     <td>{dateFormat(item.updatedAt, "dddd, mmmm dS, yyyy, h:MM:ss TT")}</td>
                                                     <td>
-                                                        <a name="btnDelete" className="btn btn-danger" onClick={()=>this.deleteItem(item.id)}><i className="fa fa-trash" /></a>
+                                                        <a name="btnDelete" className="btn btn-danger" onClick={()=>this.deleteItem(item.id)}><i className="fas fa-trash" /></a>
                                                     </td>
                                                 </tr>
                                             )}

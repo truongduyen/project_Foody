@@ -10,7 +10,7 @@
 }
   
 .warning:hover {
-    background: #fec503;
+    background: #fec503;	
     color: white;
 }
 .success {
@@ -310,6 +310,6 @@ a{color:inherit;text-decoration:none}
 .table input{
 	width: 600px;
 }
-.fa, .fas{
+.fas{
 	color: white;
 }

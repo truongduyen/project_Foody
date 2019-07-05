@@ -71,13 +71,15 @@ router.put('/post', (req, res) => {
     content: req.body.content,
     image: req.body.image
   }
-  post.findOne({
-    where: {
-      id: req.params.id
-    }
-  })
+  console.log(req.body)
+  post.update(dt,
+    {
+      where: {
+        id: req.body.id
+      }
+    })
     .then(dt => {
-      console.log(this.props.id)
+      console.log("update")
       res.sendStatus(200)
     })
     .catch(err => console.log(err))
@@ -88,9 +90,9 @@ router.post('/admin', (req, res) => {
     username: req.body.username,
     password: req.body.password,
     salt: req.body.salt,
-    email: req.body.email
+    email: req.body.email,
   }
-  console.log(dataUser)
+  //SELECT 'email' from users
   user.findOne({
     where: {
       email: req.body.email
@@ -102,23 +104,25 @@ router.post('/admin', (req, res) => {
           dataUser.password = hash
           user.create(dataUser)
             .then(data => {
-              res.json({ status: user.email + ' registered' })
+              res.json({ status: data.email + ' registered' })
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+              res.send('error: ' + err)
+            })
         })
-      }
-      else {
+      } else {
         res.json({ error: "User already exists" })
       }
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      res.send('error: ' + err)
+    })
 })
 
 //=====login
 router.post('/login', (req, res) => {
   let email = req.body.email;
   let pw = req.body.password;
-  console.log(email)
 
   user.findOne({
     where: {

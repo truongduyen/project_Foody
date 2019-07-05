@@ -64,11 +64,10 @@ class Login extends Component {
                 salt: this.state.salt,
                 email: this.state.email
             })
-        })
-            .then(response => response.json())
+        })            
             .then((user) => {
                 alert(`${this.state.username} đăng ký thành công`);
-                // location.reload()
+                location.reload()
             })
             .catch(err => console.log(err))
     }
@@ -95,7 +94,7 @@ class Login extends Component {
                                                 <input name="email" type="email" className="input" onChange={this.onChange} value={this.state.email} required />
                                             </div>
                                             <div className="group">
-                                                <label htmlFor="pass" className="label">Mật khẩu</label>
+                                                <label htmlFor="pass" className="label">Mật khẩu</label>    
                                                 <input name="password" type="password" className="input" data-type="password" onChange={this.onChange} value={this.state.password} required />
                                             </div>
                                             <div className="group">

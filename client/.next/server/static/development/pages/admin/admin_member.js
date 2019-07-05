@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1205,7 +1205,7 @@ function (_Component) {
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
-        className: "fa fa-search",
+        className: "fas fa-search",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 66
@@ -1356,7 +1356,7 @@ function (_Component) {
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
-          className: "fa fa-trash",
+          className: "fas fa-trash",
           __source: {
             fileName: _jsxFileName,
             lineNumber: 96
@@ -1374,7 +1374,7 @@ function (_Component) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 5:
 /*!*******************************************!*\
   !*** multi ./pages/admin/admin_member.js ***!
   \*******************************************/

@@ -6,7 +6,7 @@ class Blog_User extends Component {
     render() {
         return (
             <LayoutUser title="Blog">
-                <Content/>
+                <Content />
             </LayoutUser>
         );
     }

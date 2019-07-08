@@ -5,7 +5,9 @@ var post = require('../models/post');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const sequelize = require('sequelize')
+const Op = sequelize.Op;
 
 router.use(bodyParser.json()); // to support JSON bodies
 router.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
@@ -15,9 +17,22 @@ router.use(cors());
 process.env.SECRET_KEY = 'secret'
 //=====user
 router.get('/admin', (req, res) => {
-  user.findAll()
-    .then(data => res.send(data))
-    .catch(err => console.log(err))
+  if (req.query.keyword) {
+    user.findAll({
+      where: {
+        username: {
+          [Op.like]: `%${req.query.keyword}%`
+        }
+      }
+    })
+      .then(data => res.send(data))
+      .catch(err => console.log(err))
+  } else {  
+    user.findAll()
+      .then(data => res.send(data))
+      .catch(err => console.log(err))
+  }
+
 })
 //===delete user
 router.delete('/admin', (req, res) => {
@@ -35,7 +50,7 @@ router.delete('/admin', (req, res) => {
 })
 //=====update user
 router.put('/admin', (req, res) => {
-  var data= {
+  var data = {
     username: req.body.username,
     email: req.body.email
   }

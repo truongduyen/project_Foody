@@ -4,29 +4,35 @@ import { CSVLink } from "react-csv";
 var dateFormat = require('dateformat');
 
 class Admin_Member extends Component {
-    state = {
-        items: [],
-        id:'',
-        username:'',
-        email:''
-    }
-    getItems() {
-        fetch('http://localhost:4000/admin', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }    
-        }) 
-        .then(response => response.json())
-        .then(items => this.setState({items}))
-        .catch(err => console.log("err "+ err))
-    }
-    //update
-    onChange = e => { this.setState({ [e.target.name]: e.target.value})
+    //=====search
+    constructor(props) {
+        super(props);
+        this.state = {
+            keyword: '',
+            items: [],
+            id: '',
+            username: '',
+            email: ''
+        }
     }
 
+    getItems(keyword) {
+        var url = 'http://localhost:4000/admin'
+        if (keyword !== 0) {
+            url = url + '?keyword=' + keyword;
+        }
+        fetch(url)
+            .then(response => response.json())
+            .then(items => this.setState({ items }))
+            .catch(err => console.log(err))
+    }
+
+    onChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+    //====update
     setUpdateItem = (item) => {
-        this.setState({ 
+        this.setState({
             id: item.id,
             username: item.username,
             email: item.email
@@ -41,7 +47,7 @@ class Admin_Member extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: this.state.id, 
+                id: this.state.id,
                 username: this.state.username,
                 email: this.state.email
             })
@@ -68,21 +74,21 @@ class Admin_Member extends Component {
                 })
             })
                 .then(() => {
-                   alert("Xóa thành công")
-                   location.reload()
+                    alert("Xóa thành công")
+                    location.reload()
                 })
                 .catch(err => console.log(err))
         }
     }
     componentDidMount() {
-        this.getItems()
+        this.getItems('')
         // console.log(this.state.items)
         if (this.props.items) {
-            const { username, email} = this.props.items
-            this.setState({ username, email})
+            const { username, email } = this.props.items
+            this.setState({ username, email })
             console.log(this.props.username)
         }
-    } 
+    }
 
     render() {
         return (
@@ -97,14 +103,14 @@ class Admin_Member extends Component {
                                         filename={"db_user.csv"}
                                         type="button"
                                         className="btn btn-success"
-                                        target="_blank"> 
+                                        target="_blank">
                                         <i className="fa fa-file-export"> Xuất file</i>
                                     </CSVLink>
                                     &nbsp;
                                     <div className="search-container">
-                                        <form action="/sss">
-                                            <input type="text" placeholder="Nội dung..." name="search" />
-                                            <button type="submit"><i className="fas fa-search"></i></button>
+                                        <form className="search">
+                                            <input type="text" id="keyword" placeholder="Nội dung..." name="keyword" onChange={this.onChange} />
+                                            <button type="submit" onClick={() => this.getItems(this.state.keyword)}><i className="fas fa-search"></i></button>
                                         </form>
                                     </div>
                                 </form>
@@ -132,8 +138,8 @@ class Admin_Member extends Component {
                                                     <td>{item.email}</td>
                                                     <td>{dateFormat(item.createdAt, "dddd, mmmm dS, yyyy, h:MM:ss TT")}</td>
                                                     <td>
-                                                        <a className="btn btn-info" data-toggle="modal" data-target="#Modal_Update" onClick={() => this.setUpdateItem(item)}><i className="fas fa-edit"></i></a>    
-                                                        <a name="btnDelete" className="btn btn-danger" onClick={()=>this.deleteItem(item.id)}><i className="fas fa-trash" /></a>
+                                                        <a className="btn btn-info" data-toggle="modal" data-target="#Modal_Update" onClick={() => this.setUpdateItem(item)}><i className="fas fa-edit"></i></a>
+                                                        <a name="btnDelete" className="btn btn-danger" onClick={() => this.deleteItem(item.id)}><i className="fas fa-trash" /></a>
                                                     </td>
                                                 </tr>
                                             )}
@@ -159,9 +165,9 @@ class Admin_Member extends Component {
                                         <div className="control-group form-group">
                                             <div className="controls">
                                                 <label>Email: </label>
-                                                <input type="text" className="form-control" name="email" onChange={this.onChange} value={this.state.email} required  />
+                                                <input type="text" className="form-control" name="email" onChange={this.onChange} value={this.state.email} required />
                                             </div>
-                                        </div>  
+                                        </div>
                                     </div>
                                     <div className="modal-footer">
                                         <a type="button" className="btn btn default" data-dismiss="modal">Hủy bỏ</a>

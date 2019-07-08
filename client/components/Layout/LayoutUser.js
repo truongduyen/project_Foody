@@ -21,7 +21,7 @@ class LayoutUser extends Component {
                 <script src="/static/stylesheets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
                 <script src="/static/stylesheets/vendor/jquery-easing/jquery.easing.min.js"></script>
                 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+                
                 <NavUser />
                 {this.props.children}
                 <Footer />

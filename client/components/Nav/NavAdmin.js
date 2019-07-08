@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 class NavAdmin extends Component {
+    logout() {
+        localStorage.removeItem("username")
+        alert('Đăng xuất thành công')
+    }
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
@@ -23,7 +27,7 @@ class NavAdmin extends Component {
                         <a className="nav-link js-scroll-trigger" href="/admin/admin_member">QUẢN LÝ THÀNH VIÊN</a>
                         </li>
                         <li className="nav-item">
-                        <a className="nav-link js-scroll-trigger" href="/">ĐĂNG XUẤT</a>
+                        <a className="nav-link js-scroll-trigger" href="/" onClick={this.logout}>ĐĂNG XUẤT</a>
                         </li>
                         <li className="nav-item">
                         <a className="nav-link js-scroll-trigger" href="#contact">LIÊN HỆ</a>

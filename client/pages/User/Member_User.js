@@ -6,7 +6,7 @@ class Member_User extends Component {
     render() {
         return (
             <LayoutUser title="Thành viên">
-                <Content_Member/>
+                <Content_Member />
             </LayoutUser>
         );
     }

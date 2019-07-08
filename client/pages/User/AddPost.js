@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LayoutUser from '../../components/Layout/LayoutUser';
+import Nav_User from './Nav_User';
 
 // localStorage.setItem("username", email)
 // console.log(localStorage.getItem("username"));
@@ -8,67 +9,34 @@ class AddPost extends Component {
     render() {
         return (
             <LayoutUser title="Đăng bài viết">
-                <section id="services">
+                <Nav_User />
+                <div className="content">
                     <div className="container">
-                        <div className="row">
-                            <div className="col-md-4">
-                                <div className="cards">
-                                    <img src="/static/images/member.jpg" className="rounded-circle" alt="Cinque Terre" />
-                                    <br />
-                                    <h4></h4>
-                                    <div className="row text-center">
-                                        <span className="heading">Yêu thích: </span>
-                                        <span className="fa fa-star checked"></span>
-                                        <span className="fa fa-star checked"></span>
-                                        <span className="fa fa-star checked"></span>
-                                        <span className="fa fa-star checked"></span>
-                                        <span className="fa fa-star checked"></span>
-                                    </div>
-                                    Lượt xem: 343
+                        <h3>Đăng bài viết mới</h3><br />
+                        <form className="form-info" method="POST" noValidate>
+                            <div className="control-group form-group">
+                                <div className="controls">
+                                    <label>Tiêu đề: </label>
+                                    <textarea type="text" className="form-control" name="title" required data-validation-required-message="Vui lòng nhập tên" />
                                 </div>
                             </div>
-                            <div className="col-md-8">
-                                <div className="card mb-4">
-                                    <img className="card" src="/static/images/banner.jpg" alt="Card image cap" />
+                            <div className="control-group form-group">
+                                <div className="controls">
+                                    <label>Nội dung:</label>
+                                    <textarea rows={10} cols={100} className="form-control" name="content" required data-validation-required-message="Vui lòng nhập nội dung" maxLength={999} style={{ resize: 'none' }} defaultValue={""} />
                                 </div>
                             </div>
-                        </div>
-                        <div className="topnav">
-                            <a className="active" href="#home">CÔNG THỨC</a>
-                            <a href="#news">MÓN YÊU THÍCH</a>
-                            <a href="/user/page/add_post">ĐĂNG BÀI VIẾT</a>
-                            <a href="/user/page/user_info">THÔNG TIN</a>
-                            <a href="/">ĐĂNG XUẤT</a>
-                        </div>
-                        <div className="content">
-                            <div className="container">
-                                <h3>Đăng bài viết mới</h3><br />
-                                <form className="form-info" method="POST" noValidate>
-                                    <div className="control-group form-group">
-                                        <div className="controls">
-                                            <label>Tiêu đề: </label>
-                                            <textarea type="text" className="form-control" name="title" required data-validation-required-message="Vui lòng nhập tên" />
-                                        </div>
-                                    </div>
-                                    <div className="control-group form-group">
-                                        <div className="controls">
-                                            <label>Nội dung:</label>
-                                            <textarea rows={10} cols={100} className="form-control" name="content" required data-validation-required-message="Vui lòng nhập nội dung" maxLength={999} style={{ resize: 'none' }} defaultValue={""} />
-                                        </div>
-                                    </div>
-                                    <div className="control-group form-group">
-                                        <div className="controls">
-                                            <input type="file" value="Chọn ảnh" />
-                                        </div>
-                                    </div>
-                                    <div id="success" />
-                                    <a type="button" className="btn btn default" >Hủy bỏ</a>
-                                    <button type="submit" className="btn btn-primary" >Đăng bài viết</button>
-                                </form>
+                            <div className="control-group form-group">
+                                <div className="controls">
+                                    <input type="file" value="Chọn ảnh" />
+                                </div>
                             </div>
-                        </div>
+                            <div id="success" />
+                            <a type="button" className="btn btn default" >Hủy bỏ</a>
+                            <button type="submit" className="btn btn-primary" >Đăng bài viết</button>
+                        </form>
                     </div>
-                </section>
+                </div>
             </LayoutUser>
         );
     }

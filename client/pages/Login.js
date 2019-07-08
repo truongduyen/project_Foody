@@ -32,19 +32,22 @@ class Login extends Component {
             .then(result => {
                 // console.log(result)
                 if (result === null) {
+                    alert('Email hoặc mật khẩu sai. Vui lòng nhập lại.')
                     location.reload()
                 }
                 else {
                     var rs = result.role;
-                    console.log(rs);
+                    // console.log(rs);
                     if (rs === 1) {
                         alert("Đăng nhập thành công");
                         window.location.href = '/admin';
+                        localStorage.setItem("username",JSON.stringify(result))    
                     }
                     else{
                         alert("Đăng nhập thành công");
                         window.location.href = '/user';
-                    } 
+                        localStorage.setItem("username",JSON.stringify(result))
+                    }
                 }
             })
             .catch(err => console.log(err))

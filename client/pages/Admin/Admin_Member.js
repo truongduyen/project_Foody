@@ -4,7 +4,6 @@ import { CSVLink } from "react-csv";
 var dateFormat = require('dateformat');
 
 class Admin_Member extends Component {
-    //=====search
     constructor(props) {
         super(props);
         this.state = {
@@ -15,10 +14,13 @@ class Admin_Member extends Component {
             email: ''
         }
     }
-
+    onSearch = (e) => {
+        e.preventDefault();
+        this.getItems(this.state.keyword)
+    }
     getItems(keyword) {
         var url = 'http://localhost:4000/admin'
-        if (keyword !== 0) {
+        if (keyword !== null) {
             url = url + '?keyword=' + keyword;
         }
         fetch(url)
@@ -82,12 +84,6 @@ class Admin_Member extends Component {
     }
     componentDidMount() {
         this.getItems('')
-        // console.log(this.state.items)
-        if (this.props.items) {
-            const { username, email } = this.props.items
-            this.setState({ username, email })
-            console.log(this.props.username)
-        }
     }
 
     render() {
@@ -109,8 +105,8 @@ class Admin_Member extends Component {
                                     &nbsp;
                                     <div className="search-container">
                                         <form className="search">
-                                            <input type="text" id="keyword" placeholder="Nội dung..." name="keyword" onChange={this.onChange} />
-                                            <button type="submit" onClick={() => this.getItems(this.state.keyword)}><i className="fas fa-search"></i></button>
+                                            <input type="text" id="keyword" name="keyword" onChange={this.onChange} placeholder="Nội dung..." />
+                                            <button type="submit" onClick={this.onSearch}><i className="fas fa-search"></i></button>
                                         </form>
                                     </div>
                                 </form>

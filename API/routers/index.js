@@ -27,12 +27,11 @@ router.get('/admin', (req, res) => {
     })
       .then(data => res.send(data))
       .catch(err => console.log(err))
-  } else {  
+  } else {
     user.findAll()
       .then(data => res.send(data))
       .catch(err => console.log(err))
   }
-
 })
 //===delete user
 router.delete('/admin', (req, res) => {
@@ -70,16 +69,30 @@ router.put('/admin', (req, res) => {
 
 //=====post
 router.get('/post', (req, res) => {
-  post.findAll()
-    .then(data => res.send(data))
-    .catch(err => console.log(err))
+  if (req.query.keyword) {
+    post.findAll({
+      where: {
+        title: {
+          [Op.like]: `%${req.query.keyword}%`
+        }
+      }
+    })
+      .then(dt => res.send(dt))
+      .catch(err => console.log(err))
+  } else {
+    post.findAll()
+      .then(dt => res.send(dt))
+      .catch(err => console.log(err))
+  }
 })
+
 //===add post
 router.post('/post', (req, res) => {
-  var { title, content, image } = req.body;
-  post.create({ title, content, image })
-    .then(data => {
-      console.log(data)
+  var { title, content, image, item, user_email } = req.body;
+  post.create({ title, content, image, item, user_email })
+  // console.log(user_email)
+    .then(dt => {
+      console.log(dt)
       res.sendStatus(200)
     })
     .catch(err => console.log(err))
@@ -103,9 +116,10 @@ router.put('/post', (req, res) => {
   var dt = {
     title: req.body.title,
     content: req.body.content,
-    image: req.body.image
+    image: req.body.image,
+    item: req.body.item
   }
-  console.log(req.body)
+  // console.log(req.body)
   post.update(dt,
     {
       where: {

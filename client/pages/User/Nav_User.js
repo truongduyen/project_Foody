@@ -45,7 +45,7 @@ class Nav_User extends Component {
                         </div>
                     </div>
                     <div className="topnav">
-                        <a className="active" href="#home">CÔNG THỨC</a>
+                        <a className="active" href="/user/page">CÔNG THỨC</a>
                         <a href="#news">MÓN YÊU THÍCH</a>
                         <a href="/user/addpost">ĐĂNG BÀI VIẾT</a>
                         <a href="/user/user_info">THÔNG TIN</a>

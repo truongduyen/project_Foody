@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const db = require('../config/database');
 
 const post = db.define('Posts', {
-  id:{
+  id: {
     type: Sequelize.INTEGER,
     allowNull: false,
     primaryKey: true,
@@ -18,11 +18,15 @@ const post = db.define('Posts', {
     allowNull: false,
   },
   image: {
+    type: Sequelize.STRING.BINARY,
+    allowNull: false,
+  },
+  item: {
     type: Sequelize.STRING(256),
     allowNull: false,
   },
-  user_id: {
-    type: Sequelize.INTEGER,
+  user_email: {
+    type: Sequelize.STRING(256),
     allowNull: true,
   }
 });

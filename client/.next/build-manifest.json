@@ -14,6 +14,10 @@
     "/admin/admin_member": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
+    ],
+    "/admin/admin_post": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ]
   }
 }

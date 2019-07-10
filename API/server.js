@@ -8,7 +8,6 @@ const createError = require('http-errors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const indexRouter = require('../API/routers/index')
-const session = require('express-session');
 const PORT = process.env.PORT || 4000;
 
 //app
@@ -16,12 +15,7 @@ app.use(bodyParser.json())
 app.use(morgan('combined'))
 app.use('/', indexRouter)
 app.use(bodyParser.urlencoded({extended: true,}))
-app.use(session({
-  secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}))
+
 
 
 const server = http.createServer(app);

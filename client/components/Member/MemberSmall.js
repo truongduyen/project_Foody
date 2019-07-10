@@ -26,7 +26,6 @@ class  MemberSmall extends Component {
                 <div className="team" key={key}>
                     <img className="mx-auto rounded-circle" src="/static/images/member1.jpg" alt />
                     <h6>{item.username}</h6>
-                    {/* <p className="text-muted">Lead Marketer</p> */}
                 </div>
                  )}
             </div>

@@ -12,8 +12,8 @@ class Admin_Post extends Component {
             title: '',
             content: '',
             image: '',
-            item: '',
-            user_email: '',
+            // item: '',
+            // user_email: '',
             email: ''
         }
     }
@@ -55,8 +55,8 @@ class Admin_Post extends Component {
                 title: this.state.title,
                 content: this.state.content,
                 image: this.state.image,
-                item: this.state.item,
-                user_email: this.state.user_email
+                // item: this.state.item,
+                // user_email: this.state.user_email
             })
         })
             .then(() => {
@@ -180,7 +180,7 @@ class Admin_Post extends Component {
                                         <button type="button" className="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <div className="modal-body">
-                                        <div className="control-group form-group">
+                                        {/* <div className="control-group form-group">
                                             <div className="controls">
                                                 <label>Mục: </label><br />
                                                 <select className="item_post" name="item" onChange={this.onChange} style={{ height: "40px", width: "760px" }} >
@@ -192,7 +192,7 @@ class Admin_Post extends Component {
                                                     <option name="monchinh" onChange={this.onChange} selected>Món chính</option>
                                                 </select>   
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className="control-group form-group">
                                             <div className="controls">
                                                 <label>Tiêu đề: </label>
@@ -205,12 +205,12 @@ class Admin_Post extends Component {
                                                 <textarea rows={10} cols={100} className="form-control" name="content" onChange={this.onChange} value={this.state.content} maxLength={999} style={{ resize: 'none' }} required />
                                             </div>
                                         </div>
-                                        <div className="control-group form-group">
+                                        {/* <div className="control-group form-group">
                                             <div className="controls">
                                                 <label>Người đăng: </label>
                                                 <input className="form-control" name="user_email" onChange={this.onChange} value={this.state.email} required />
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className="control-group form-group">
                                             <div className="controls">
                                                 <input type="file" name="image" onChange={this.onChange} value={this.state.image} />

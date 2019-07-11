@@ -26,6 +26,19 @@ class Page extends Component {
         return (
             <LayoutUser title="Trang cá nhân">
                 <Nav_User />
+                <div className="content">
+                    <div className="container">
+                        <div className="post" id="portfolio">
+                            <div className="row">
+                                <PostSmall href="/static/images/thitheo.jpg">Thịt heo xào tiêu</PostSmall>
+                                <PostSmall href="/static/images/thitheo.jpg">Thịt heo xào tiêu</PostSmall>
+                                <PostSmall href="/static/images/thitheo.jpg">Thịt heo xào tiêu</PostSmall>
+                                <PostSmall href="/static/images/thitheo.jpg">Thịt heo xào tiêu</PostSmall>
+                                <PostSmall href="/static/images/thitheo.jpg">Thịt heo xào tiêu</PostSmall>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </LayoutUser>
         );
     }

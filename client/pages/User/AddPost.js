@@ -12,11 +12,12 @@ class AddPost extends Component {
         email: ''
     }
     onChange = e => {
+
         this.setState({ [e.target.name]: e.target.value })
     }
     submitFormAdd = e => {
         e.preventDefault()
-        // console.log(this.state.content)
+        console.log(this.state.user_email)
         fetch('http://localhost:4000/post', {
             method: 'POST',
             headers: {
@@ -28,7 +29,7 @@ class AddPost extends Component {
                 content: this.state.content,
                 image: this.state.image,
                 item: this.state.item,
-                user_email: this.state.user_email
+                user_email: this.state.email 
             })
         })
             .then(() => {
@@ -54,13 +55,17 @@ class AddPost extends Component {
                             <div className="control-group form-group">
                                 <div className="controls">
                                     <label>Mục: </label><br />
-                                    <select className="item_post" name="item" onChange={this.onChange} style={{ height: "40px", width: "760px" }} >
-                                        <option>{this.state.item}</option>
-                                        <option name="monchay" onChange={this.onChange}>Món chay</option>
-                                        <option name="anvat" onChange={this.onChange}>Ăn vặt</option>
-                                        <option name="giamcan" onChange={this.onChange}>Giảm cân</option>
-                                        <option name="thucuong" onChange={this.onChange}>Thức uống</option>
-                                        <option name="monchinh" onChange={this.onChange} selected>Món chính</option>
+                                    <select className="item_post" name="item" 
+                                    onChange={this.onChange} 
+                                    value= {this.state.item}
+                                    defaultValue= {this.state.item}
+                                    style={{ height: "40px", width: "1108px" }}
+                                     >
+                                        <option value="monchay"  >Món chay</option>
+                                        <option value="anvat"  >Ăn vặt</option>
+                                        <option value="giamcan"  >Giảm cân</option>
+                                        <option value="thucuong"  >Thức uống</option>
+                                        <option value="monchinh"   selected>Món chính</option>
                                     </select>
                                 </div>
                             </div>

@@ -42,7 +42,7 @@ class Admin_Member extends Component {
     }
     submitFormUpdate = e => {
         e.preventDefault()
-        console.log(this.state.username)
+        // console.log(this.state.username)
         fetch('http://localhost:4000/admin', {
             method: 'PUT',
             headers: {

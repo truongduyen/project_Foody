@@ -33,7 +33,7 @@ class AddPost extends Component {
         })
             .then(() => {
                 alert(`Đăng bài viết thành công`)
-                location.reload()
+                window.location.href = '/user/page';
             })
             .catch(err => console.log(err))
     }

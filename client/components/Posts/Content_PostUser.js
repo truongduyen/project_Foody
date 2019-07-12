@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PostSmall from './PostSmall';
+import PostSmallUser from './PostSmallUser';
 
 class Content_PostUser extends Component {
     render() {
@@ -19,7 +19,7 @@ class Content_PostUser extends Component {
                         </div>
                     </div>
                     <div className="post" id="portfolio">
-                        <PostSmall link="/posts/content_postuser"/>
+                        <PostSmallUser />
                     </div>
                 </div>
             </section>

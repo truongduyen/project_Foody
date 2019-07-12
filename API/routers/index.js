@@ -86,6 +86,7 @@ router.get('/post', (req, res) => {
       .catch(err => console.log(err))
   }
 })
+//=====get post theo user
 router.get('/post/:email', (req, res) => {
   if (req.query.keyword) {
     post.findAll({
@@ -107,6 +108,21 @@ router.get('/post/:email', (req, res) => {
       .then(dt => res.send(dt))
       .catch(err => console.log(err))
   }
+})
+//====get post bài viết
+router.get('/post_id', (req, res) => {
+  post.findAll()
+    .then(dt => res.send(dt))
+    .catch(err => console.log(err))
+})
+router.get('/post_id/:id', (req, res) => {
+  post.findAll({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dt => res.send(dt))
+    .catch(err => console.log(err))
 })
 //===add post
 router.post('/post', (req, res) => {
@@ -208,79 +224,5 @@ router.post('/login', (req, res) => {
     )
     .catch(err => console.log(err))
 })
-
-
-
-
-
-
-
-
-
-//user
-// router.get('/user/user_info', (req, res) => {
-//   console.log(sess.email)
-//   user.findAll({
-//     attributes: ['username', 'email', 'createdAt'],
-//     where: {
-//       email: sess.email
-//     }
-//   })
-//     .then(result => {
-//       console.log(result)
-//       res.render('components/User/User_info', { result });
-//     })
-//     .catch(err => console.log(err))
-// });
-
-
-// //login
-// router.post('/login', (req, res) => {
-//   let email = req.body.email;
-//   let pw = req.body.password;
-
-//   user.findOne({
-//     where: {
-//       email: email,
-//       password: pw
-//     },
-//     attributes: ['role']
-//   })
-//     .then(result => {
-//       console.log(result)
-//       if (result === null) {
-//         res.render('Login', { mess: "Lỗi ĐN" })
-//       }
-//       else {
-//         var rs = result.role;
-//         // console.log(rs);
-//         if (rs === 1)
-//           res.redirect('/admin');
-//         else res.redirect('/user')
-
-//         sess = req.session
-//         sess.email = email;
-//         req.session.save()
-//         console.log(sess.email)
-//       }
-//     })
-//     .catch(err => console.log(err))
-
-// })
-
-// //sign up
-// router.post('/signup', (req, res) => {
-//   const data = {
-//     username: req.body.username,
-//     password: req.body.password,
-//     salt: req.body.salt,
-//     email: req.body.email
-//   };
-//   let { username, password, salt, email } = data;
-//   //insert into table
-//   user.create({ username, password, salt, email })
-//     .then(result => res.redirect('/login'))
-//     .catch(err => console.log(err))
-// })
 
 module.exports = router;

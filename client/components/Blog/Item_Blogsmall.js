@@ -5,7 +5,7 @@ class Item_Blogsmall extends Component {
         return (
             <div className="col-lg-6 portfolio-item">
                 <div className="card h-100">
-                    <img className="card-img-top" src="/static/images/man.jpg" alt />
+                    <img className="card-img-top" src="/static/images/man.jpg" alt="image" />
                     <div className="card-body">
                         <h4 className="card-title">
                             <a href={this.props.link}>Kinh nghiệm phân biệt và tiêu chí chọn mận Hà Nội tươi, giòn</a>

@@ -16,7 +16,7 @@ class Item extends Component {
                     </ol>
                     <div className="row">
                         <div className="col-lg-8">
-                            <img className="img-fluid rounded" src="http://placehold.it/900x300" alt />
+                            <img className="img-fluid rounded" src="http://placehold.it/900x300" alt="image" />
                             <hr />
                             <p>Posted on: {}</p>
                             <hr />
@@ -33,7 +33,7 @@ class Item extends Component {
                                 <div className="card-body">
                                     <form>
                                         <div className="form-group">
-                                            <textarea className="form-control" rows={3} defaultValue={""} />
+                                            <textarea className="form-control" rows={3} />
                                         </div>
                                         <button type="submit" className="btn btn-primary">Gửi</button>
                                     </form>

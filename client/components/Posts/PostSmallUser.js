@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class PostSmall extends Component {
+class PostSmallUser extends Component {
     state = {
         items: [],
         id:''
@@ -13,7 +13,7 @@ class PostSmall extends Component {
     }
     getID = id =>{
         console.log(id)
-        window.location.href = ("/posts/content_post?id=" + id)
+        window.location.href = ("/posts/content_postuser?id=" + id)
     }
     componentDidMount() {
         this.getItems()   
@@ -34,4 +34,4 @@ class PostSmall extends Component {
     }
 }
 
-export default PostSmall;
+export default PostSmallUser;

@@ -11,47 +11,11 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/blog": [
+    "/posts/content_post": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/blog/item_blog": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/blog/item_bloguser": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/login": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/member": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/next/dist/pages/_error": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/user": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/user/blog_user": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/user/member_user": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/user/page": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/user/user_info": [
+    "/user/post_user": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

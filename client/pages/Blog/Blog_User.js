@@ -5,7 +5,7 @@ import Item_blog from '../../components/Blog/Item_blog';
 class Blog_User extends Component {
     render() {
         return (
-            <LayoutUser title="noidungblog">
+            <LayoutUser>
                 <Item_blog/>
             </LayoutUser>
         );

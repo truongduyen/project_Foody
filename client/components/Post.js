@@ -14,7 +14,7 @@ class Post extends Component {
                     <div className="row">
                         <div className="col-md-4 col-sm-6 portfolio-item">
                             <a className="portfolio-link">
-                                <img className="img-fluid" src="/static/images/gasotchanh.jpg" alt />
+                                <img className="img-fluid" src="/static/images/gasotchanh.jpg" alt="image" />
                             </a>
                             <div className="portfolio-caption" style={{textAlign:'center'}}>
                                 <a href="/posts/content_post"><h4>Gà sốt chanh</h4></a>
@@ -23,7 +23,7 @@ class Post extends Component {
                         </div>
                         <div className="col-md-4 col-sm-6 portfolio-item">
                             <a className="portfolio-link" data-toggle="modal">
-                                <img className="img-fluid" src="/static/images/cuondiepchay.jpg" alt />
+                                <img className="img-fluid" src="/static/images/cuondiepchay.jpg" alt="image" />
                             </a>
                             <div className="portfolio-caption" style={{textAlign:'center'}}>
                                 <a href="#"><h4>Cuốn diếp chay</h4></a>
@@ -32,7 +32,7 @@ class Post extends Component {
                         </div>
                         <div className="col-md-4 col-sm-6 portfolio-item">
                             <a className="portfolio-link" data-toggle="modal">
-                                <img className="img-fluid" src="/static/images/banhduc.jpg" alt />
+                                <img className="img-fluid" src="/static/images/banhduc.jpg" alt="image" />
                             </a>
                             <div className="portfolio-caption" style={{textAlign:'center'}}>
                                 <a href=""><h4>Bánh đúc lá dứa</h4></a>
@@ -41,7 +41,7 @@ class Post extends Component {
                         </div>
                         <div className="col-md-4 col-sm-6 portfolio-item">
                             <a className="portfolio-link" data-toggle="modal">
-                                <img className="img-fluid" src="/static/images/suachua.jpg" alt />
+                                <img className="img-fluid" src="/static/images/suachua.jpg" alt="image" />
                             </a>
                             <div className="portfolio-caption" style={{textAlign:'center'}}>
                                 <a href=""><h4>Sữa chua nếp cẩm</h4></a>
@@ -50,7 +50,7 @@ class Post extends Component {
                         </div>
                         <div className="col-md-4 col-sm-6 portfolio-item">
                             <a className="portfolio-link" data-toggle="modal">
-                                <img className="img-fluid" src="/static/images/suahatsen.jpg" alt />
+                                <img className="img-fluid" src="/static/images/suahatsen.jpg" alt="image" />
                             </a>
                             <div className="portfolio-caption" style={{textAlign:'center'}}>
                                 <a href=""><h4>Sữa hạt sen</h4></a>
@@ -59,7 +59,7 @@ class Post extends Component {
                         </div>
                         <div className="col-md-4 col-sm-6 portfolio-item">
                             <a className="portfolio-link" data-toggle="modal">
-                                <img className="img-fluid" src="/static/images/sup.jpg" alt />
+                                <img className="img-fluid" src="/static/images/sup.jpg" alt="image" />
                             </a>
                             <div className="portfolio-caption" style={{textAlign:'center'}}>
                                 <a href=""><h4>Súp khoai tây</h4></a>

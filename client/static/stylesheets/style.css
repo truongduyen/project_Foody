@@ -273,6 +273,11 @@ a{color:inherit;text-decoration:none}
 	grid-template-columns: repeat(4,1fr);
 	grid-gap: 1fr;
 }
+.showitem{
+	display: grid;
+	grid-template-columns: repeat(3,1fr);
+	grid-gap: 1fr;
+}
 .rounded-circle{
 	width: 200px;
 	height: 200px;

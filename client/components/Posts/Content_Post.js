@@ -19,7 +19,7 @@ class Content_Post extends Component {
                         </div>
                     </div>
                     <div className="post" id="portfolio">
-                        <PostSmall link="/posts/content_post"/>
+                        <PostSmall />
                     </div>
                 </div>
             </section>

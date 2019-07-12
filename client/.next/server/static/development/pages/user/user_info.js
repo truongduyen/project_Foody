@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1269,10 +1269,10 @@ function (_Component) {
 
 /***/ }),
 
-/***/ "./pages/user/addpost.js":
-/*!*******************************!*\
-  !*** ./pages/user/addpost.js ***!
-  \*******************************/
+/***/ "./pages/user/user_info.js":
+/*!*********************************!*\
+  !*** ./pages/user/user_info.js ***!
+  \*********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1299,35 +1299,35 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "C:\\Users\\Duyen Truong\\Desktop\\Foody\\client\\pages\\user\\addpost.js";
+var _jsxFileName = "C:\\Users\\Duyen Truong\\Desktop\\Foody\\client\\pages\\user\\user_info.js";
 
 
 
 
-var AddPost =
+var dateFormat = __webpack_require__(/*! dateformat */ "dateformat");
+
+var User_info =
 /*#__PURE__*/
 function (_Component) {
-  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_6__["default"])(AddPost, _Component);
+  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_6__["default"])(User_info, _Component);
 
-  function AddPost() {
+  function User_info() {
     var _getPrototypeOf2;
 
     var _this;
 
-    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, AddPost);
+    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, User_info);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, (_getPrototypeOf2 = Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(AddPost)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, (_getPrototypeOf2 = Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(User_info)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this), "state", {
-      title: '',
-      content: '',
-      image: '',
-      item: '',
-      user_email: '',
+      items: [],
+      id: '',
+      username: '',
       email: ''
     });
 
@@ -1335,24 +1335,30 @@ function (_Component) {
       _this.setState(Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])({}, e.target.name, e.target.value));
     });
 
-    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this), "submitFormAdd", function (e) {
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this), "setUpdateItem", function (item) {
+      _this.setState({
+        id: item.id,
+        username: item.username,
+        email: item.email
+      });
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this), "submitFormUpdate", function (e) {
       e.preventDefault();
-      console.log(_this.state.user_email);
-      fetch('http://localhost:4000/post', {
-        method: 'POST',
+      console.log(_this.state.username);
+      fetch('http://localhost:4000/admin', {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
         body: _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()({
-          title: _this.state.title,
-          content: _this.state.content,
-          image: _this.state.image,
-          item: _this.state.item,
-          user_email: _this.state.email
+          id: _this.state.id,
+          username: _this.state.username,
+          email: _this.state.email
         })
       }).then(function () {
-        alert("\u0110\u0103ng b\xE0i vi\u1EBFt th\xE0nh c\xF4ng");
-        location.reload();
+        console.log(_this.state.email); // alert(`Cập nhật thành viên ${this.state.username} thành công`)
+        // location.reload()
       }).catch(function (err) {
         return console.log(err);
       });
@@ -1361,293 +1367,330 @@ function (_Component) {
     return _this;
   }
 
-  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(AddPost, [{
+  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(User_info, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var info = JSON.parse(localStorage.getItem("username"));
       this.setState({
-        email: info.email
+        username: info.username,
+        email: info.email,
+        createdAt: info.createdAt
       });
     }
   }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_components_Layout_LayoutUser__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        title: "\u0110\u0103ng b\xE0i vi\u1EBFt",
+        title: "Th\xF4ng tin ng\u01B0\u1EDDi d\xF9ng",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 49
+          lineNumber: 55
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(_Nav_User__WEBPACK_IMPORTED_MODULE_10__["default"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 50
+          lineNumber: 56
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "content",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 51
+          lineNumber: 57
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 52
+          lineNumber: 58
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: "row",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 59
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h3", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 53
+          lineNumber: 60
         },
         __self: this
-      }, "\u0110\u0103ng b\xE0i vi\u1EBFt m\u1EDBi"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("br", {
+      }, "Th\xF4ng tin ng\u01B0\u1EDDi d\xF9ng"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("table", {
+        className: "table",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 53
+          lineNumber: 61
         },
         __self: this
-      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("form", {
-        className: "form-info",
-        method: "POST",
-        onSubmit: this.submitFormAdd,
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("tr", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 54
+          lineNumber: 62
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        className: "control-group form-group",
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("td", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 55
+          lineNumber: 63
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        className: "controls",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 56
-        },
-        __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 57
-        },
-        __self: this
-      }, "M\u1EE5c: "), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("br", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 57
-        },
-        __self: this
-      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("select", {
-        className: "item_post",
-        name: "item",
-        onChange: this.onChange,
-        value: this.state.item,
-        defaultValue: this.state.item,
-        style: {
-          height: "40px",
-          width: "1108px"
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 58
-        },
-        __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-        value: "monchay",
+      }, "T\xEAn ng\u01B0\u1EDDi d\xF9ng:"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("td", {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 64
         },
         __self: this
-      }, "M\xF3n chay"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-        value: "anvat",
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
+        type: "text",
+        name: "username",
+        value: this.state.username,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 64
+        },
+        __self: this
+      })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("td", {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 65
         },
         __self: this
-      }, "\u0102n v\u1EB7t"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-        value: "giamcan",
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("a", {
+        className: "btn btn-success",
+        "data-toggle": "modal",
+        "data-target": "#Modal_Update",
+        onSubmit: this.submitFormUpdate,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 66
+          lineNumber: 65
         },
         __self: this
-      }, "Gi\u1EA3m c\xE2n"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-        value: "thucuong",
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("i", {
+        className: "fas fa-edit",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 65
+        },
+        __self: this
+      })))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("tr", {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 67
         },
         __self: this
-      }, "Th\u1EE9c u\u1ED1ng"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("option", {
-        value: "monchinh",
-        selected: true,
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("td", {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 68
         },
         __self: this
-      }, "M\xF3n ch\xEDnh")))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        className: "control-group form-group",
+      }, "Email:"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("td", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 69
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
+        type: "text",
+        name: "email",
+        value: this.state.email,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 69
+        },
+        __self: this
+      }))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("tr", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 71
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("td", {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 72
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        className: "controls",
+      }, "Ng\xE0y tham gia:"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("td", {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 73
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
+        value: dateFormat(this.state.createdAt, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 74
+          lineNumber: 73
         },
         __self: this
-      }, "Ti\xEAu \u0111\u1EC1: "), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
-        type: "text",
-        className: "form-control",
-        name: "title",
-        onChange: this.onChange,
-        value: this.state.title,
-        required: true,
+      }))))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("form", {
+        className: "modal fade",
+        id: "Modal_Update",
+        method: "POST",
+        onSubmit: this.submitFormUpdate,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 75
+          lineNumber: 77
         },
         __self: this
-      }))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        className: "control-group form-group",
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: "modal-dialog modal-lg",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 78
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        className: "controls",
+        className: "modal-content",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 79
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: "modal-header",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 80
         },
         __self: this
-      }, "N\u1ED9i dung:"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("textarea", {
-        rows: 10,
-        cols: 100,
-        className: "form-control",
-        name: "content",
-        onChange: this.onChange,
-        value: this.state.content,
-        maxLength: 999,
-        style: {
-          resize: 'none'
-        },
-        required: true,
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("h4", {
+        className: "modal-title",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 81
         },
         __self: this
-      }))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        className: "control-group form-group",
+      }, "Ch\u1EC9nh s\u1EEDa th\xF4ng tin"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("button", {
+        type: "button",
+        className: "close",
+        "data-dismiss": "modal",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 82
+        },
+        __self: this
+      }, "\xD7")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: "modal-body",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 84
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-        className: "controls",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 85
-        },
-        __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 86
-        },
-        __self: this
-      }, "Ng\u01B0\u1EDDi \u0111\u0103ng:"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
-        className: "form-control",
-        name: "user_email",
-        onChange: this.onChange,
-        value: this.state.email,
-        required: true,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 87
-        },
-        __self: this
-      }))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "control-group form-group",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 90
+          lineNumber: 85
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
         className: "controls",
         __source: {
           fileName: _jsxFileName,
+          lineNumber: 86
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 87
+        },
+        __self: this
+      }, "T\xEAn ng\u01B0\u1EDDi d\xF9ng: "), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
+        type: "text",
+        className: "form-control",
+        name: "username",
+        onChange: this.onChange,
+        value: this.state.username,
+        required: true,
+        autoFocus: true,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 88
+        },
+        __self: this
+      }))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: "control-group form-group",
+        __source: {
+          fileName: _jsxFileName,
           lineNumber: 91
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
-        type: "file",
-        name: "image",
-        onChange: this.onChange,
-        value: this.state.image,
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: "controls",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 92
         },
         __self: this
-      }))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("label", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 93
+        },
+        __self: this
+      }, "Email: "), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("input", {
+        type: "text",
+        className: "form-control",
+        name: "email",
+        onChange: this.onChange,
+        value: this.state.email,
+        required: true,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 94
+        },
+        __self: this
+      })))), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+        className: "modal-footer",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 98
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("a", {
+        type: "button",
+        className: "btn btn default",
+        "data-dismiss": "modal",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 99
+        },
+        __self: this
+      }, "H\u1EE7y b\u1ECF"), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("button", {
         type: "submit",
         className: "btn btn-success",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 95
+          lineNumber: 100
         },
         __self: this
-      }, "\u0110\u0103ng b\xE0i vi\u1EBFt")))));
+      }, "C\u1EADp nh\u1EADt th\xF4ng tin"))))))));
     }
   }]);
 
-  return AddPost;
+  return User_info;
 }(react__WEBPACK_IMPORTED_MODULE_8__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (AddPost);
+/* harmony default export */ __webpack_exports__["default"] = (User_info);
 
 /***/ }),
 
-/***/ 3:
-/*!*************************************!*\
-  !*** multi ./pages/user/addpost.js ***!
-  \*************************************/
+/***/ 13:
+/*!***************************************!*\
+  !*** multi ./pages/user/user_info.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Duyen Truong\Desktop\Foody\client\pages\user\addpost.js */"./pages/user/addpost.js");
+module.exports = __webpack_require__(/*! C:\Users\Duyen Truong\Desktop\Foody\client\pages\user\user_info.js */"./pages/user/user_info.js");
 
 
 /***/ }),
@@ -1729,6 +1772,17 @@ module.exports = require("core-js/library/fn/symbol/iterator");
 
 /***/ }),
 
+/***/ "dateformat":
+/*!*****************************!*\
+  !*** external "dateformat" ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("dateformat");
+
+/***/ }),
+
 /***/ "react":
 /*!************************!*\
   !*** external "react" ***!
@@ -1741,4 +1795,4 @@ module.exports = require("react");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=addpost.js.map
+//# sourceMappingURL=user_info.js.map

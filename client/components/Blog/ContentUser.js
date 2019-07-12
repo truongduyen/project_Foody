@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Item_Blogsmall from './Item_Blogsmall';
 
-class Content extends Component {
+class ContentUser extends Component {
     render() {
         return (
             <section id="services">
@@ -41,7 +41,7 @@ class Content extends Component {
                     </div>
                     <h3 className="my-4">Tin nổi bật</h3>
                     <div className="row">
-                        <Item_Blogsmall link="/blog/item_blog" />
+                        <Item_Blogsmall link="/blog/item_bloguser" />
                     </div>
                     <ul class="pagination justify-content-center">
                         <li class="page-item">
@@ -72,4 +72,4 @@ class Content extends Component {
     }
 }
 
-export default Content;
+export default ContentUser;

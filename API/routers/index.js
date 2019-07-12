@@ -75,7 +75,8 @@ router.get('/post', (req, res) => {
         title: {
           [Op.like]: `%${req.query.keyword}%`
         }
-      }
+      },
+      order: ['item']
     })
       .then(dt => res.send(dt))
       .catch(err => console.log(err))
@@ -85,12 +86,32 @@ router.get('/post', (req, res) => {
       .catch(err => console.log(err))
   }
 })
-
+router.get('/post/:email', (req, res) => {
+  if (req.query.keyword) {
+    post.findAll({
+      where: {
+        user_email: req.query.email,
+        title: {
+          [Op.like]: `%${req.query.keyword}%`
+        }
+      }
+    })
+      .then(dt => res.send(dt))
+      .catch(err => console.log(err))
+  } else {
+    post.findAll({
+      where: {
+        user_email: req.params.email,
+      }
+    })
+      .then(dt => res.send(dt))
+      .catch(err => console.log(err))
+  }
+})
 //===add post
 router.post('/post', (req, res) => {
   var { title, content, image, item, user_email } = req.body;
   post.create({ title, content, image, item, user_email })
-  // console.log(user_email)
     .then(dt => {
       console.log(dt)
       res.sendStatus(200)
@@ -119,7 +140,6 @@ router.put('/post', (req, res) => {
     image: req.body.image,
     item: req.body.item
   }
-  // console.log(req.body)
   post.update(dt,
     {
       where: {

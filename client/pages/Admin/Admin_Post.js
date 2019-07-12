@@ -12,8 +12,8 @@ class Admin_Post extends Component {
             title: '',
             content: '',
             image: '',
-            // item: '',
-            // user_email: '',
+            item: '',
+            user_email: '',
             email: ''
         }
     }
@@ -39,7 +39,8 @@ class Admin_Post extends Component {
             id: post.id,
             title: post.title,
             content: post.content,
-            item: post.item
+            item: post.item,
+            // user_email: post.email
         })
     }
     submitFormAdd = e => {
@@ -55,8 +56,8 @@ class Admin_Post extends Component {
                 title: this.state.title,
                 content: this.state.content,
                 image: this.state.image,
-                // item: this.state.item,
-                // user_email: this.state.user_email
+                item: this.state.item,
+                user_email: this.state.email
             })
         })
             .then(() => {
@@ -159,7 +160,7 @@ class Admin_Post extends Component {
                                                     <td>{post.item}</td>
                                                     <td>{post.title}</td>
                                                     <td>{post.content}</td>
-                                                    <td>{post.user_id}</td>
+                                                    <td>{post.user_email}</td>
                                                     <td>{dateFormat(post.createdAt, "dddd, mmmm dS, yyyy, h:MM:ss TT")}</td>
                                                     <td>
                                                         <a className="btn btn-info" data-toggle="modal" data-target="#Modal_Update" onClick={() => this.setUpdateItem(post)}><i className="fas fa-edit"></i></a>
@@ -180,19 +181,23 @@ class Admin_Post extends Component {
                                         <button type="button" className="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <div className="modal-body">
-                                        {/* <div className="control-group form-group">
+                                        <div className="control-group form-group">
                                             <div className="controls">
                                                 <label>Mục: </label><br />
-                                                <select className="item_post" name="item" onChange={this.onChange} style={{ height: "40px", width: "760px" }} >
-                                                    <option>{this.state.item}</option>
-                                                    <option name="monchay" onChange={this.onChange}>Món chay</option>
-                                                    <option name="anvat" onChange={this.onChange}>Ăn vặt</option>
-                                                    <option name="giamcan" onChange={this.onChange}>Giảm cân</option>
-                                                    <option name="thucuong" onChange={this.onChange}>Thức uống</option>
-                                                    <option name="monchinh" onChange={this.onChange} selected>Món chính</option>
-                                                </select>   
+                                                <select className="item_post" name="item"
+                                                    onChange={this.onChange}
+                                                    value={this.state.item}
+                                                    defaultValue={this.state.item}
+                                                    style={{ height: "40px", width: "760px" }}
+                                                >
+                                                    <option name="Món chay">Món chay</option>
+                                                    <option name="Ăn vặt">Ăn vặt</option>
+                                                    <option name="Giảm cân">Giảm cân</option>
+                                                    <option name="Thức uống">Thức uống</option>
+                                                    <option name="Món chính" selected>Món chính</option>
+                                                </select>
                                             </div>
-                                        </div> */}
+                                        </div>
                                         <div className="control-group form-group">
                                             <div className="controls">
                                                 <label>Tiêu đề: </label>
@@ -205,12 +210,6 @@ class Admin_Post extends Component {
                                                 <textarea rows={10} cols={100} className="form-control" name="content" onChange={this.onChange} value={this.state.content} maxLength={999} style={{ resize: 'none' }} required />
                                             </div>
                                         </div>
-                                        {/* <div className="control-group form-group">
-                                            <div className="controls">
-                                                <label>Người đăng: </label>
-                                                <input className="form-control" name="user_email" onChange={this.onChange} value={this.state.email} required />
-                                            </div>
-                                        </div> */}
                                         <div className="control-group form-group">
                                             <div className="controls">
                                                 <input type="file" name="image" onChange={this.onChange} value={this.state.image} />
@@ -235,12 +234,17 @@ class Admin_Post extends Component {
                                         <div className="control-group form-group">
                                             <div className="controls">
                                                 <label>Mục: </label><br />
-                                                <select name="item" onChange={this.onChange} value={this.state.item} style={{ height: "40px", width: "1108px" }} >
-                                                    <option>Món chay</option>
-                                                    <option>Ăn vặt</option>
-                                                    <option>Giảm cân</option>
-                                                    <option>Thức uống</option>
-                                                    <option selected>Món chính</option>
+                                                <select className="item_post" name="item"
+                                                    onChange={this.onChange}
+                                                    value={this.state.item}
+                                                    defaultValue={this.state.item}
+                                                    style={{ height: "40px", width: "760px" }}
+                                                >
+                                                    <option name="Món chay">Món chay</option>
+                                                    <option name="Ăn vặt">Ăn vặt</option>
+                                                    <option name="Giảm cân">Giảm cân</option>
+                                                    <option name="Thức uống">Thức uống</option>
+                                                    <option name="Món chính" selected>Món chính</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -254,12 +258,6 @@ class Admin_Post extends Component {
                                             <div className="controls">
                                                 <label>Nội dung:</label>
                                                 <textarea rows={10} cols={100} className="form-control" name="content" onChange={this.onChange} value={this.state.content} required maxLength={999} style={{ resize: 'none' }} />
-                                            </div>
-                                        </div>
-                                        <div className="control-group form-group">
-                                            <div className="controls">
-                                                <label>Người chỉnh sửa: </label>
-                                                <input className="form-control" name="user_email" onChange={this.onChange} value={this.state.email} required />
                                             </div>
                                         </div>
                                         <div className="control-group form-group">

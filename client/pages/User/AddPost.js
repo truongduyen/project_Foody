@@ -12,7 +12,6 @@ class AddPost extends Component {
         email: ''
     }
     onChange = e => {
-
         this.setState({ [e.target.name]: e.target.value })
     }
     submitFormAdd = e => {
@@ -29,7 +28,7 @@ class AddPost extends Component {
                 content: this.state.content,
                 image: this.state.image,
                 item: this.state.item,
-                user_email: this.state.email 
+                user_email: this.state.email
             })
         })
             .then(() => {
@@ -55,17 +54,17 @@ class AddPost extends Component {
                             <div className="control-group form-group">
                                 <div className="controls">
                                     <label>Mục: </label><br />
-                                    <select className="item_post" name="item" 
-                                    onChange={this.onChange} 
-                                    value= {this.state.item}
-                                    defaultValue= {this.state.item}
-                                    style={{ height: "40px", width: "1108px" }}
-                                     >
-                                        <option value="monchay"  >Món chay</option>
-                                        <option value="anvat"  >Ăn vặt</option>
-                                        <option value="giamcan"  >Giảm cân</option>
-                                        <option value="thucuong"  >Thức uống</option>
-                                        <option value="monchinh"   selected>Món chính</option>
+                                    <select className="item_post" name="item"
+                                        onChange={this.onChange}
+                                        value={this.state.item}
+                                        defaultValue={this.state.item}
+                                        style={{ height: "40px", width: "1108px" }}
+                                    >
+                                        <option name="Món chay">Món chay</option>
+                                        <option name="Ăn vặt">Ăn vặt</option>
+                                        <option name="Giảm cân">Giảm cân</option>
+                                        <option name="Thức uống">Thức uống</option>
+                                        <option name="Món chính" selected>Món chính</option>
                                     </select>
                                 </div>
                             </div>
@@ -79,12 +78,6 @@ class AddPost extends Component {
                                 <div className="controls">
                                     <label>Nội dung:</label>
                                     <textarea rows={10} cols={100} className="form-control" name="content" onChange={this.onChange} value={this.state.content} maxLength={999} style={{ resize: 'none' }} required />
-                                </div>
-                            </div>
-                            <div className="control-group form-group">
-                                <div className="controls">
-                                    <label>Người đăng:</label>
-                                    <input className="form-control" name="user_email" onChange={this.onChange} value={this.state.email} required />
                                 </div>
                             </div>
                             <div className="control-group form-group">

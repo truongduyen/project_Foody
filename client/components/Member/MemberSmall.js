@@ -17,7 +17,7 @@ class  MemberSmall extends Component {
     }
     componentDidMount() {
         this.getItems()
-        console.log(this.state.items)
+        // console.log(this.state.items)
     }
     render() {
         return (

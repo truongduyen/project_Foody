@@ -36,17 +36,16 @@ class Login extends Component {
                     location.reload()
                 }
                 else {
+                    localStorage.setItem("username",JSON.stringify(result))
                     var rs = result.role;
                     // console.log(rs);
                     if (rs === 1) {
                         alert("Đăng nhập thành công");
                         window.location.href = '/admin';
-                        localStorage.setItem("username",JSON.stringify(result))    
                     }
                     else{
                         alert("Đăng nhập thành công");
                         window.location.href = '/user';
-                        localStorage.setItem("username",JSON.stringify(result))
                     }
                 }
             })

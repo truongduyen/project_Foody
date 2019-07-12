@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PostSmall from './PostSmall';
 
-class Content_Post extends Component {
+class Content_PostUser extends Component {
     render() {
         return (
             <section id="services">
@@ -19,7 +19,7 @@ class Content_Post extends Component {
                         </div>
                     </div>
                     <div className="post" id="portfolio">
-                        <PostSmall link="/posts/content_post"/>
+                        <PostSmall link="/posts/content_postuser"/>
                     </div>
                 </div>
             </section>
@@ -27,4 +27,4 @@ class Content_Post extends Component {
     }
 }
 
-export default Content_Post;
+export default Content_PostUser;

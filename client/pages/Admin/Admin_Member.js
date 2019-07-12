@@ -55,7 +55,7 @@ class Admin_Member extends Component {
             })
         })
             .then((data) => {
-                console.log(data)
+                // console.log(data)
                 alert(`Cập nhật thành viên ${this.state.username} thành công`)
                 location.reload()
             })

@@ -16,7 +16,6 @@ class Member extends Component {
                         <div className="team-member">
                         <img className="mx-auto rounded-circle" src="/static/images/member1.jpg" alt />
                         <h4>Kay Garland</h4>
-                        {/* <p className="text-muted">Lead Designer</p> */}
                         <ul className="list-inline social-buttons">
                             <li className="list-inline-item">
                             <a href="#">

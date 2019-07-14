@@ -68,9 +68,9 @@ class Post extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-12 text-center">
-                    <a className="btn warning" href="/posts">Xem thêm >>></a>
-                </div>
+                {/* <div className="col-lg-12 text-center">
+                    <a className="btn warning" href="/user/post_user">Xem thêm >>></a>
+                </div> */}
             </section>
         );
     }

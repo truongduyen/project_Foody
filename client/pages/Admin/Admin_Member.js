@@ -62,17 +62,18 @@ class Admin_Member extends Component {
             .catch(err => console.log(err))
     }
     //delete    
-    deleteItem = id => {
-        let confirmDelete = window.confirm('Xóa thành viên này?')
+    deleteItem = item => {
+        let confirmDelete = window.confirm('Xóa thành viên này?') // demo đi bé
         if (confirmDelete) {
-            // console.log(id)
+            console.log(item)
             fetch('http://localhost:4000/admin', {
-                method: 'delete',
+                method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    id
+                body: JSON.stringify({  
+                    id:item.id,
+                    email:item.email
                 })
             })
                 .then(() => {
@@ -135,7 +136,7 @@ class Admin_Member extends Component {
                                                     <td>{dateFormat(item.createdAt, "dddd, mmmm dS, yyyy, h:MM:ss TT")}</td>
                                                     <td>
                                                         <a className="btn btn-info" data-toggle="modal" data-target="#Modal_Update" onClick={() => this.setUpdateItem(item)}><i className="fas fa-edit"></i></a>
-                                                        <a name="btnDelete" className="btn btn-danger" onClick={() => this.deleteItem(item.id)}><i className="fas fa-trash" /></a>
+                                                        <a name="btnDelete" className="btn btn-danger" onClick={() => this.deleteItem(item)}><i className="fas fa-trash" /></a>
                                                     </td>
                                                 </tr>
                                             )}

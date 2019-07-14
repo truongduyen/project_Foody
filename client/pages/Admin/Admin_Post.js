@@ -76,7 +76,7 @@ class Admin_Post extends Component {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    id
+                    user_email
                 })
             })
                 .then(() => {

@@ -35,194 +35,211 @@ router.get('/admin', (req, res) => {
 })
 //===delete user
 router.delete('/admin', (req, res) => {
-  user.destroy({
-    where: {
-      id: req.body.id
-    }
-  })
-    .then(data => {
-      console.log('delete completed');
-      res.sendStatus(200)
-    }
-    )
-    .catch(err => console.log(err))
-})
-//=====update user
-router.put('/admin', (req, res) => {
-  var data = {
-    username: req.body.username,
-    email: req.body.email
-  }
-  // console.log(req.body)
-  user.update(data,
-    {
-      where: {
-        id: req.body.id
-      }
-    })
-    .then(data => {
-      console.log("update")
-      res.sendStatus(200)
-    })
-    .catch(err => console.log(err))
-});
-
-//=====post
-router.get('/post', (req, res) => {
-  if (req.query.keyword) {
-    post.findAll({
-      where: {
-        title: {
-          [Op.like]: `%${req.query.keyword}%`
-        }
-      },
-      order: ['item']
-    })
-      .then(dt => res.send(dt))
-      .catch(err => console.log(err))
-  } else {
-    post.findAll()
-      .then(dt => res.send(dt))
-      .catch(err => console.log(err))
-  }
-})
-//=====get post theo user
-router.get('/post/:email', (req, res) => {
-  if (req.query.keyword) {
-    post.findAll({
-      where: {
-        user_email: req.query.email,
-        title: {
-          [Op.like]: `%${req.query.keyword}%`
-        }
-      }
-    })
-      .then(dt => res.send(dt))
-      .catch(err => console.log(err))
-  } else {
-    post.findAll({
-      where: {
-        user_email: req.params.email,
-      }
-    })
-      .then(dt => res.send(dt))
-      .catch(err => console.log(err))
-  }
-})
-//====get post bài viết
-router.get('/post_id', (req, res) => {
-  post.findAll()
-    .then(dt => res.send(dt))
-    .catch(err => console.log(err))
-})
-router.get('/post_id/:id', (req, res) => {
-  post.findAll({
-    where: {
-      id: req.params.id
-    }
-  })
-    .then(dt => res.send(dt))
-    .catch(err => console.log(err))
-})
-//===add post
-router.post('/post', (req, res) => {
-  var { title, content, image, item, user_email } = req.body;
-  post.create({ title, content, image, item, user_email })
-    .then(dt => {
-      console.log(dt)
-      res.sendStatus(200)
-    })
-    .catch(err => console.log(err))
-})
-//=====delete post
-router.delete('/post', (req, res) => {
   post.destroy({
     where: {
-      id: req.body.id
+      user_email: req.body.email
     }
   })
-    .then(() => {
-      console.log('delete completed');
-      res.sendStatus(200)
-    }
-    )
-    .catch(err => console.log(err))
-})
-//=====update post
-router.put('/post', (req, res) => {
-  var dt = {
-    title: req.body.title,
-    content: req.body.content,
-    image: req.body.image,
-    item: req.body.item
-  }
-  post.update(dt,
-    {
+  .then(()=>{
+    user.destroy({
       where: {
         id: req.body.id
       }
     })
-    .then(dt => {
-      console.log("update")
+  })
+  .then(() => {
+      console.log('delete completed');
       res.sendStatus(200)
-    })
-    .catch(err => console.log(err))
-});
-
-//=====sign up
-router.post('/admin', (req, res) => {
-  const dataUser = {
-    username: req.body.username,
-    password: req.body.password,
-    salt: req.body.salt,
-    email: req.body.email,
-  }
-  //SELECT 'email' from users
-  user.findOne({
-    where: {
+  })  
+  .catch(err=>console.log(err))
+})
+  //=====update user
+  router.put('/admin', (req, res) => {
+    console.log(req.body)
+    var data = {
+      username: req.body.username,
       email: req.body.email
     }
-  })
-    .then(data => {
-      if (!data) {
-        bcrypt.hash(req.body.password, 10, (err, hash) => {
-          dataUser.password = hash
-          user.create(dataUser)
-            .then(data => {
-              res.json({ status: data.email + ' registered' })
-            })
-            .catch(err => {
-              res.send('error: ' + err)
-            })
-        })
-      } else {
-        res.json({ error: "User already exists" })
-      }
-    })
-    .catch(err => {
-      res.send('error: ' + err)
-    })
-})
-
-//=====login
-router.post('/login', (req, res) => {
-  let email = req.body.email;
-  let pw = req.body.password;
-
-  user.findOne({
-    where: {
-      email: email
-    }
-  })
-    .then(result => {
-      bcrypt.compare(pw, result.password, (err, hash) => {
-        if (hash === true) {
-          res.send(JSON.stringify(result));
+    // console.log(req.body)
+    user.update(data,
+      {
+        where: {
+          id: req.body.id
         }
       })
-    }
-    )
-    .catch(err => console.log(err))
-})
+      .then(data => {
+        console.log(data)
+        res.sendStatus(200)
+      })
+      .catch(err => console.log(err))
+  });
 
-module.exports = router;
+  //=====post
+  router.get('/post', (req, res) => {
+    if (req.query.keyword) {
+      post.findAll({
+        where: {
+          title: {
+            [Op.like]: `%${req.query.keyword}%`
+          }
+        }
+      })
+        .then(dt => {
+          console.log(dt)
+          res.send(dt)
+        })
+        .catch(err => console.log(err))
+    } else {
+      post.findAll()
+        .then(dt => {
+          console.log(dt)
+          res.send(dt)
+        })
+        .catch(err => console.log(err))
+    }
+  })
+  //=====get post theo user
+  router.get('/post/:email', (req, res) => {
+    if (req.query.keyword) {
+      post.findAll({
+        where: {
+          user_email: req.query.email,
+          title: {
+            [Op.like]: `%${req.query.keyword}%`
+          }
+        }
+      })
+        .then(dt => res.send(dt))
+        .catch(err => console.log(err))
+    } else {
+      post.findAll({
+        where: {
+          user_email: req.params.email,
+        }
+      })
+        .then(dt => res.send(dt))
+        .catch(err => console.log(err))
+    }
+  })
+  //====get post bài viết
+  router.get('/post_id', (req, res) => {
+    post.findAll({
+      order: [
+        ['item', 'ASC']
+      ]
+    })
+      .then(dt => res.send(dt))
+      .catch(err => console.log(err))
+  })
+  router.get('/post_id/:id', (req, res) => {
+    post.findAll({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(dt => res.send(dt))
+      .catch(err => console.log(err))
+  })
+  //===add post
+  router.post('/post', (req, res) => {
+    var { title, content, image, item, user_email } = req.body;
+    console.log(image)
+    post.create({ title, content, image, item, user_email })
+      .then(dt => {
+        console.log(dt)
+        res.sendStatus(200)
+      })
+      .catch(err => console.log(err))
+  })
+  //=====delete post
+  router.delete('/post', (req, res) => {
+    post.destroy({
+      where: {
+        id: req.body.id
+      }
+    })
+      .then(() => {
+        console.log('delete completed');
+        res.sendStatus(200)
+      }
+      )
+      .catch(err => console.log(err))
+  })
+  //=====update post
+  router.put('/post', (req, res) => {
+    var dt = {
+      title: req.body.title,
+      content: req.body.content,
+      image: req.body.image,
+      item: req.body.item
+    }
+    post.update(dt,
+      {
+        where: {
+          id: req.body.id
+        }
+      })
+      .then(dt => {
+        console.log("update")
+        res.sendStatus(200)
+      })
+      .catch(err => console.log(err))
+  });
+
+  //=====sign up
+  router.post('/admin', (req, res) => {
+    const dataUser = {
+      username: req.body.username,
+      password: req.body.password,
+      salt: req.body.salt,
+      email: req.body.email,
+    }
+    //SELECT 'email' from users
+    user.findOne({
+      where: {
+        email: req.body.email
+      }
+    })
+      .then(data => {
+        if (!data) {
+          bcrypt.hash(req.body.password, 10, (err, hash) => {
+            dataUser.password = hash
+            user.create(dataUser)
+              .then(data => {
+                res.json({ status: data.email + ' registered' })
+              })
+              .catch(err => {
+                res.send('error: ' + err)
+              })
+          })
+        } else {
+          res.json({ error: "User already exists" })
+        }
+      })
+      .catch(err => {
+        res.send('error: ' + err)
+      })
+  })
+
+  //=====login
+  router.post('/login', (req, res) => {
+    let email = req.body.email;
+    let pw = req.body.password;
+
+    user.findOne({
+      where: {
+        email: email
+      }
+    })
+      .then(result => {
+        bcrypt.compare(pw, result.password, (err, hash) => {
+          if (hash === true) {
+            res.send(JSON.stringify(result));
+          }
+        })
+      }
+      )
+      .catch(err => console.log(err))
+  })
+
+  module.exports = router;

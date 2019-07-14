@@ -83,9 +83,9 @@ class Member extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-12 text-center">
+                {/* <div className="col-lg-12 text-center">
                     <a className="btn warning" href="/member">Xem thêm >>></a>
-                </div>
+                </div> */}
             </section>
 
         );

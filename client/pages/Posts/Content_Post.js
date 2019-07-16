@@ -4,12 +4,14 @@ import PostContentSmall from '../../components/Posts/PostContentSmall';
 
 class Content_Post extends Component {
     state = {
-        id: ''
+        items:[],
+        id: '',
+        title:''
     }
     getItems() {
         var query = location.search;
         var id = query.substring(4, 6)
-        console.log(id)
+        // console.log(id)
 
         fetch('http://localhost:4000/post/id' + id)
             .then(response => response.json())
@@ -22,7 +24,7 @@ class Content_Post extends Component {
     }
     render() {
         return (
-            <Layout title="bài viết">
+            <Layout title="">
                 <PostContentSmall />
             </Layout>
         );

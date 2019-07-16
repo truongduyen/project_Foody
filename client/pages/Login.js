@@ -5,7 +5,7 @@ class Login extends Component {
     state = {
         username: '',
         password: '',
-        salt: '',
+        // salt: '',
         email: '',
         role:'',
         check: true
@@ -63,7 +63,7 @@ class Login extends Component {
             body: JSON.stringify({
                 username: this.state.username,
                 password: this.state.password,
-                salt: this.state.salt,
+                // salt: this.state.salt,
                 email: this.state.email
             })
         })            
@@ -122,10 +122,10 @@ class Login extends Component {
                                                 <label htmlFor="pass" className="label">Mật khẩu</label>
                                                 <input type="password" className="input" data-type="password" name="password" onChange={this.onChange} value={this.state.password} required />
                                             </div>
-                                            <div className="group">
+                                            {/* <div className="group">
                                                 <label htmlFor="pass" className="label">Nhập lại mật khẩu</label>
                                                 <input type="password" className="input" data-type="password" name="salt" onChange={this.onChange} value={this.state.salt} required />
-                                            </div>
+                                            </div> */}
                                             <div className="group">
                                                 <label htmlFor="pass" className="label">Email</label>
                                                 <input type="email" className="input" name="email" onChange={this.onChange} value={this.state.email} required />

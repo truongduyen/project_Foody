@@ -285,7 +285,7 @@ a{color:inherit;text-decoration:none}
 .topnav {
   background-color:white;
   overflow: hidden;
-  margin-left: 350px;
+  margin-left: 460px;
   
 }
 
@@ -321,3 +321,17 @@ a{color:inherit;text-decoration:none}
 .space{
 	margin-top: 150px;
 }
+.pagination-status .pagination-status__btn {
+	position: relative;
+	float: left;
+	padding: 6px 12px;
+	margin-left: -1px;
+	color: #337ab7;
+	text-decoration: none;
+	background-color: #fff;
+	border: 1px solid #ddd;
+  }
+  .pagination-status {
+	list-style: none;
+	padding-left: 100px
+  }

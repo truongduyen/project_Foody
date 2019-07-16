@@ -241,5 +241,8 @@ router.delete('/admin', (req, res) => {
       )
       .catch(err => console.log(err))
   })
+//=======comment
+router.get("/comment", (req, res) => {
 
+})
   module.exports = router;

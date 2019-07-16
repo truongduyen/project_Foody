@@ -28,7 +28,7 @@ class PostSmall extends Component {
                         <p className="text-muted">{post.item}</p>
                         </div>
                     </div>
-                )}
+                )}  
             </div>
         );
     }

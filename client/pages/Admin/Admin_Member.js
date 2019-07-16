@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LayoutAdmin from '../../components/Layout/LayoutAdmin';
 import { CSVLink } from "react-csv";
 var dateFormat = require('dateformat');
+import { TablePagination } from 'react-pagination-table';
 
 class Admin_Member extends Component {
     constructor(props) {
@@ -51,7 +52,7 @@ class Admin_Member extends Component {
             body: JSON.stringify({
                 id: this.state.id,
                 username: this.state.username,
-                email: this.state.email
+                // email: this.state.email
             })
         })
             .then((data) => {
@@ -63,7 +64,7 @@ class Admin_Member extends Component {
     }
     //delete    
     deleteItem = item => {
-        let confirmDelete = window.confirm('Xóa thành viên này?') // demo đi bé
+        let confirmDelete = window.confirm('Xóa thành viên này?')
         if (confirmDelete) {
             console.log(item)
             fetch('http://localhost:4000/admin', {
@@ -71,9 +72,9 @@ class Admin_Member extends Component {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({  
-                    id:item.id,
-                    email:item.email
+                body: JSON.stringify({
+                    id: item.id,
+                    email: item.email
                 })
             })
                 .then(() => {
@@ -86,8 +87,24 @@ class Admin_Member extends Component {
     componentDidMount() {
         this.getItems('')
     }
-
+    actions = (item) => {
+        return (
+            <div className="btn">
+                <a className="btn btn-info" data-toggle="modal" data-target="#Modal_Update" onClick={() => this.setUpdateItem(item)}><i className="fas fa-edit"></i></a>
+                <a name="btnDelete" className="btn btn-danger" onClick={() => this.deleteItem(item)}><i className="fas fa-trash" /></a>
+            </div>
+        )
+    }
     render() {
+        const Header = ["ID", "Tên người dùng", "Email", "Ngày đăng ký", " "];
+        let { items } = this.state;
+        items = items.map(item => {
+            return {
+                ...item,
+                actions: this.actions(item)
+            }
+        })
+
         return (
             <LayoutAdmin title="Quản lý thành viên">
                 <section id="services">
@@ -117,31 +134,13 @@ class Admin_Member extends Component {
                             <div className="col-md-12">
                                 <h4>Danh sách thành viên</h4>
                                 <div className="records_content">
-                                    <table className="table">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Tên người dùng</th>
-                                                <th>Email</th>
-                                                <th>Ngày đăng ký</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {this.state.items.map(item =>
-                                                <tr key={item.id}>
-                                                    <th scope="row">{item.id}</th>
-                                                    <td>{item.username}</td>
-                                                    <td>{item.email}</td>
-                                                    <td>{dateFormat(item.createdAt, "dddd, mmmm dS, yyyy, h:MM:ss TT")}</td>
-                                                    <td>
-                                                        <a className="btn btn-info" data-toggle="modal" data-target="#Modal_Update" onClick={() => this.setUpdateItem(item)}><i className="fas fa-edit"></i></a>
-                                                        <a name="btnDelete" className="btn btn-danger" onClick={() => this.deleteItem(item)}><i className="fas fa-trash" /></a>
-                                                    </td>
-                                                </tr>
-                                            )}
-                                        </tbody>
-                                    </table>
+                                    <TablePagination
+                                        headers={Header}
+                                        data={items}
+                                        columns="id.username.email.createdAt.actions"
+                                        perPageItemCount={5}
+                                        totalCount={15}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -159,12 +158,12 @@ class Admin_Member extends Component {
                                                 <input type="text" className="form-control" name="username" onChange={this.onChange} value={this.state.username} required autoFocus />
                                             </div>
                                         </div>
-                                        <div className="control-group form-group">
+                                        {/* <div className="control-group form-group">
                                             <div className="controls">
                                                 <label>Email: </label>
                                                 <input type="text" className="form-control" name="email" onChange={this.onChange} value={this.state.email} required />
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className="modal-footer">
                                         <a type="button" className="btn btn default" data-dismiss="modal">Hủy bỏ</a>

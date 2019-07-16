@@ -77,7 +77,7 @@ class AddPost extends Component {
                             <div className="control-group form-group">
                                 <div className="controls">
                                     <label>Nội dung:</label>
-                                    <textarea rows={10} cols={100} className="form-control" name="content" onChange={this.onChange} value={this.state.content} maxLength={999} style={{ resize: 'none' }} required />
+                                    <textarea rows={10} cols={100} className="form-control" name="content" onChange={this.onChange} value={this.state.content} maxLength={9999} style={{ resize: 'none' }} required />
                                 </div>
                             </div>
                             <div className="control-group form-group">

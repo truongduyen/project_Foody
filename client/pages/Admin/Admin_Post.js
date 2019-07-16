@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LayoutAdmin from '../../components/Layout/LayoutAdmin';
 var dateFormat = require('dateformat');
+import { TablePagination } from 'react-pagination-table'
 
 class Admin_Post extends Component {
     constructor(props) {
@@ -76,7 +77,7 @@ class Admin_Post extends Component {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    user_email
+                    id
                 })
             })
                 .then(() => {
@@ -117,7 +118,23 @@ class Admin_Post extends Component {
             email: info.email
         })
     }
+    actions = (item) => {
+        return (
+            <div className="btn">
+                <a className="btn btn-info" data-toggle="modal" data-target="#Modal_Update" onClick={() => this.setUpdateItem(post)}><i className="fas fa-edit"></i></a>
+                <a name="btnDelete" className="btn btn-danger" onClick={() => this.deleteItems(post.id)}><i className="fas fa-trash" /></a>
+            </div>
+        )
+    }
     render() {
+        const Header = ["ID", "Mục", "Tiêu đề", "Nội dung", "Người đăng", "Ngày đăng bài", " "];
+        let { items } = this.state;
+        items = items.map(post => {
+            return {
+                ...post,
+                actions: this.actions(post)
+            }
+        })
         // console.log(this.state)
         return (
             <LayoutAdmin title="Quản lý bài viết">
@@ -141,35 +158,13 @@ class Admin_Post extends Component {
                             <div className="col-md-12">
                                 <h4>Danh sách bài viết</h4>
                                 <div className="records_content">
-                                    <table className="table">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Mục</th>
-                                                <th>Tiêu đề</th>
-                                                <th>Nội dung</th>
-                                                <th>Người đăng</th>
-                                                <th>Ngày nhập</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {this.state.items.map(post =>
-                                                <tr key={post.id}>
-                                                    <th scope="row">{post.id}</th>
-                                                    <td>{post.item}</td>
-                                                    <td>{post.title}</td>
-                                                    <td>{post.content}</td>
-                                                    <td>{post.user_email}</td>
-                                                    <td>{dateFormat(post.createdAt, "dddd, mmmm dS, yyyy, h:MM:ss TT")}</td>
-                                                    <td>
-                                                        <a className="btn btn-info" data-toggle="modal" data-target="#Modal_Update" onClick={() => this.setUpdateItem(post)}><i className="fas fa-edit"></i></a>
-                                                        <a name="btnDelete" className="btn btn-danger" onClick={() => this.deleteItems(post.id)}><i className="fas fa-trash" /></a>
-                                                    </td>
-                                                </tr>
-                                            )}
-                                        </tbody>
-                                    </table>
+                                    <TablePagination
+                                        headers={Header}
+                                        data={items}
+                                        columns="id.item.title.content.user_email.createdAt.actions"
+                                        perPageItemCount={5}
+                                        totalCount={50}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -207,7 +202,7 @@ class Admin_Post extends Component {
                                         <div className="control-group form-group">
                                             <div className="controls">
                                                 <label>Nội dung:</label>
-                                                <textarea rows={10} cols={100} className="form-control" name="content" onChange={this.onChange} value={this.state.content} maxLength={999} style={{ resize: 'none' }} required />
+                                                <textarea rows={10} cols={100} className="form-control" name="content" onChange={this.onChange} value={this.state.content} maxLength={9999} style={{ resize: 'none' }} required />
                                             </div>
                                         </div>
                                         <div className="control-group form-group">

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var user = require('../models/user');
 var post = require('../models/post');
+var cmt = require('../models/comment');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 const bcrypt = require('bcrypt')
@@ -131,10 +132,10 @@ router.delete('/admin', (req, res) => {
       .then(dt => res.send(dt))
       .catch(err => console.log(err))
   })
-  router.get('/post_id/:id', (req, res) => {
+  router.get('/post_id/:id_post', (req, res) => {
     post.findAll({
       where: {
-        id: req.params.id
+        id_post: req.params.id_post
       }
     })
       .then(dt => res.send(dt))
@@ -155,7 +156,7 @@ router.delete('/admin', (req, res) => {
   router.delete('/post', (req, res) => {
     post.destroy({
       where: {
-        id: req.body.id
+        id_post: req.body.id_post
       }
     })
       .then(() => {
@@ -176,7 +177,7 @@ router.delete('/admin', (req, res) => {
     post.update(dt,
       {
         where: {
-          id: req.body.id
+          id_post: req.body.id_post
         }
       })
       .then(dt => {
@@ -243,6 +244,19 @@ router.delete('/admin', (req, res) => {
   })
 //=======comment
 router.get("/comment", (req, res) => {
-
+  cmt.findAll()
+    .then(dt => res.send(dt))
+    .catch(err => console.log(err))
+})
+//=======comment post
+router.post('/comment', (req, res) => {
+  var { content_cmt, user_id, post_id } = req.body;
+  // console.log(image)
+  cmt.create({ content_cmt, user_id, post_id })
+    .then(dt => {
+      console.log(dt)
+      res.sendStatus(200)
+    })
+    .catch(err => console.log(err))
 })
   module.exports = router;

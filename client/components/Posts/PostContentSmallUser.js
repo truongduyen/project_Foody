@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-class PostContentSmall extends Component {
+class PostContentSmallUser extends Component {
     state = {
         items: [],
-        cmt:[],
-        id_post:'',
+        cmt: [],
+        id_post: '',
         content_cmt: '',
         user_id: '',
         post_id: ''
@@ -13,6 +13,34 @@ class PostContentSmall extends Component {
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
+    submitAddComment = e => {
+        e.preventDefault()
+        // console.log(this.state.content)
+        fetch('http://localhost:4000/comment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+
+            },
+            body: JSON.stringify({
+                content_cmt: this.state.content_cmt,
+                user_id: this.state.id,
+                post_id: this.state.id_post
+            })
+        })
+            .then(() => {
+                alert(`Đăng bài viết thành công`)
+                // location.reload()
+            })
+            .catch(err => console.log(err))
+    }
+    // get comment
+    // getComment() {
+    //     fetch('http://localhost:4000/comment')
+    //         .then(response => response.json())
+    //         .then(items => this.setState({ items }))
+    //         .catch(err => console.log("err " + err))
+    // }
     // get db theo id post
     getItems() {
         var query = location.search;
@@ -26,6 +54,11 @@ class PostContentSmall extends Component {
     }
     componentDidMount() {
         this.getItems('')
+        const info = JSON.parse(localStorage.getItem("username"))
+        this.setState({
+            id: info.id,
+            username: info.username
+        })
     }
     render() {
         return (
@@ -55,25 +88,31 @@ class PostContentSmall extends Component {
                                         </footer>
                                     </blockquote>
                                     <hr />
-                                    <div className="card my-4">
+                                    <div className=" card my-4">
                                         <h5 className="card-header">Bình luận:</h5>
                                         <div className="card-body">
-                                            <form className="comment" method="POST" >
-                                                <div className="form-group">
-                                                    <textarea className="form-control" value={}/>
-
+                                            <form className="comment" method="POST" onSubmit={this.submitAddComment}>
+                                                <div className="media mb-2">
+                                                    <img className="d-flex mr-3 rounded-circle itemer" src="http://placehold.it/50x50" alt="" />
+                                                    <div className="media-body">
+                                                        <a className="mt-0">{this.state.username}</a>
+                                                        {this.state.content}
+                                                    </div>
                                                 </div>
-                                                <button type="submit" className="btn btn-primary" >Gửi</button>
+                                                <div className="form-group">
+                                                    <textarea className="form-control" onChange={this.onChange} defaultValue={this.state.content_cmt} />
+                                                </div>
+                                                <button type="submit" className="btn btn-primary">Gửi</button>
                                             </form>
                                         </div>
                                     </div>
-                                    {/* <form className="media mb-4">
+                                    <form className="media mb-4">
                                         <img className="d-flex mr-3 rounded-circle itemer" src="http://placehold.it/50x50" alt="" />
                                         <div className="media-body">
                                             <a className="mt-0">{this.state.username}</a>
                                             {this.state.content}
                                         </div>
-                                    </form> */}
+                                    </form>
                                 </div>
                                 <div className="col-md-4">
                                     <div className="mb-3">
@@ -94,4 +133,4 @@ class PostContentSmall extends Component {
     }
 }
 
-export default PostContentSmall;
+export default PostContentSmallUser;

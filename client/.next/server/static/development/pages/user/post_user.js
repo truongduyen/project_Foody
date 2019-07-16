@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -669,22 +669,7 @@ function (_Component) {
           lineNumber: 29
         },
         __self: this
-      }, "TRANG C\xC1 NH\xC2N")), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("li", {
-        className: "nav-item",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 31
-        },
-        __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("a", {
-        className: "nav-link js-scroll-trigger",
-        href: "#contact",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 32
-        },
-        __self: this
-      }, "LI\xCAN H\u1EC6"))))));
+      }, "TRANG C\xC1 NH\xC2N"))))));
     }
   }]);
 
@@ -878,12 +863,12 @@ function (_Component) {
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "state", {
       items: [],
-      id: ''
+      id_post: ''
     });
 
-    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "getID", function (id) {
-      console.log(id);
-      window.location.href = "/posts/content_postuser?id=" + id;
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "getID", function (id_post) {
+      console.log(id_post);
+      window.location.href = "/posts/content_postuser?id=" + id_post;
     });
 
     return _this;
@@ -938,7 +923,7 @@ function (_Component) {
           src: "/static/images/nammo.jpg",
           alt: "image",
           onClick: function onClick() {
-            return _this3.getID(post.id);
+            return _this3.getID(post.id_post);
           },
           __source: {
             fileName: _jsxFileName,
@@ -1350,7 +1335,7 @@ function (_Component) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 8:
 /*!***************************************!*\
   !*** multi ./pages/user/post_user.js ***!
   \***************************************/

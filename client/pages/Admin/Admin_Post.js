@@ -9,7 +9,7 @@ class Admin_Post extends Component {
         this.state = {
             keyword: '',
             items: [],
-            id: '',
+            id_post: '',
             title: '',
             content: '',
             image: '',
@@ -37,7 +37,7 @@ class Admin_Post extends Component {
     }
     setUpdateItem = (post) => {
         this.setState({
-            id: post.id,
+            id_post: post.id_post,
             title: post.title,
             content: post.content,
             item: post.item,
@@ -67,7 +67,7 @@ class Admin_Post extends Component {
             })
             .catch(err => console.log(err))
     }
-    deleteItems = id => {
+    deleteItems = id_post => {
         let confirmDelete = window.confirm('Xóa bài viết này?')
         if (confirmDelete) {
             // console.log(id)
@@ -77,7 +77,7 @@ class Admin_Post extends Component {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    id
+                    id_post
                 })
             })
                 .then(() => {
@@ -97,7 +97,7 @@ class Admin_Post extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: this.state.id,
+                id_post: this.state.id_post,
                 title: this.state.title,
                 content: this.state.content,
                 image: this.state.image,
@@ -118,11 +118,11 @@ class Admin_Post extends Component {
             email: info.email
         })
     }
-    actions = (item) => {
+    actions = (post) => {
         return (
             <div className="btn">
                 <a className="btn btn-info" data-toggle="modal" data-target="#Modal_Update" onClick={() => this.setUpdateItem(post)}><i className="fas fa-edit"></i></a>
-                <a name="btnDelete" className="btn btn-danger" onClick={() => this.deleteItems(post.id)}><i className="fas fa-trash" /></a>
+                <a name="btnDelete" className="btn btn-danger" onClick={() => this.deleteItems(post.id_post)}><i className="fas fa-trash" /></a>
             </div>
         )
     }
@@ -161,7 +161,7 @@ class Admin_Post extends Component {
                                     <TablePagination
                                         headers={Header}
                                         data={items}
-                                        columns="id.item.title.content.user_email.createdAt.actions"
+                                        columns="id_post.item.title.content.user_email.createdAt.actions"
                                         perPageItemCount={5}
                                         totalCount={50}
                                     />

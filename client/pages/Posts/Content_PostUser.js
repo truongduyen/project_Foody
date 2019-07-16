@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import LayoutUser from '../../components/Layout/LayoutUser';
-import PostContentSmall from '../../components/Posts/PostContentSmall';
+import PostContentSmallUser from '../../components/Posts/PostContentSmallUser';
 
 class Content_PostUser extends Component {
     render() {
         return (
             <LayoutUser title="dcd">
-                <PostContentSmall/>
+                <PostContentSmallUser/>
             </LayoutUser>
         );
     }

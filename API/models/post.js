@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const db = require('../config/database');
 
 const post = db.define('Posts', {
-  id: {
+  id_post: {
     type: Sequelize.INTEGER,
     allowNull: false,
     primaryKey: true,
@@ -27,7 +27,7 @@ const post = db.define('Posts', {
   },
   user_email: {
     type: Sequelize.STRING(256),
-    allowNull: true,
+    allowNull: false,
   }
 });
 module.exports = post;

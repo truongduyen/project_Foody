@@ -12,13 +12,17 @@ const cmt = db.define('Comments', {
     type: Sequelize.TEXT,
     allowNull: false,
   },
-  user_id: {
-    type: Sequelize.INTEGER,
-    allowNull: true,
+  cmt_email: {
+    type: Sequelize.STRING(256),
+    allowNull: false,
   },
   post_id: {
     type: Sequelize.INTEGER,
-    allowNull: true,
+    allowNull: false,
+  },
+  name: {
+    type: Sequelize.STRING(256),
+    allowNull: false,
   }
 });
 module.exports = cmt;

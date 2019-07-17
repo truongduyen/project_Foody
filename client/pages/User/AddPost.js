@@ -13,6 +13,7 @@ class AddPost extends Component {
     }
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
+        // console.log(this.state)
     }
     submitFormAdd = e => {
         e.preventDefault()
@@ -57,14 +58,13 @@ class AddPost extends Component {
                                     <select className="item_post" name="item"
                                         onChange={this.onChange}
                                         value={this.state.item}
-                                        defaultValue={this.state.item}
                                         style={{ height: "40px", width: "1108px" }}
                                     >
-                                        <option name="Món chay">Món chay</option>
-                                        <option name="Ăn vặt">Ăn vặt</option>
-                                        <option name="Giảm cân">Giảm cân</option>
-                                        <option name="Thức uống">Thức uống</option>
-                                        <option name="Món chính" selected>Món chính</option>
+                                        <option name="Món chay"value="Món chay">Món chay</option>
+                                        <option name="Ăn vặt" value="Ăn vặt">Ăn vặt</option>
+                                        <option name="Giảm cân" value="Giảm cân">Giảm cân</option>
+                                        <option name="Thức uống" value="Thức uống">Thức uống</option>
+                                        <option name="Món chính" value="Món chính" >Món chính</option>
                                     </select>
                                 </div>
                             </div>

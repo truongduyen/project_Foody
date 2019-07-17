@@ -24,7 +24,7 @@ class PostSmallUser extends Component {
                 {this.state.items.map((post, key) =>
                     <div className="portfolio-link" key={key} style={{ margin: '10px' }}>
                         <img className="img-fluid" src="/static/images/nammo.jpg" alt="image" onClick = {()=>this.getID(post.id_post)} />
-                        <div className="portfolio-caption"><h4>{post.title}</h4>
+                        <div className="portfolio-caption" onClick = {()=>this.getID(post.id_post)}><h4>{post.title}</h4>
                         <p className="text-muted">{post.item}</p>
                         </div>
                     </div>

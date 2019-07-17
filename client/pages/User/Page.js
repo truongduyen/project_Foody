@@ -144,14 +144,13 @@ class Page extends Component {
                                                 <select className="item_post" name="item"
                                                     onChange={this.onChange}
                                                     value={this.state.item}
-                                                    defaultValue={this.state.item}
                                                     style={{ height: "40px", width: "760px" }}
                                                 >
-                                                    <option name="Món chay">Món chay</option>
-                                                    <option name="Ăn vặt">Ăn vặt</option>
-                                                    <option name="Giảm cân">Giảm cân</option>
-                                                    <option name="Thức uống">Thức uống</option>
-                                                    <option name="Món chính" selected>Món chính</option>
+                                                    <option name="Món chay" value="Món chay">Món chay</option>
+                                                    <option name="Ăn vặt" value="Ăn vặt">Ăn vặt</option>
+                                                    <option name="Giảm cân" value="Giảm cân">Giảm cân</option>
+                                                    <option name="Thức uống" value="Thức uống">Thức uống</option>
+                                                    <option name="Món chính" value="Món chính" >Món chính</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -193,7 +192,7 @@ class Page extends Component {
                                             <div className="col-lg-8 mx-auto">
                                                 <div className="modal-body">
                                                     <h2 className="text-uppercase">{this.state.title}</h2>
-                                                    <p className="text-muted"><h3>{this.state.item}</h3></p>
+                                                    <h3><p className="text-muted">{this.state.item}</p></h3>
                                                     <img className="img-fluid d-block mx-auto" src="#" alt="image" />
                                                     <p>{this.state.content}</p>
                                                     <ul className="list-inline">
@@ -206,7 +205,6 @@ class Page extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                )}
                             </div>
                         </form>
                     </div>

@@ -28,9 +28,9 @@ class NavUser extends Component {
                         <li className="nav-item">
                         <a className="nav-link js-scroll-trigger" href="/user/page">TRANG CÁ NHÂN</a>
                         </li>
-                        {/* <li className="nav-item">
-                        <a className="nav-link js-scroll-trigger" href="#contact">LIÊN HỆ</a>
-                        </li> */}
+                        <li className="nav-item">
+                        <a className="nav-link js-scroll-trigger" href="/user/contact_user">LIÊN HỆ</a>
+                        </li>
                     </ul>
                     </div>
                 </div>

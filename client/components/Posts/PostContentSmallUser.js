@@ -12,7 +12,6 @@ class PostContentSmallUser extends Component {
         cmt_email: '',
         post_id: ''
     }
-    //comment
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
         // console.log(this.state)
@@ -27,9 +26,8 @@ class PostContentSmallUser extends Component {
     getItems() {
         var query = location.search;
         var id_post = query.substring(4, 6)
-        // console.log(id_post)
         this.setState({ id_post });
-
+        // console.log(id_post)
         fetch('http://localhost:4000/post_id/' + id_post)
             .then(response => response.json())
             .then(items => this.setState({ items }))
@@ -62,7 +60,9 @@ class PostContentSmallUser extends Component {
     }
     // get comment
     getComment() {
-        fetch('http://localhost:4000/comment')
+        var query = location.search;
+        var id_post = query.substring(4, 6)
+        fetch('http://localhost:4000/comment/' + id_post)
             .then(response => response.json())
             .then(cmt => this.setState({ cmt }))
             .catch(err => console.log("err " + err))
@@ -82,9 +82,8 @@ class PostContentSmallUser extends Component {
                 })
             })
                 .then(() => {
-                    alert("Xóa bình luận thành công")
+                    // alert("Xóa bình luận thành công")
                     location.reload()
-
                 })
                 .catch(err => console.log(err))
         }
@@ -99,6 +98,18 @@ class PostContentSmallUser extends Component {
             username: info.username
         })
     }
+    displayActionCmt = (item) => {
+        let { email } = this.state;
+        if (email === item.cmt_email) {
+            return (
+                <div>
+                    <a href="" onClick={() => this.deleteCmt(item.id_cmt)}>Xóa</a>
+                    &nbsp; &nbsp;&nbsp;
+                    <a href="">Chỉnh sửa</a>
+                </div>
+            )
+        }
+    }
     render() {
         return (
             <section id="services">
@@ -107,7 +118,7 @@ class PostContentSmallUser extends Component {
                         <div className="container" key={key}>
                             <ol className="breadcrumb">
                                 <li className="breadcrumb-item">
-                                    <a href="/">Trang chủ</a>
+                                    <a href="/user">Trang chủ</a>
                                 </li>
                                 <li className="breadcrumb-item">
                                     <a href="/user/post_user">Công thức</a>
@@ -151,16 +162,15 @@ class PostContentSmallUser extends Component {
                                                 <div>
                                                     <b><a className="mt-0">{cmt.name}</a></b><br />
                                                     <a>{cmt.content_cmt}</a><br />
-                                                    <div className="text-muted float-left">
-                                                        <h7><a href="#answer">Trả lời</a></h7> &nbsp;&nbsp;&nbsp;
-                                                        <h7><a href="" onClick={() => this.deleteCmt(cmt.id_cmt)}>Xóa</a></h7> &nbsp;&nbsp;&nbsp;
-                                                        <h7><a href="">Chỉnh sửa</a></h7>
+                                                    <div className="text-muted float-left form-inline">
+                                                        <a href="#answer">Trả lời</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        {this.displayActionCmt(cmt)}
                                                     </div>
                                                 </div>
                                             </div>
                                         )}
                                     </form>
-                                    <form className="media mt-4 cmt" id="answer" style={{paddingLeft:"80px"}}>
+                                    <form className="media mt-4 cmt" id="answer" style={{ paddingLeft: "80px" }}>
                                         {this.state.cmt.map((cmt, key) =>
                                             <div className="media-body form-inline" key={key}>
                                                 <img className="d-flex mr-3 rounded-circle itemer" src="http://placehold.it/50x50" alt="image" />
@@ -168,9 +178,7 @@ class PostContentSmallUser extends Component {
                                                     <b><a className="mt-0">{cmt.name}</a></b><br />
                                                     <a>{cmt.content_cmt}</a><br />
                                                     <div className="text-muted float-left">
-                                                        <h7><a href="">Trả lời</a></h7> &nbsp;&nbsp;&nbsp;
-                                                        <h7><a href="" onClick={() => this.deleteCmt(cmt.id_cmt)}>Xóa</a></h7> &nbsp;&nbsp;&nbsp;
-                                                        <h7><a href="">Chỉnh sửa</a></h7>
+                                                        {/* {this.displayActionCmt(cmt)} */}
                                                     </div>
                                                 </div>
                                             </div>

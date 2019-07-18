@@ -12,10 +12,10 @@ class Page extends Component {
             email: ''
         }
     }
-    onSearch = (e) => {
-        e.preventDefault();
-        this.getItems(this.state.keyword)
-    }
+    // onSearch = (e) => {
+    //     e.preventDefault();
+    //     this.getItems(this.state.keyword)
+    // }
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
@@ -101,7 +101,7 @@ class Page extends Component {
         }, () => this.getItems(''))
     }
     render() {
-        return (
+        return (    
             <LayoutUser title="Trang cá nhân">
                 <Nav_User />
                 <div className="content">

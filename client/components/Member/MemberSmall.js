@@ -3,44 +3,34 @@ import React, { Component } from 'react';
 class MemberSmall extends Component {
     state = {
         items: [],
-        post:[],
-        username: '',
-        email: '',
-        title: '',
-        image: '',
-        item: ''
+        post: [],
+        email:''
     }
     getItems() {
-        fetch('http://localhost:4000/admin', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        fetch('http://localhost:4000/admin')
             .then(response => response.json())
             .then(items => this.setState({ items }))
-            .catch(err => console.log("err " + err))
-    }
-    getPost() {
-        console.log(this.state.title)
-        fetch('http://localhost:4000/post')
-            .then(response => response.json())
-            .then(post => {
-                this.setState({ post })
-            })
             .catch(err => console.log("err " + err))
     }
     setItem = (item) => {
         this.setState({
             username: item.username,
-            email: item.email,
-            title: item.title
-        })
+            email: item.email
+        }, () =>  this.getPost(''))
+    }
+    getPost(keyword) {
+        let url = 'http://localhost:4000/post_user/' + this.state.email
+        if (keyword !== null) {
+            url = url + "?keyword" + keyword;
+        }   
+        fetch(url)
+            .then(response => response.json())
+            .then(post => this.setState({ post }))
+            .catch(err => console.log("err " + err))
     }
     componentDidMount() {
-        this.getPost()
         this.getItems()
-      
+       
     }
     render() {
         return (
@@ -65,19 +55,23 @@ class MemberSmall extends Component {
                                 <div className="row">
                                     <div className="col-lg-8 mx-auto">
                                         <div className="modal-body">
-                                            <img className="img-fluid d-block mx-auto" src="#" alt="image" />
+                                            <img className="img-fluid d-block mx-auto" src="/static/images/member.jpg" alt="image" style={{ width: "250px", height: "250px" }} />
                                             <h2 className="text-uppercase">{this.state.username}</h2>
                                             <p className="text-muted">{this.state.email}</p>
                                             <h3><p>Các công thức đã đăng</p></h3>
-                                            <ul className="list-inline">
-                                                <div className="portfolio-link" style={{ margin: '10px' }}>
-                                                    <img className="img-fluid" src="#" alt="image" />
-                                                </div>
-                                                <div className="portfolio-caption">
-                                                    <h4>{this.state.title}</h4>
-                                                    {/* <p className="text-muted">{this.state.item}</p> */}
-                                                </div>
-                                            </ul>
+                                            <div className="form-inline showitem row">
+                                                {this.state.post.map((post, key) =>
+                                                    <div className="menu_item" key={key}>
+                                                        <div className="portfolio-link" style={{ margin: '10px' }}>
+                                                            <img className="img-fluid" src="/static/images/suachua.jpg" alt="image" />
+                                                        </div>
+                                                        <div className="portfolio-caption">
+                                                            <h4>{post.title}</h4>
+                                                            <p className="text-muted">{post.item}</p>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </div>
                                             <button className="btn btn-primary" data-dismiss="modal" type="button">Đóng</button>
                                         </div>
                                     </div>

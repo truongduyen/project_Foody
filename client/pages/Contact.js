@@ -19,25 +19,18 @@ class Contact extends Component {
                             </div>
                             <div className="col-lg-4 mb-4">
                                 <h3>Địa chỉ:</h3>
-                                <p>
-                                    345/67 Phường 4
+                                <p>345/67 Phường 4
                                 <br />Quận 10, TP.HCM
                                 <br />
                                 </p>
-                                <p>
-                                    <abbr title="Phone">SDT</abbr>: (123) 456-7890
-                            </p>
-                                <p>
-                                    <abbr title="Email">Email</abbr>:
-                                <a href="mailto: monngon@gmail.com"> monngon@gmail.com
-                                </a>
+                                <p><abbr title="Phone">SDT</abbr>: (123) 456-7890</p>
+                                <p><abbr title="Email">Email</abbr>:
+                                <a href="mailto: monngon@gmail.com"> monngon@gmail.com</a>
                                 </p>
-                                <p>
-                                    <abbr title="Hours">Giờ làm việc</abbr>: Thứ 2 - Thứ 7 từ 9:00 đến 17:00
-                            </p>
+                                <p><abbr title="Hours">Giờ làm việc</abbr>: Thứ 2 - Thứ 7 từ 9:00 đến 17:00</p>
                             </div>
                         </div>
-                        <div className="row">
+                        {/* <div className="row">
                             <div className="col-lg-12 mb-4">
                                 <h3>Liên hệ với chúng tôi</h3>
                                 <form name="sentMessage" id="contactForm" noValidate>
@@ -68,10 +61,10 @@ class Contact extends Component {
                                     </div>
                                     <div id="success" />
                                     {/* For success/fail messages */}
-                                    <button type="submit" className="btn btn-primary" id="sendMessageButton">Gửi tin nhắn</button>
+                        {/* <button type="submit" className="btn btn-primary" id="sendMessageButton">Gửi tin nhắn</button>
                                 </form>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </section>
             </Layout>

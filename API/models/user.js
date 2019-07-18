@@ -18,10 +18,10 @@ const user = db.define('Users', {
     type: Sequelize.STRING(256),
     allowNull: false,
   },
-  salt: {
-    type: Sequelize.STRING(256),
-    allowNull: false,
-  },
+  // salt: {
+  //   type: Sequelize.STRING(256),
+  //   allowNull: false,
+  // },
   role: {
     type: Sequelize.INTEGER,
     allowNull: true,

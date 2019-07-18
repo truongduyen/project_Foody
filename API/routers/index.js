@@ -93,7 +93,6 @@ router.get('/post', (req, res) => {
       }
     })
       .then(dt => {
-        console.log(dt)
         res.send(dt)
       })
       .catch(err => console.log(err))
@@ -143,6 +142,25 @@ router.get('/post_id/:id_post', (req, res) => {
   post.findAll({
     where: {
       id_post: req.params.id_post
+    }
+  })
+    .then(dt => res.send(dt))
+    .catch(err => console.log(err))
+})
+//=======get post và user
+router.get('/post_user', (req, res) => {
+  post.findAll({
+    order: [
+      ['createdAt', 'ASC']
+    ]
+  })
+    .then(dt => res.send(dt))
+    .catch(err => console.log(err))
+})
+router.get('/post_user/:email', (req, res) => {
+  post.findAll({
+    where: {
+      user_email: req.params.email
     }
   })
     .then(dt => res.send(dt))
@@ -235,7 +253,6 @@ router.post('/admin', (req, res) => {
       res.send('error: ' + err)
     })
 })
-
 //=====login
 router.post('/login', (req, res) => {
   let email = req.body.email;
@@ -256,10 +273,26 @@ router.post('/login', (req, res) => {
     )
     .catch(err => console.log(err))
 })
+
+
 //=======comment
 router.get("/comment", (req, res) => {
   cmt.findAll()
     .then(dt => res.send(dt))
+    .catch(err => console.log(err))
+})
+//get cmt theo post
+router.get("/comment/:post_id", (req, res) => {
+  // console.log(req.params.post_id)
+  cmt.findAll({
+    where: {
+      post_id: req.params.post_id
+    }
+  })
+    .then(dt => {
+      //console.log(dt)
+      res.send(dt)
+    })
     .catch(err => console.log(err))
 })
 //=======add comment post

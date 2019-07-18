@@ -31,7 +31,7 @@ class Content_Member extends Component {
                             <span className="fa fa-star checked"></span>
                             <span className="fa fa-star checked"></span>
                         </div>
-                        <br />
+                       
                         <div className="teamsmall">
                             <img className="mx-auto rounded-circle" src="/static/images/member1.jpg" alt="image" />
                             <h8>Thúy Hằng</h8>
@@ -43,7 +43,7 @@ class Content_Member extends Component {
                             <span className="fa fa-star checked"></span>
                             <span className="fa fa-star"></span>
                         </div>
-                        <br />
+                      
                         <div className="teamsmall">
                             <img className="mx-auto rounded-circle" src="/static/images/member2.jpg" alt="image" />
                             <h8>Thúy Kiều</h8>
@@ -55,7 +55,7 @@ class Content_Member extends Component {
                             <span className="fa fa-star checked"></span>
                             <span className="fa fa-star"></span>
                         </div>
-                        <br />
+                        
                         <div className="teamsmall">
                             <img className="mx-auto rounded-circle" src="/static/images/member.jpg" alt="image" />
                             <h8>Anh Thư</h8>
@@ -67,7 +67,7 @@ class Content_Member extends Component {
                             <span className="fa fa-star"></span>
                             <span className="fa fa-star"></span>
                         </div>
-                        <br />
+                       
                         <div className="teamsmall">
                             <img className="mx-auto rounded-circle" src="/static/images/member1.jpg" alt="image" />
                             <h8>Thiên Kỳ</h8>

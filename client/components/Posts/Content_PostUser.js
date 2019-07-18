@@ -8,7 +8,7 @@ class Content_PostUser extends Component {
                 <div className="container">
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item">
-                            <a href="/">Trang chủ</a>
+                            <a href="/user">Trang chủ</a>
                         </li>
                         <li className="breadcrumb-item active">Công thức</li>
                     </ol>

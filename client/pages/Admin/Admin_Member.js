@@ -139,7 +139,7 @@ class Admin_Member extends Component {
                                         data={items}
                                         columns="id.username.email.createdAt.actions"
                                         perPageItemCount={5}
-                                        totalCount={15}
+                                        totalCount={25}
                                     />
                                 </div>
                             </div>

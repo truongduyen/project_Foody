@@ -7,9 +7,10 @@ class PostContentSmall extends Component {
         cmt: [],
         id_post: '',
         content_cmt: '',
-        name:'',
+        name: '',
         cmt_email: '',
-        post_id: ''
+        post_id: '',
+        test:''
     }
     //comment
     onChange = e => {
@@ -21,7 +22,7 @@ class PostContentSmall extends Component {
             .then(post => this.setState({ post }))
             .catch(err => console.log("err " + err))
     }
-    getID = id_post =>{
+    getID = id_post => {
         console.log(id_post)
         window.location.href = ("/posts/content_post?id=" + id_post)
     }
@@ -39,10 +40,13 @@ class PostContentSmall extends Component {
     getComment() {
         var query = location.search;
         var id_post = query.substring(4, 6)
-        fetch('http://localhost:4000/comment/'+ id_post)
+        fetch('http://localhost:4000/comment/' + id_post)
             .then(response => response.json())
             .then(cmt => this.setState({ cmt }))
             .catch(err => console.log("err " + err))
+    }
+    onClick = (c) =>{
+        c.preventDefault()
     }
     componentDidMount() {
         this.getItems('')
@@ -80,12 +84,12 @@ class PostContentSmall extends Component {
                                     <div className="card my-4">
                                         <h5 className="card-header">Bình luận:</h5>
                                         <div className="card-body">
-                                            <form className="comment" method="POST" >
+                                            <form className="comment">
                                                 <div className="form-group">
-                                                    <textarea className="form-control" />
-                                                    
+                                                    <textarea className="form-control" name="test" onChange={this.onChange}/>
+                                                    {this.state.test !==""?"Vui lòng đăng nhập trước khi bình luận":""}
                                                 </div>
-                                                <button type="submit" className="btn btn-primary" >Gửi</button>
+                                                <button className="btn btn-primary" onClick={this.onClick}>Gửi</button>
                                             </form>
                                         </div>
                                     </div>
@@ -101,16 +105,16 @@ class PostContentSmall extends Component {
                                         )}
                                     </form>
                                 </div>
-                                <div className="col-md-4">  
+                                <div className="col-md-4">
                                     <div className="mb-3">
                                         <h5 className="card-header">Bài viết khác</h5>
                                         <div className="card-body">
                                             <div className="row">
                                                 <div className="col-lg-12 cmt ">
                                                     {this.state.post.map((post, key) =>
-                                                        <div className="teamsmall form-inline" key={key} style={{marginRight:"auto"}}>
-                                                            <img className="mx-auto rounded-circle" src="/static/images/member.jpg" alt="image" onClick = {()=>this.getID(post.id_post)}/>
-                                                            <div className="title_post" onClick = {()=>this.getID(post.id_post)}>{post.title}</div>
+                                                        <div className="teamsmall form-inline" key={key} style={{ marginRight: "auto" }}>
+                                                            <img className="mx-auto rounded-circle" src="/static/images/member.jpg" alt="image" onClick={() => this.getID(post.id_post)} />
+                                                            <div className="title_post" onClick={() => this.getID(post.id_post)}>{post.title}</div>
                                                         </div>
                                                     )}
                                                 </div>

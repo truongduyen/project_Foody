@@ -107,16 +107,11 @@ class PostContentSmall extends Component {
                                         <div className="card-body">
                                             <div className="row">
                                                 <div className="col-lg-12 cmt ">
-                                                    {this.state.post.map((post, key) =>{
-                                                        if (index < 5){
-
-                                                      
-                                                        <div className="teamsmall form-inline" key={index} style={{marginRight:"auto"}}>
+                                                    {this.state.post.map((post, key) =>
+                                                        <div className="teamsmall form-inline" key={key} style={{marginRight:"auto"}}>
                                                             <img className="mx-auto rounded-circle" src="/static/images/member.jpg" alt="image" onClick = {()=>this.getID(post.id_post)}/>
                                                             <div className="title_post" onClick = {()=>this.getID(post.id_post)}>{post.title}</div>
                                                         </div>
-                                                          }
-                                                        }
                                                     )}
                                                 </div>
                                             </div>

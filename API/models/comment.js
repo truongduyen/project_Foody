@@ -23,6 +23,10 @@ const cmt = db.define('Comments', {
   name: {
     type: Sequelize.STRING(256),
     allowNull: false,
+  },
+  email_answer: {
+    type: Sequelize.STRING(256),
+    allowNull: true,
   }
 });
 module.exports = cmt;

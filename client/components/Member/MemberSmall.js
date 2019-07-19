@@ -4,7 +4,8 @@ class MemberSmall extends Component {
     state = {
         items: [],
         post: [],
-        email:''
+        id_post: '',
+        email: ''
     }
     getItems() {
         fetch('http://localhost:4000/admin')
@@ -16,21 +17,25 @@ class MemberSmall extends Component {
         this.setState({
             username: item.username,
             email: item.email
-        }, () =>  this.getPost(''))
+        }, () => this.getPost(''))
     }
     getPost(keyword) {
         let url = 'http://localhost:4000/post_user/' + this.state.email
         if (keyword !== null) {
             url = url + "?keyword" + keyword;
-        }   
+        }
         fetch(url)
             .then(response => response.json())
             .then(post => this.setState({ post }))
             .catch(err => console.log("err " + err))
     }
+    setPost = (post) => {
+        this.setState({
+            id_post: post.id_post
+        })
+    }
     componentDidMount() {
         this.getItems()
-       
     }
     render() {
         return (
@@ -58,7 +63,6 @@ class MemberSmall extends Component {
                                             <img className="img-fluid d-block mx-auto" src="/static/images/member.jpg" alt="image" style={{ width: "250px", height: "250px" }} />
                                             <h2 className="text-uppercase">{this.state.username}</h2>
                                             <p className="text-muted">{this.state.email}</p>
-                                            <h3><p>Các công thức đã đăng</p></h3>
                                             <div className="form-inline showitem row">
                                                 {this.state.post.map((post, key) =>
                                                     <div className="menu_item" key={key}>

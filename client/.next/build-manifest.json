@@ -11,11 +11,11 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/posts/content_postuser": [
+    "/user": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/user/post_user": [
+    "/user/page": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

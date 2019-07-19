@@ -10,7 +10,8 @@ class PostContentSmallUser extends Component {
         content_cmt: '',
         name: '',
         cmt_email: '',
-        post_id: ''
+        post_id: '',
+        // email_answer: ''
     }
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
@@ -33,11 +34,24 @@ class PostContentSmallUser extends Component {
             .then(items => this.setState({ items }))
             .catch(err => console.log("err " + err))
     }
+    //get cmt con
+    // getCmt() {
+    //     // console.log(id_cmt)
+    //     fetch('http://localhost:4000/comment_answer')
+    //         .then(response => response.json())
+    //         .then(cmt => this.setState({ cmt }))
+    //         .catch(err => console.log("err " + err))
+    // }
+    // getIDcmt = id_cmt => {
+    //     console.log(id_cmt)
+    // }
+
     //menu con
     getID = id_post => {
         console.log(id_post)
         window.location.href = ("/posts/content_postuser?id=" + id_post)
     }
+    //add comment
     submitAddComment = e => {
         e.preventDefault()
         fetch('http://localhost:4000/comment', {
@@ -58,6 +72,30 @@ class PostContentSmallUser extends Component {
             })
             .catch(err => console.log(err))
     }
+    //answer comment
+    // submitAddCommentAnswer = e => {
+    //     console.log(id_post)
+    //     e.preventDefault()
+    //     fetch('http://localhost:4000/comment_answer/', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             content_cmt: this.state.content_cmt,
+    //             cmt_email: this.state.cmt_email,
+    //             post_id: this.state.id_post,
+    //             name: this.state.username,
+    //             email_answer: this.state.email
+    //         })
+    //     })
+    //         .then(() => {
+    //             alert("Trả lời bình luận thành công")
+    //             location.reload()
+    //         })
+    //         .catch(err => console.log(err))
+    // }
+
     // get comment
     getComment() {
         var query = location.search;
@@ -92,6 +130,7 @@ class PostContentSmallUser extends Component {
         this.getItems('')
         this.getPost()
         this.getComment()
+        // this.getCmt()
         const info = JSON.parse(localStorage.getItem("username"))
         this.setState({
             email: info.email,
@@ -155,35 +194,39 @@ class PostContentSmallUser extends Component {
                                             </form>
                                         </div>
                                     </div>
-                                    <form className="media mb-4 cmt">
-                                        {this.state.cmt.map((cmt, key) =>
-                                            <div className="media-body form-inline" key={key}>
-                                                <img className="d-flex mr-3 rounded-circle itemer" src="http://placehold.it/50x50" alt="image" />
-                                                <div>
-                                                    <b><a className="mt-0">{cmt.name}</a></b><br />
-                                                    <a>{cmt.content_cmt}</a><br />
-                                                    <div className="text-muted float-left form-inline">
-                                                        <a href="#answer">Trả lời</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        {this.displayActionCmt(cmt)}
+                                    <div className="comment">
+                                        <form className="media mb-4 cmt">
+                                            {this.state.cmt.map((cmt, key) =>
+                                                <div className="media-body form-inline" key={key}>
+                                                    <img className="d-flex mr-3 rounded-circle itemer" src="http://placehold.it/50x50" alt="image" />
+                                                    <div>
+                                                        <b><a className="mt-0">{cmt.name}</a></b><br />
+                                                        <a>{cmt.content_cmt}</a><br />
+                                                        <div className="text-muted float-left form-inline">
+                                                            {this.displayActionCmt(cmt)}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        )}
-                                    </form>
-                                    <form className="media mt-4 cmt" id="answer" style={{ paddingLeft: "80px" }}>
-                                        {this.state.cmt.map((cmt, key) =>
-                                            <div className="media-body form-inline" key={key}>
-                                                <img className="d-flex mr-3 rounded-circle itemer" src="http://placehold.it/50x50" alt="image" />
-                                                <div>
-                                                    <b><a className="mt-0">{cmt.name}</a></b><br />
-                                                    <a>{cmt.content_cmt}</a><br />
-                                                    <div className="text-muted float-left">
-                                                        {/* {this.displayActionCmt(cmt)} */}
+                                            )}
+                                        </form>
+                                        {/* <form className="media mt-4 cmt" id="answer" style={{ paddingLeft: "80px" }}>
+                                            {this.state.cmt.map((cmt, key) =>
+                                                <div className="media-body form-inline" key={key}>
+                                                    <img className="d-flex mr-3 rounded-circle itemer" src="http://placehold.it/50x50" alt="image" />
+                                                    <div>
+                                                        <b><a className="mt-0">{this.state.username}</a></b><br />
+                                                        <div className="form-inline">
+                                                            <textarea rows={2} style={{ width: "495px" }} name="content_cmt" onChange={this.onChange} value={this.state.content_cmt} onClick={() => this.getIDcmt(cmt.id_cmt)}/> &nbsp;
+                                                            <button type="submit" className="btn btn-primary"><i className="fas fa-paper-plane"></i></button>
+                                                        </div>
+                                                        <div className="text-muted float-left">
+                                                            {this.displayActionCmt(cmt)}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        )}
-                                    </form>
+                                            )}
+                                        </form> */}
+                                    </div>
                                 </div>
                                 <div className="col-md-4">
                                     <div className="mb-3">

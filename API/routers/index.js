@@ -326,7 +326,7 @@ router.put('/comment', (req, res) => {
     image: req.body.image,
     item: req.body.item
   }
-  post.update(dt,
+  cmt.update(dt,
     {
       where: {
         id_post: req.body.id_post
@@ -338,4 +338,24 @@ router.put('/comment', (req, res) => {
     })
     .catch(err => console.log(err))
 });
+//===comment answer
+router.get("/comment_answer/:id_cmt", (req, res) => {
+  cmt.findAll({
+    where: {
+      id_cmt: req.params.id_cmt
+    }
+  })
+    .then(dt => res.send(dt))
+    .catch(err => console.log(err))
+})
+//====answer conment
+router.post("/comment_answer", (req,res) => {
+  var { email_answer, content_cmt, cmt_email, post_id, name } = req.body;
+  cmt.create({ email_answer, content_cmt, cmt_email, post_id, name })
+    .then(dt => {
+      console.log(dt)
+      res.sendStatus(200)
+    })
+    .catch(err => console.log(err))
+})
 module.exports = router;

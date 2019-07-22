@@ -10,7 +10,7 @@ class PostContentSmall extends Component {
         name: '',
         cmt_email: '',
         post_id: '',
-        test:''
+        test: ''
     }
     //comment
     onChange = e => {
@@ -45,7 +45,7 @@ class PostContentSmall extends Component {
             .then(cmt => this.setState({ cmt }))
             .catch(err => console.log("err " + err))
     }
-    onClick = (c) =>{
+    onClick = (c) => {
         c.preventDefault()
     }
     componentDidMount() {
@@ -74,7 +74,12 @@ class PostContentSmall extends Component {
                                     <hr />
                                     <p>Đăng ngày: {post.createdAt}</p>
                                     <hr />
-                                    <p>{post.content}</p>
+                                    {post.content.split("\n").map(function(item) {
+                                        return (
+                                            <div>{item}</div>
+                                        )
+                                    })
+                                    }
                                     <blockquote className="blockquote">
                                         <footer className="blockquote-footer">Người đăng:
                                     <cite title="Source Title">{post.user_email}</cite>
@@ -86,8 +91,8 @@ class PostContentSmall extends Component {
                                         <div className="card-body">
                                             <form className="comment">
                                                 <div className="form-group">
-                                                    <textarea className="form-control" name="test" onChange={this.onChange}/>
-                                                    {this.state.test !==""?"Vui lòng đăng nhập trước khi bình luận":""}
+                                                    <textarea className="form-control" name="test" onChange={this.onChange} />
+                                                    {this.state.test !== "" ? "Vui lòng đăng nhập trước khi bình luận" : ""}
                                                 </div>
                                                 <button className="btn btn-primary" onClick={this.onClick}>Gửi</button>
                                             </form>

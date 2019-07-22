@@ -7,13 +7,13 @@ class Login extends Component {
         password: '',
         // salt: '',
         email: '',
-        role:'',
+        role: '',
         check: true
     }
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
-    
+
     submitFormLogin = e => {
         e.preventDefault()
         // console.log(this.state.password)
@@ -36,14 +36,14 @@ class Login extends Component {
                     location.reload()
                 }
                 else {
-                    localStorage.setItem("username",JSON.stringify(result))
+                    localStorage.setItem("username", JSON.stringify(result))
                     var rs = result.role;
                     // console.log(rs);
                     if (rs === 1) {
                         alert("Đăng nhập thành công");
                         window.location.href = '/admin';
                     }
-                    else{
+                    else {
                         alert("Đăng nhập thành công");
                         window.location.href = '/user';
                     }
@@ -65,7 +65,7 @@ class Login extends Component {
                 // salt: this.state.salt,
                 email: this.state.email
             })
-        })            
+        })
             .then((user) => {
                 alert(`${this.state.username} đăng ký thành công`);
                 location.reload()
@@ -95,7 +95,7 @@ class Login extends Component {
                                                 <input name="email" type="email" className="input" onChange={this.onChange} value={this.state.email} required />
                                             </div>
                                             <div className="group">
-                                                <label htmlFor="pass" className="label">Mật khẩu</label>    
+                                                <label htmlFor="pass" className="label">Mật khẩu</label>
                                                 <input name="password" type="password" className="input" data-type="password" onChange={this.onChange} value={this.state.password} required />
                                             </div>
                                             <div className="group">

@@ -19,7 +19,7 @@ const post = db.define('Posts', {
   },
   image: {
     type: Sequelize.TEXT,
-    allowNull: false,
+    allowNull: true,
   },
   item: {
     type: Sequelize.STRING(256),

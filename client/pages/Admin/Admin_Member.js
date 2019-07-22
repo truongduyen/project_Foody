@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LayoutAdmin from '../../components/Layout/LayoutAdmin';
 import { CSVLink } from "react-csv";
-// var dateFormat = require('dateformat');
+var dateFormat = require('dateformat');
 import { TablePagination } from 'react-pagination-table';
 
 class Admin_Member extends Component {
@@ -101,6 +101,7 @@ class Admin_Member extends Component {
         items = items.map(item => {
             return {
                 ...item,
+                createdAt: dateFormat(item.createdAt,"dddd, mmmmm dS, yyyy, h:MM:ss TT"),
                 actions: this.actions(item)
             }
         })

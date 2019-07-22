@@ -15,10 +15,6 @@ class Page extends Component {
             img:''
         }
     }
-    // onSearch = (e) => {
-    //     e.preventDefault();
-    //     this.getItems(this.state.keyword)
-    // }
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
     }

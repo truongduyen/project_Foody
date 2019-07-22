@@ -303,8 +303,8 @@ router.get("/comment/:post_id", (req, res) => {
 })
 //=======add comment post
 router.post('/comment', (req, res) => {
-  var { content_cmt, cmt_email, post_id, name } = req.body;
-  cmt.create({ content_cmt, cmt_email, post_id, name })
+  var { content_cmt, cmt_email, post_id, name, img } = req.body;
+  cmt.create({ content_cmt, cmt_email, post_id, name, img })
     .then(dt => {
       console.log(dt)
       res.sendStatus(200)

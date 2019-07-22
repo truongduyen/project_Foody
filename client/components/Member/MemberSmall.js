@@ -16,7 +16,8 @@ class MemberSmall extends Component {
     setItem = (item) => {
         this.setState({
             username: item.username,
-            email: item.email
+            email: item.email,
+            images: item.images
         }, () => this.getPost(''))
     }
     getPost(keyword) {
@@ -43,7 +44,10 @@ class MemberSmall extends Component {
                 <div className="show">
                     {this.state.items.map((item, key) =>
                         <div className="team" key={key}>
-                            <div><img className="mx-auto rounded-circle" data-toggle="modal" href="#portfolioModal" onClick={() => this.setItem(item)} src="/static/images/member1.jpg" alt="image" /></div>
+                            <div>
+                                <img className="mx-auto rounded-circle" data-toggle="modal" href="#portfolioModal" 
+                                onClick={() => this.setItem(item)} src={item.images !== null ? item.images :"https://ssl.gstatic.com/accounts/ui/avatar_2x.png"} alt="image" />
+                            </div>
                             <h6>{item.username}</h6>
                         </div>
                     )}
@@ -60,14 +64,14 @@ class MemberSmall extends Component {
                                 <div className="row">
                                     <div className="col-lg-8 mx-auto">
                                         <div className="modal-body">
-                                            <img className="img-fluid d-block mx-auto" src="/static/images/member.jpg" alt="image" style={{ width: "250px", height: "250px" }} />
+                                            <img className="img-fluid d-block mx-auto" src={this.state.images !== null ? this.state.images : "https://ssl.gstatic.com/accounts/ui/avatar_2x.png" } alt="image" style={{ width: "250px", height: "250px" }} />
                                             <h2 className="text-uppercase">{this.state.username}</h2>
                                             <p className="text-muted">{this.state.email}</p>
                                             <div className="form-inline showitem row">
                                                 {this.state.post.map((post, key) =>
                                                     <div className="menu_item" key={key}>
                                                         <div className="portfolio-link" style={{ margin: '10px' }}>
-                                                            <img className="img-fluid" src="/static/images/suachua.jpg" alt="image" />
+                                                            <img className="img-fluid" src={post.image} alt="image" />
                                                         </div>
                                                         <div className="portfolio-caption">
                                                             <h4>{post.title}</h4>

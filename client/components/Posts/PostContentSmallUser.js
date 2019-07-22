@@ -54,6 +54,7 @@ class PostContentSmallUser extends Component {
     //add comment
     submitAddComment = e => {
         e.preventDefault()
+        const info = JSON.parse(localStorage.getItem("username"))
         fetch('http://localhost:4000/comment', {
             method: 'POST',
             headers: {
@@ -63,7 +64,8 @@ class PostContentSmallUser extends Component {
                 content_cmt: this.state.content_cmt,
                 cmt_email: this.state.email,
                 post_id: this.state.id_post,
-                name: this.state.username
+                name: this.state.username,
+                img: info.images
             })
         })
             .then(() => {
@@ -134,7 +136,8 @@ class PostContentSmallUser extends Component {
         const info = JSON.parse(localStorage.getItem("username"))
         this.setState({
             email: info.email,
-            username: info.username
+            username: info.username,
+            images: info.images
         })
     }
     displayActionCmt = (item) => {
@@ -166,11 +169,16 @@ class PostContentSmallUser extends Component {
                             </ol>
                             <div className="row">
                                 <div className="col-lg-8">
-                                    <img className="img-fluid rounded" src="http://placehold.it/900x300" alt="image" />
+                                    <img className="img-fluid rounded" src={post.image} alt="image" style={{width:"900px", height:"400px"}} />
                                     <hr />
                                     <p>Đăng ngày: {post.createdAt}</p>
                                     <hr />
-                                    <p>{post.content}</p>
+                                    {post.content.split("\n").map(function(item) {
+                                        return (
+                                            <div>{item}</div>
+                                        )
+                                    })
+                                    }
                                     <blockquote className="blockquote">
                                         <footer className="blockquote-footer">Người đăng:
                                     <cite title="Source Title">{post.user_email}</cite>
@@ -183,7 +191,7 @@ class PostContentSmallUser extends Component {
                                             <form className="comment" method="POST" onSubmit={this.submitAddComment}>
                                                 <div className="media mb-2">
                                                     <div className="media-body form-inline">
-                                                        <img className="d-flex mr-3 rounded-circle itemer" src="http://placehold.it/50x50" alt="image" />
+                                                        <img className="d-flex mr-3 rounded-circle itemer" src={this.state.images !== null ? this.state.images :"https://ssl.gstatic.com/accounts/ui/avatar_2x.png"} alt="image" />
                                                         <b><a className="mt-0">{this.state.username}</a></b>
                                                     </div>
                                                 </div>
@@ -198,7 +206,7 @@ class PostContentSmallUser extends Component {
                                         <form className="media mb-4 cmt">
                                             {this.state.cmt.map((cmt, key) =>
                                                 <div className="media-body form-inline" key={key}>
-                                                    <img className="d-flex mr-3 rounded-circle itemer" src="http://placehold.it/50x50" alt="image" />
+                                                    <img className="d-flex mr-3 rounded-circle itemer" src={cmt.img !== null ? cmt.img :"https://ssl.gstatic.com/accounts/ui/avatar_2x.png"} alt="image" />
                                                     <div>
                                                         <b><a className="mt-0">{cmt.name}</a></b><br />
                                                         <a>{cmt.content_cmt}</a><br />
@@ -236,7 +244,7 @@ class PostContentSmallUser extends Component {
                                                 <div className="col-lg-12 cmt ">
                                                     {this.state.post.map((post, key) =>
                                                         <div className="teamsmall form-inline" key={key} style={{ marginRight: "auto" }}>
-                                                            <img className="mx-auto rounded-circle" src="/static/images/member.jpg" alt="image" onClick={() => this.getID(post.id_post)} />
+                                                            <img className="mx-auto rounded-circle" src={post.image} alt="image" onClick={() => this.getID(post.id_post)} />
                                                             <div className="title_post" onClick={() => this.getID(post.id_post)}>{post.title}</div>
                                                         </div>
                                                     )}

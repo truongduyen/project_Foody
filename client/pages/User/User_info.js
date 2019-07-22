@@ -24,7 +24,6 @@ class User_info extends Component {
     submitFormUpdate = e => {
         e.preventDefault()
         const info = JSON.parse(localStorage.getItem("username"))
-
         console.log(this.state.id)
         fetch('http://localhost:4000/admin', {
             method: 'PUT',

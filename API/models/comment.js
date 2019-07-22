@@ -24,6 +24,10 @@ const cmt = db.define('Comments', {
     type: Sequelize.STRING(256),
     allowNull: false,
   },
+  img: {
+    type: Sequelize.TEXT,
+    allowNull: true,
+  },
   email_answer: {
     type: Sequelize.STRING(256),
     allowNull: true,

@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 class Nav_User extends Component {
     state = {
         username: '',
-        email: ''
+        email: '',
+        images:''
     }
     componentDidMount() {
         const info = JSON.parse(localStorage.getItem("username"))
@@ -24,7 +25,7 @@ class Nav_User extends Component {
                     <div className="row">
                         <div className="col-md-4">
                             <div className="cards">
-                                <img src="/static/images/member.jpg" className="rounded-circle" alt="Cinque Terre" />
+                                <img src={this.state.images.length > 0 ? this.state.images :"https://ssl.gstatic.com/accounts/ui/avatar_2x.png"} className="rounded-circle" alt="Cinque Terre" />
                                 <br />
                                 <h4>{this.state.username}</h4>
                                 <div className="row text-center">

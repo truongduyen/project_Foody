@@ -58,7 +58,6 @@ class Login extends Component {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-
             },
             body: JSON.stringify({
                 username: this.state.username,
@@ -107,9 +106,9 @@ class Login extends Component {
                                                 <input type="submit" className=" button" value="Đăng nhập" />
                                             </div>
                                             <div className="hr" />
-                                            <div className="foot-lnk">
+                                            {/* <div className="foot-lnk">
                                                 <a href="#forgot">Quên Mật khẩu?</a>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </form>
                                     <form className="form-signup" method="POST" onSubmit={this.submitFormAdd}>
@@ -122,10 +121,6 @@ class Login extends Component {
                                                 <label htmlFor="pass" className="label">Mật khẩu</label>
                                                 <input type="password" className="input" data-type="password" name="password" onChange={this.onChange} value={this.state.password} required />
                                             </div>
-                                            {/* <div className="group">
-                                                <label htmlFor="pass" className="label">Nhập lại mật khẩu</label>
-                                                <input type="password" className="input" data-type="password" name="salt" onChange={this.onChange} value={this.state.salt} required />
-                                            </div> */}
                                             <div className="group">
                                                 <label htmlFor="pass" className="label">Email</label>
                                                 <input type="email" className="input" name="email" onChange={this.onChange} value={this.state.email} required />

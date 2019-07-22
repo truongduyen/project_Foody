@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LayoutAdmin from '../../components/Layout/LayoutAdmin';
 import { CSVLink } from "react-csv";
-var dateFormat = require('dateformat');
+// var dateFormat = require('dateformat');
 import { TablePagination } from 'react-pagination-table';
 
 class Admin_Member extends Component {

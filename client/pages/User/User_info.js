@@ -80,7 +80,6 @@ class User_info extends Component {
                             </table>
                         </div>
                         <form className="modal fade" id="Modal_Update" method="POST" onSubmit={this.submitFormUpdate} >
-                    
                                 <div className="modal-dialog modal-lg">
                                     <div className="modal-content">
                                         <div className="modal-header">
@@ -94,12 +93,12 @@ class User_info extends Component {
                                                     <input type="text" className="form-control" name="username" onChange={this.onChange} value={this.state.username} required autoFocus />
                                                 </div>
                                             </div>
-                                            <div className="control-group form-group">
+                                            {/* <div className="control-group form-group">
                                                 <div className="controls">
                                                     <label>Email: </label>
                                                     <input type="text" className="form-control" name="email" onChange={this.onChange} value={this.state.email} required />
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <div className="modal-footer">
                                             <a type="button" className="btn btn default" data-dismiss="modal">Hủy bỏ</a>

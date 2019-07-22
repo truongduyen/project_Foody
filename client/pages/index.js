@@ -14,8 +14,7 @@ class index extends Component {
         <Post/>
         <Member/>
         <Contact/>
-      </Layout>
-      
+      </Layout>     
     );
   }
 } 

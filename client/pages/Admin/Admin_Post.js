@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LayoutAdmin from '../../components/Layout/LayoutAdmin';
-var dateFormat = require('dateformat');
+import ConverBase64 from './../../helpers/ConverBase64'
+// var dateFormat = require('dateformat');
 import { TablePagination } from 'react-pagination-table'
 
 class Admin_Post extends Component {
@@ -12,7 +13,8 @@ class Admin_Post extends Component {
             id_post: '',
             title: '',
             content: '',
-            image: '',
+            image:'',
+            img: '',
             item: '',
             user_email: '',
             email: ''
@@ -34,6 +36,7 @@ class Admin_Post extends Component {
     }
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
+        // console.log(this.state.image)
     }
     setUpdateItem = (post) => {
         this.setState({
@@ -41,22 +44,21 @@ class Admin_Post extends Component {
             title: post.title,
             content: post.content,
             item: post.item,
-            // user_email: post.email
+            image: post.img
         })
     }
     submitFormAdd = e => {
         e.preventDefault()
-        // console.log(this.state.content)
+        // console.log(this.state.image)    
         fetch('http://localhost:4000/post', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-
             },
             body: JSON.stringify({
                 title: this.state.title,
                 content: this.state.content,
-                image: this.state.image,
+                image: this.state.img,
                 item: this.state.item,
                 user_email: this.state.email
             })
@@ -90,7 +92,7 @@ class Admin_Post extends Component {
     }
     submitFormUpdate = e => {
         e.preventDefault()
-        console.log(this.state.content)
+        // console.log(this.state.content)
         fetch('http://localhost:4000/post', {
             method: 'PUT',
             headers: {
@@ -100,16 +102,25 @@ class Admin_Post extends Component {
                 id_post: this.state.id_post,
                 title: this.state.title,
                 content: this.state.content,
-                image: this.state.image,
+                image: this.state.img,
                 item: this.state.item
             })
         })
             .then((dt) => {
                 console.log(dt)
-                alert(`Cập nhật thành công bài viết ${this.state.title}`)
+                alert(`Cập nhật bài viết ${this.state.title} thành công`)
                 location.reload()
             })
             .catch(err => console.log(err))
+    }
+    handleFilesImg = async (e) => {
+        e.preventDefault();
+        ConverBase64(e.target.files, (result) => {
+            this.setState({
+                img: result.base64
+            })
+            console.log(this.state)
+        })
     }
     componentDidMount() {
         this.getItems('')
@@ -168,6 +179,7 @@ class Admin_Post extends Component {
                                 </div>
                             </div>
                         </div>
+
                         <form className="modal fade" id="Modal_Add" method="POST" onSubmit={this.submitFormAdd} >
                             <div className="modal-dialog modal-lg">
                                 <div className="modal-content">
@@ -205,9 +217,7 @@ class Admin_Post extends Component {
                                             </div>
                                         </div>
                                         <div className="control-group form-group">
-                                            <div className="controls">
-                                                <input type="file" name="image" onChange={this.onChange} value={this.state.image} />
-                                            </div>
+                                            <input type="file" name="file" id="file" onChange={this.handleFilesImg} />
                                         </div>
                                     </div>
                                     <div className="modal-footer">
@@ -217,6 +227,7 @@ class Admin_Post extends Component {
                                 </div>
                             </div>
                         </form>
+
                         <form className="modal fade" id="Modal_Update" method="POST" onSubmit={this.submitFormUpdate} >
                             <div className="modal-dialog modal-lg">
                                 <div className="modal-content">
@@ -231,14 +242,13 @@ class Admin_Post extends Component {
                                                 <select className="item_post" name="item"
                                                     onChange={this.onChange}
                                                     value={this.state.item}
-                                                    defaultValue={this.state.item}
                                                     style={{ height: "40px", width: "760px" }}
                                                 >
-                                                    <option name="Món chay">Món chay</option>
-                                                    <option name="Ăn vặt">Ăn vặt</option>
-                                                    <option name="Giảm cân">Giảm cân</option>
-                                                    <option name="Thức uống">Thức uống</option>
-                                                    <option name="Món chính" selected>Món chính</option>
+                                                    <option name="Món chay" value="Món chay">Món chay</option>
+                                                    <option name="Ăn vặt" value="Ăn vặt">Ăn vặt</option>
+                                                    <option name="Giảm cân" value="Giảm cân">Giảm cân</option>
+                                                    <option name="Thức uống" value="Thức uống">Thức uống</option>
+                                                    <option name="Món chính" value="Món chính" >Món chính</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -256,7 +266,7 @@ class Admin_Post extends Component {
                                         </div>
                                         <div className="control-group form-group">
                                             <div className="controls">
-                                                <input type="file" onChange={this.onChange} value={this.state.image} />
+                                                <input type="file" name="file" id="file" onChange={this.handleFilesImg} />
                                             </div>
                                         </div>
                                     </div>

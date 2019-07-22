@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LayoutUser from '../../components/Layout/LayoutUser';
+import ConverBase64 from './../../helpers/ConverBase64'
 import Nav_User from './Nav_User';
 
 class AddPost extends Component {
@@ -8,6 +9,7 @@ class AddPost extends Component {
         content: '',
         image: '',
         item: '',
+        img: '',
         user_email: '',
         email: ''
     }
@@ -17,7 +19,7 @@ class AddPost extends Component {
     }
     submitFormAdd = e => {
         e.preventDefault()
-        console.log(this.state.user_email)
+        // console.log(this.state.user_email)
         fetch('http://localhost:4000/post', {
             method: 'POST',
             headers: {
@@ -27,7 +29,7 @@ class AddPost extends Component {
             body: JSON.stringify({
                 title: this.state.title,
                 content: this.state.content,
-                image: this.state.image,
+                image: this.state.img,
                 item: this.state.item,
                 user_email: this.state.email
             })
@@ -37,6 +39,15 @@ class AddPost extends Component {
                 window.location.href = '/user/page';
             })
             .catch(err => console.log(err))
+    }
+    handleFilesImg = async (e) => {
+        e.preventDefault();
+        ConverBase64(e.target.files, (result) => {
+            this.setState({
+                img: result.base64
+            })
+            console.log(this.state)
+        })
     }
     componentDidMount() {
         const info = JSON.parse(localStorage.getItem("username"))
@@ -60,7 +71,7 @@ class AddPost extends Component {
                                         value={this.state.item}
                                         style={{ height: "40px", width: "1108px" }}
                                     >
-                                        <option name="Món chay"value="Món chay">Món chay</option>
+                                        <option name="Món chay" value="Món chay">Món chay</option>
                                         <option name="Ăn vặt" value="Ăn vặt">Ăn vặt</option>
                                         <option name="Giảm cân" value="Giảm cân">Giảm cân</option>
                                         <option name="Thức uống" value="Thức uống">Thức uống</option>
@@ -82,7 +93,7 @@ class AddPost extends Component {
                             </div>
                             <div className="control-group form-group">
                                 <div className="controls">
-                                    <input type="file" name="image" onChange={this.onChange} value={this.state.image} />
+                                    <input type="file" name="file" id="file" onChange={this.handleFilesImg} />
                                 </div>
                             </div>
                             <button type="submit" className="btn btn-success">Đăng bài viết</button>

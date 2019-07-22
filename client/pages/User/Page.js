@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LayoutUser from '../../components/Layout/LayoutUser';
 import Nav_User from './Nav_User';
+import ConverBase64 from './../../helpers/ConverBase64'
 
 class Page extends Component {
     constructor(props) {
@@ -9,7 +10,9 @@ class Page extends Component {
             keyword: '',
             items: [],
             user_email: '',
-            email: ''
+            email: '',
+            image:'',
+            img:''
         }
     }
     // onSearch = (e) => {
@@ -25,6 +28,7 @@ class Page extends Component {
             title: post.title,
             content: post.content,
             item: post.item,
+            image: post.img
             // user_email: post.email
         })
     }
@@ -45,14 +49,15 @@ class Page extends Component {
             title: post.title,
             content: post.content,
             item: post.item,
+            image: post.img,
             user_email: post.user_email,
             createdAt: post.createdAt
-        })
-        
+        })  
+        console.log(image)  
     }
     submitFormUpdate = e => {
         e.preventDefault()
-        // console.log(this.state.content)
+        console.log(this.state.image)
         fetch('http://localhost:4000/post', {
             method: 'PUT',
             headers: {
@@ -62,7 +67,7 @@ class Page extends Component {
                 id_post: this.state.id_post,
                 title: this.state.title,
                 content: this.state.content,
-                image: this.state.image,
+                image: this.state.img,
                 item: this.state.item
             })
         })
@@ -94,6 +99,15 @@ class Page extends Component {
                 .catch(err => console.log(err))
         }
     }
+    handleFilesImg = async (e) => {
+        e.preventDefault();
+        ConverBase64(e.target.files, (result) => {
+            this.setState({
+                img: result.base64
+            })
+            console.log(this.state)
+        })
+    }
     componentDidMount() {
         const info = JSON.parse(localStorage.getItem("username"))
         this.setState({
@@ -116,7 +130,7 @@ class Page extends Component {
                                                     <i className="fas fa-plus fa-3x"></i>
                                                 </div>
                                             </div>
-                                            <img className="img-fluid" src="/static/images/suachua.jpg" alt="image" />
+                                            <img className="img-fluid" src={post.image} alt="image" />
                                         </div>
                                         <div className="portfolio-caption">
                                             <h4>{post.title}</h4>
@@ -168,7 +182,7 @@ class Page extends Component {
                                         </div>
                                         <div className="control-group form-group">
                                             <div className="controls">
-                                                <input type="file" onChange={this.onChange} value={this.state.image} />
+                                                <input type="file" name="file" id="file" onChange={this.handleFilesImg} />
                                             </div>
                                         </div>
                                     </div>
@@ -193,7 +207,7 @@ class Page extends Component {
                                                 <div className="modal-body">
                                                     <h2 className="text-uppercase">{this.state.title}</h2>
                                                     <h3><p className="text-muted">{this.state.item}</p></h3>
-                                                    <img className="img-fluid d-block mx-auto" src="#" alt="image" />
+                                                    <img className="img-fluid d-block mx-auto" src={this.state.image} alt="image" />
                                                     <p>{this.state.content}</p>
                                                     <ul className="list-inline">
                                                         <li>Ngày đăng: {this.state.createdAt}</li>

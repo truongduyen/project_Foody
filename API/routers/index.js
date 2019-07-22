@@ -29,7 +29,11 @@ router.get('/admin', (req, res) => {
       .then(data => res.send(data))
       .catch(err => console.log(err))
   } else {
-    user.findAll()
+    user.findAll({
+      order: [
+        ['createdAt', 'DESC']
+      ]
+    })
       .then(data => res.send(data))
       .catch(err => console.log(err))
   }
@@ -97,7 +101,11 @@ router.get('/post', (req, res) => {
       })
       .catch(err => console.log(err))
   } else {
-    post.findAll()
+    post.findAll({
+      order: [
+        ['createdAt', 'DESC']
+      ]
+    })
       .then(dt => {
         console.log(dt)
         res.send(dt)
@@ -169,7 +177,6 @@ router.get('/post_user/:email', (req, res) => {
 //===add post
 router.post('/post', (req, res) => {
   var { title, content, image, item, user_email } = req.body;
-  // console.log(title)
   post.create({ title, content, image, item, user_email })
     .then(dt => {
       console.log(dt)
@@ -273,7 +280,6 @@ router.post('/login', (req, res) => {
     )
     .catch(err => console.log(err))
 })
-
 
 //=======comment
 router.get("/comment", (req, res) => {

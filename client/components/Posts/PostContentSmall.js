@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+var dateFormat = require('dateformat');
 
 class PostContentSmall extends Component {
     state = {
@@ -72,7 +73,7 @@ class PostContentSmall extends Component {
                                 <div className="col-lg-8">
                                     <img className="img-fluid rounded" src="http://placehold.it/900x300" alt="image" />
                                     <hr />
-                                    <p>Đăng ngày: {post.createdAt}</p>
+                                    <p>Đăng ngày: {dateFormat(post.createdAt,"isoDate")}</p>
                                     <hr />
                                     {post.content.split("\n").map(function(item) {
                                         return (

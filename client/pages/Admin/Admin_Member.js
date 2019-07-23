@@ -101,7 +101,7 @@ class Admin_Member extends Component {
         items = items.map(item => {
             return {
                 ...item,
-                createdAt: dateFormat(item.createdAt,"dddd, mmmmm dS, yyyy, h:MM:ss TT"),
+                createdAt: dateFormat(item.createdAt,"isoDate"),
                 actions: this.actions(item)
             }
         })

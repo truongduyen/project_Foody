@@ -2,55 +2,62 @@ import React, { Component } from 'react';
 import LayoutUser from '../../components/Layout/LayoutUser';
 import Nav_User from './Nav_User';
 var dateFormat = require('dateformat');
+import ConverBase64 from './../../helpers/ConverBase64'
+
 
 class User_info extends Component {
     state = {
         items: [],
         id: '',
         username: '',
-        email: ''
+        email: '',
+        images: ''
     }
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value });
     }
-    //====update
-    setUpdateItem = (item) => {
-        this.setState({
-            id: item.id,
-            username: item.username,
-            email: item.email
-        })
-    }
     submitFormUpdate = e => {
         e.preventDefault()
         const info = JSON.parse(localStorage.getItem("username"))
-        console.log(this.state.id)
+        // console.log(this.state.id)
         fetch('http://localhost:4000/admin', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id:info.id,
+                id: info.id,
                 username: this.state.username,
-                email: this.state.email
+                email: this.state.email,
+                images: this.state.images
             })
         })
             .then(() => {
                 // console.log(this.state.email)
                 alert(`Cập nhật thành viên ${this.state.username} thành công`)
                 info.username = this.state.username;
-                localStorage.setItem("username",JSON.stringify(info))
+                info.images = this.state.images;
+                localStorage.setItem("username", JSON.stringify(info))
                 location.reload()
             })
             .catch(err => console.log(err))
     }
+    handleFilesImg = async (e) => {
+        e.preventDefault();
+        ConverBase64(e.target.files, (result) => {
+            this.setState({
+                images: result.base64
+            })
+            console.log(this.state)
+        })
+    }
     componentDidMount() {
         const info = JSON.parse(localStorage.getItem("username"))
         this.setState({
-            id:info.id,
+            id: info.id,
             username: info.username,
             email: info.email,
+            images: info.images,
             createdAt: info.createdAt
         })
     }
@@ -79,33 +86,38 @@ class User_info extends Component {
                             </table>
                         </div>
                         <form className="modal fade" id="Modal_Update" method="POST" onSubmit={this.submitFormUpdate} >
-                                <div className="modal-dialog modal-lg">
-                                    <div className="modal-content">
-                                        <div className="modal-header">
-                                            <h4 className="modal-title">Chỉnh sửa thông tin</h4>
-                                            <button type="button" className="close" data-dismiss="modal">&times;</button>
-                                        </div>
-                                        <div className="modal-body">
-                                            <div className="control-group form-group">
-                                                <div className="controls">
-                                                    <label>Tên người dùng: </label>
-                                                    <input type="text" className="form-control" name="username" onChange={this.onChange} value={this.state.username} required autoFocus />
-                                                </div>
+                            <div className="modal-dialog modal-lg">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h4 className="modal-title">Chỉnh sửa thông tin</h4>
+                                        <button type="button" className="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <div className="control-group form-group">
+                                            <div className="controls">
+                                                <label>Tên người dùng: </label>
+                                                <input type="text" className="form-control" name="username" onChange={this.onChange} value={this.state.username} required autoFocus />
                                             </div>
-                                            {/* <div className="control-group form-group">
+                                        </div>
+                                        <div className="control-group form-group">
+                                            <div className="controls">
+                                                <label>Thay đổi ảnh đại diện </label><br />
+                                                <input type="file" name="file" id="file" onChange={this.handleFilesImg} ></input>
+                                            </div>
+                                        </div>
+                                        {/* <div className="control-group form-group">
                                                 <div className="controls">
                                                     <label>Email: </label>
                                                     <input type="text" className="form-control" name="email" onChange={this.onChange} value={this.state.email} required />
                                                 </div>
                                             </div> */}
-                                        </div>
-                                        <div className="modal-footer">
-                                            <a type="button" className="btn btn default" data-dismiss="modal">Hủy bỏ</a>
-                                            <button type="submit" className="btn btn-success">Cập nhật thông tin</button>
-                                        </div>
+                                    </div>
+                                    <div className="modal-footer">
+                                        <a type="button" className="btn btn default" data-dismiss="modal">Hủy bỏ</a>
+                                        <button type="submit" className="btn btn-success">Cập nhật thông tin</button>
                                     </div>
                                 </div>
-                            
+                            </div>
                         </form>
                     </div>
                 </div>

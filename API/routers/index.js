@@ -70,7 +70,8 @@ router.put('/admin', (req, res) => {
   console.log(req.body)
   var data = {
     username: req.body.username,
-    email: req.body.email
+    email: req.body.email,
+    images: req.body.images
   }
   // console.log(req.body)
   user.update(data,
@@ -325,17 +326,27 @@ router.delete('/comment', (req, res) => {
     .catch(err => console.log(err))
 })
 ///========update comment
-router.put('/comment', (req, res) => {
+router.get("/comment_update/:id_cmt", (req, res) => {
+  cmt.findAll({
+    where: {
+      id_cmt: req.params.id_cmt
+    }
+  })
+    .then(dt => {
+      //console.log(dt)
+      res.send(dt)
+    })
+    .catch(err => console.log(err))
+  })
+
+router.put("/comment_update/:id_cmt", (req, res) => {
   var dt = {
-    title: req.body.title,
-    content: req.body.content,
-    image: req.body.image,
-    item: req.body.item
+    content_cmt: req.body.content_cmt
   }
   cmt.update(dt,
     {
       where: {
-        id_post: req.body.id_post
+        id_cmt: req.params.id_cmt
       }
     })
     .then(dt => {

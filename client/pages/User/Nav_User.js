@@ -4,14 +4,14 @@ class Nav_User extends Component {
     state = {
         username: '',
         email: '',
-        images:''
+        images: ''
     }
     componentDidMount() {
         const info = JSON.parse(localStorage.getItem("username"))
         this.setState({
             username: info.username,
             email: info.email,
-            createdAt: info.createdAt
+            images: info.images
         })
     }
     logout() {
@@ -25,7 +25,7 @@ class Nav_User extends Component {
                     <div className="row">
                         <div className="col-md-4">
                             <div className="cards">
-                                <img src={this.state.images.length > 0 ? this.state.images :"https://ssl.gstatic.com/accounts/ui/avatar_2x.png"} className="rounded-circle" alt="Cinque Terre" />
+                                <img src={this.state.images !== null ? this.state.images : "https://ssl.gstatic.com/accounts/ui/avatar_2x.png"} className="rounded-circle" alt="Cinque Terre" />
                                 <br />
                                 <h4>{this.state.username}</h4>
                                 <div className="row text-center">
@@ -36,8 +36,8 @@ class Nav_User extends Component {
                                     <span className="fa fa-star checked"></span>
                                     <span className="fa fa-star checked"></span>
                                 </div>
-                                Lượt xem: 343
-                                </div>
+                                Lượt xem: 231
+                            </div>
                         </div>
                         <div className="col-md-8">
                             <div className="card mb-4">
@@ -45,6 +45,7 @@ class Nav_User extends Component {
                             </div>
                         </div>
                     </div>
+
                     <div className="topnav">
                         <a className="active" href="/user/page">CÔNG THỨC</a>
                         {/* <a href="#news">MÓN YÊU THÍCH</a> */}
@@ -53,7 +54,7 @@ class Nav_User extends Component {
                         <a href="/" onClick={this.logout}>ĐĂNG XUẤT</a>
                     </div>
                 </div>
-                </div>
+            </div>
         );
     }
 }

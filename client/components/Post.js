@@ -14,10 +14,10 @@ class Post extends Component {
                     <div className="row">
                         <div className="col-md-4 col-sm-6 portfolio-item">
                             <a className="portfolio-link">
-                                <img className="img-fluid" src="/static/images/gasotchanh.jpg" alt="image" />
+                                <img className="img-fluid" src="/static/images/canhngao.jpg" alt="image" />
                             </a>
                             <div className="portfolio-caption" style={{textAlign:'center'}}>
-                                <a href="/posts/content_post"><h4>Gà sốt chanh</h4></a>
+                                <a href="/posts/content_post"><h4>Canh ngao nấu đậu hũ</h4></a>
                                 <p className="text-muted">Món chính</p>
                             </div>
                         </div>

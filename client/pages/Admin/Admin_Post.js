@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LayoutAdmin from '../../components/Layout/LayoutAdmin';
 import ConverBase64 from './../../helpers/ConverBase64'
-// var dateFormat = require('dateformat');
+var dateFormat = require('dateformat');
 import { TablePagination } from 'react-pagination-table'
 
 class Admin_Post extends Component {
@@ -143,6 +143,7 @@ class Admin_Post extends Component {
         items = items.map(post => {
             return {
                 ...post,
+                createdAt: dateFormat(post.createdAt,"isoDate"),
                 actions: this.actions(post)
             }
         })

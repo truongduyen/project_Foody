@@ -5,7 +5,7 @@ import PostContentSmallUser from '../../components/Posts/PostContentSmallUser';
 class Content_PostUser extends Component {
     render() {
         return (
-            <LayoutUser title="dcd">
+            <LayoutUser title="Bài viết">
                 <PostContentSmallUser/>
             </LayoutUser>
         );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LayoutUser from '../../components/Layout/LayoutUser';
 import Nav_User from './Nav_User';
 import ConverBase64 from './../../helpers/ConverBase64'
+var dateFormat = require('dateformat');
 
 class Page extends Component {
     constructor(props) {
@@ -11,8 +12,7 @@ class Page extends Component {
             items: [],
             user_email: '',
             email: '',
-            image:'',
-            img:''
+            image: ''
         }
     }
     onChange = e => {
@@ -45,11 +45,11 @@ class Page extends Component {
             title: post.title,
             content: post.content,
             item: post.item,
-            image: post.img,
+            image: post.image,
             user_email: post.user_email,
             createdAt: post.createdAt
-        })  
-        console.log(image)  
+        })
+        // console.log(image)  
     }
     submitFormUpdate = e => {
         e.preventDefault()
@@ -111,7 +111,7 @@ class Page extends Component {
         }, () => this.getItems(''))
     }
     render() {
-        return (    
+        return (
             <LayoutUser title="Trang cá nhân">
                 <Nav_User />
                 <div className="content">
@@ -120,7 +120,7 @@ class Page extends Component {
                             <div className="portfolio-item showpost">
                                 {this.state.items.map((post, key) =>
                                     <div className="item" key={key}>
-                                        <div className="portfolio-link" data-toggle="modal" href="#portfolioModal" onClick = {()=>this.setPostItem(post)} style={{ margin: '10px' }}>
+                                        <div className="portfolio-link" data-toggle="modal" href="#portfolioModal" onClick={() => this.setPostItem(post)} style={{ margin: '10px' }}>
                                             <div className="portfolio-hover">
                                                 <div className="portfolio-hover-content">
                                                     <i className="fas fa-plus fa-3x"></i>
@@ -203,10 +203,10 @@ class Page extends Component {
                                                 <div className="modal-body">
                                                     <h2 className="text-uppercase">{this.state.title}</h2>
                                                     <h3><p className="text-muted">{this.state.item}</p></h3>
-                                                    <img className="img-fluid d-block mx-auto" src={this.state.image} alt="image" />
+                                                    <img className="img-fluid d-block mx-auto" src={this.state.image} alt="image" style={{ width: "380px", height: "300px" }} />
                                                     <p>{this.state.content}</p>
                                                     <ul className="list-inline">
-                                                        <li>Ngày đăng: {this.state.createdAt}</li>
+                                                        <li>Ngày đăng: {dateFormat(this.state.createdAt, "isoDate")}</li>
                                                         <li>Người đăng: {this.state.user_email}</li>
                                                     </ul>
                                                     <button className="btn btn-primary" data-dismiss="modal" type="button">Đóng bài viết</button>

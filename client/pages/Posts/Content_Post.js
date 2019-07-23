@@ -5,7 +5,7 @@ import PostContentSmall from '../../components/Posts/PostContentSmall';
 class Content_Post extends Component {
     render() {
         return (
-            <Layout title="">
+            <Layout title="Bài viết">
                 <PostContentSmall />
             </Layout>
         );

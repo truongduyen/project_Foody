@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+var dateFormat = require('dateformat');
 
 class PostContentSmallUser extends Component {
     state = {
@@ -11,7 +12,7 @@ class PostContentSmallUser extends Component {
         name: '',
         cmt_email: '',
         post_id: '',
-        // email_answer: ''
+        img: ''
     }
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
@@ -54,6 +55,7 @@ class PostContentSmallUser extends Component {
     //add comment
     submitAddComment = e => {
         e.preventDefault()
+        // console.log(this.state.content_cmt)
         const info = JSON.parse(localStorage.getItem("username"))
         fetch('http://localhost:4000/comment', {
             method: 'POST',
@@ -74,30 +76,37 @@ class PostContentSmallUser extends Component {
             })
             .catch(err => console.log(err))
     }
-    //answer comment
-    // submitAddCommentAnswer = e => {
-    //     console.log(id_post)
-    //     e.preventDefault()
-    //     fetch('http://localhost:4000/comment_answer/', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             content_cmt: this.state.content_cmt,
-    //             cmt_email: this.state.cmt_email,
-    //             post_id: this.state.id_post,
-    //             name: this.state.username,
-    //             email_answer: this.state.email
-    //         })
-    //     })
-    //         .then(() => {
-    //             alert("Trả lời bình luận thành công")
-    //             location.reload()
-    //         })
-    //         .catch(err => console.log(err))
-    // }
-
+    //update comment
+    setUpdateCmt = id_cmt => {
+        // console.log(id_cmt)
+        this.setState({id_cmt})
+        fetch('http://localhost:4000/comment_update/'+ id_cmt)
+            .then(response => response.json())
+            .then(cmt => {
+                console.log(cmt[0].content_cmt)
+                this.setState({ content_cmt:cmt[0].content_cmt })
+            })
+            .catch(err => console.log("err " + err))
+    }
+    submitFormUpdate = e => {
+        e.preventDefault()
+        // console.log(this.state.id_cmt)
+        fetch('http://localhost:4000/comment_update/'+ this.state.id_cmt, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                // id_cmt: this.state.id_cmt,
+                content_cmt: this.state.content_cmt
+            })
+        })
+            .then((dt) => {
+                alert(`Chỉnh sửa bình luận thành công`)
+                location.reload()
+            })
+            .catch(err => console.log(err))
+    }
     // get comment
     getComment() {
         var query = location.search;
@@ -147,7 +156,7 @@ class PostContentSmallUser extends Component {
                 <div>
                     <a href="" onClick={() => this.deleteCmt(item.id_cmt)}>Xóa</a>
                     &nbsp; &nbsp;&nbsp;
-                    <a href="">Chỉnh sửa</a>
+                    <a href="" data-toggle="modal" data-target="#Modal_Update" onClick={() => this.setUpdateCmt(item.id_cmt)}>Chỉnh sửa</a>
                 </div>
             )
         }
@@ -169,13 +178,13 @@ class PostContentSmallUser extends Component {
                             </ol>
                             <div className="row">
                                 <div className="col-lg-8">
-                                    <img className="img-fluid rounded" src={post.image} alt="image" style={{width:"900px", height:"400px"}} />
+                                    <img className="img-fluid rounded" src={post.image} alt="image" style={{ width: "900px", height: "400px" }} />
                                     <hr />
-                                    <p>Đăng ngày: {post.createdAt}</p>
+                                    <p>Đăng ngày: {dateFormat(post.createdAt,"isoDate")}</p>
                                     <hr />
-                                    {post.content.split("\n").map(function(item) {
+                                    {post.content.split("\n").map(function (item, key) {
                                         return (
-                                            <div>{item}</div>
+                                            <div key={key}>{item}</div>
                                         )
                                     })
                                     }
@@ -191,7 +200,7 @@ class PostContentSmallUser extends Component {
                                             <form className="comment" method="POST" onSubmit={this.submitAddComment}>
                                                 <div className="media mb-2">
                                                     <div className="media-body form-inline">
-                                                        <img className="d-flex mr-3 rounded-circle itemer" src={this.state.images !== null ? this.state.images :"https://ssl.gstatic.com/accounts/ui/avatar_2x.png"} alt="image" />
+                                                        <img className="d-flex mr-3 rounded-circle itemer" src={this.state.images !== null ? this.state.images : "https://ssl.gstatic.com/accounts/ui/avatar_2x.png"} alt="image" />
                                                         <b><a className="mt-0">{this.state.username}</a></b>
                                                     </div>
                                                 </div>
@@ -206,7 +215,7 @@ class PostContentSmallUser extends Component {
                                         <form className="media mb-4 cmt">
                                             {this.state.cmt.map((cmt, key) =>
                                                 <div className="media-body form-inline" key={key}>
-                                                    <img className="d-flex mr-3 rounded-circle itemer" src={cmt.img !== null ? cmt.img :"https://ssl.gstatic.com/accounts/ui/avatar_2x.png"} alt="image" />
+                                                    <img className="d-flex mr-3 rounded-circle itemer" src={cmt.img !== null ? cmt.img : "https://ssl.gstatic.com/accounts/ui/avatar_2x.png"} alt="image" />
                                                     <div>
                                                         <b><a className="mt-0">{cmt.name}</a></b><br />
                                                         <a>{cmt.content_cmt}</a><br />
@@ -217,25 +226,31 @@ class PostContentSmallUser extends Component {
                                                 </div>
                                             )}
                                         </form>
-                                        {/* <form className="media mt-4 cmt" id="answer" style={{ paddingLeft: "80px" }}>
-                                            {this.state.cmt.map((cmt, key) =>
-                                                <div className="media-body form-inline" key={key}>
-                                                    <img className="d-flex mr-3 rounded-circle itemer" src="http://placehold.it/50x50" alt="image" />
-                                                    <div>
-                                                        <b><a className="mt-0">{this.state.username}</a></b><br />
-                                                        <div className="form-inline">
-                                                            <textarea rows={2} style={{ width: "495px" }} name="content_cmt" onChange={this.onChange} value={this.state.content_cmt} onClick={() => this.getIDcmt(cmt.id_cmt)}/> &nbsp;
-                                                            <button type="submit" className="btn btn-primary"><i className="fas fa-paper-plane"></i></button>
-                                                        </div>
-                                                        <div className="text-muted float-left">
-                                                            {this.displayActionCmt(cmt)}
+                                    </div>
+                                    <form className="modal fade" id="Modal_Update" method="POST" onSubmit={this.submitFormUpdate} >
+                                        <div className="modal-dialog modal-lg">
+                                            <div className="modal-content">
+                                                <div className="modal-header">
+                                                    <h4 className="modal-title">Chỉnh sửa bình luận</h4>
+                                                    <button type="button" className="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div className="modal-body">
+                                                    <div className="control-group form-group">
+                                                        <div className="controls">
+                                                            <label>Nội dung: </label>
+                                                            <input type="text" className="form-control" name="content_cmt" onChange={this.onChange} value={this.state.content_cmt} required autoFocus />
                                                         </div>
                                                     </div>
                                                 </div>
-                                            )}
-                                        </form> */}
-                                    </div>
+                                                <div className="modal-footer">
+                                                    <a type="button" className="btn btn default" data-dismiss="modal">Hủy bỏ</a>
+                                                    <button type="submit" className="btn btn-success">Chỉnh sửa</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
+
                                 <div className="col-md-4">
                                     <div className="mb-3">
                                         <h5 className="card-header">Bài viết khác</h5>

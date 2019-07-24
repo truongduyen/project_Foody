@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1440,40 +1440,42 @@ function (_Component) {
           },
           __self: this
         }, _this5.state.post.map(function (post, key) {
-          return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-            className: "teamsmall form-inline",
-            key: key,
-            style: {
-              marginRight: "auto"
-            },
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 262
-            },
-            __self: this
-          }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("img", {
-            className: "mx-auto rounded-circle",
-            src: post.image !== null ? post.image : "https://ssl.gstatic.com/50x50",
-            alt: "image",
-            onClick: function onClick() {
-              return _this5.getID(post.id_post);
-            },
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 263
-            },
-            __self: this
-          }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
-            className: "title_post",
-            onClick: function onClick() {
-              return _this5.getID(post.id_post);
-            },
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 264
-            },
-            __self: this
-          }, post.title));
+          if (key < 5) {
+            return react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+              className: "teamsmall form-inline",
+              key: key,
+              style: {
+                marginRight: "auto"
+              },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 264
+              },
+              __self: this
+            }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("img", {
+              className: "mx-auto rounded-circle",
+              src: post.image !== null ? post.image : "https://ssl.gstatic.com/50x50",
+              alt: "image",
+              onClick: function onClick() {
+                return _this5.getID(post.id_post);
+              },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 265
+              },
+              __self: this
+            }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("div", {
+              className: "title_post",
+              onClick: function onClick() {
+                return _this5.getID(post.id_post);
+              },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 266
+              },
+              __self: this
+            }, post.title));
+          }
         }))))))));
       })));
     }
@@ -1870,7 +1872,7 @@ function (_Component) {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!***********************************************!*\
   !*** multi ./pages/posts/content_postuser.js ***!
   \***********************************************/

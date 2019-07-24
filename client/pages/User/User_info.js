@@ -81,7 +81,7 @@ class User_info extends Component {
                                 </tr>
                                 <tr>
                                     <td>Ngày tham gia:</td>
-                                    <td><input value={dateFormat(this.state.createdAt, "dddd, mmmm dS, yyyy, h:MM:ss TT")} /></td>
+                                    <td><input value={dateFormat(this.state.createdAt, "isoDate")} /></td>
                                 </tr>
                             </table>
                         </div>

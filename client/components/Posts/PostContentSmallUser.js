@@ -79,19 +79,19 @@ class PostContentSmallUser extends Component {
     //update comment
     setUpdateCmt = id_cmt => {
         // console.log(id_cmt)
-        this.setState({id_cmt})
-        fetch('http://localhost:4000/comment_update/'+ id_cmt)
+        this.setState({ id_cmt })
+        fetch('http://localhost:4000/comment_update/' + id_cmt)
             .then(response => response.json())
             .then(cmt => {
                 console.log(cmt[0].content_cmt)
-                this.setState({ content_cmt:cmt[0].content_cmt })
+                this.setState({ content_cmt: cmt[0].content_cmt })
             })
             .catch(err => console.log("err " + err))
     }
     submitFormUpdate = e => {
         e.preventDefault()
         // console.log(this.state.id_cmt)
-        fetch('http://localhost:4000/comment_update/'+ this.state.id_cmt, {
+        fetch('http://localhost:4000/comment_update/' + this.state.id_cmt, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -178,9 +178,9 @@ class PostContentSmallUser extends Component {
                             </ol>
                             <div className="row">
                                 <div className="col-lg-8">
-                                    <img className="img-fluid rounded" src={post.image !== null ? post.image:"http://placehold.it/900x300"} alt="image" style={{ width: "900px", height: "400px" }} />
+                                    <img className="img-fluid rounded" src={post.image !== null ? post.image : "http://placehold.it/900x300"} alt="image" style={{ width: "900px", height: "400px" }} />
                                     <hr />
-                                    <p>Đăng ngày: {dateFormat(post.createdAt,"isoDate")}</p>
+                                    <p>Đăng ngày: {dateFormat(post.createdAt, "isoDate")}</p>
                                     <hr />
                                     <h2 className="text-uppercase row">{post.title}</h2>
                                     {post.content.split("\n").map(function (item, key) {
@@ -258,12 +258,16 @@ class PostContentSmallUser extends Component {
                                         <div className="card-body">
                                             <div className="row">
                                                 <div className="col-lg-12 cmt ">
-                                                    {this.state.post.map((post, key) =>
-                                                        <div className="teamsmall form-inline" key={key} style={{ marginRight: "auto" }}>
-                                                            <img className="mx-auto rounded-circle" src={post.image !== null ? post.image : "https://ssl.gstatic.com/50x50" } alt="image" onClick={() => this.getID(post.id_post)} />
-                                                            <div className="title_post" onClick={() => this.getID(post.id_post)}>{post.title}</div>
-                                                        </div>
-                                                    )}
+                                                    {this.state.post.map((post, key) => {
+                                                        if (key < 5) {
+                                                            return (
+                                                                <div className="teamsmall form-inline" key={key} style={{ marginRight: "auto" }}>
+                                                                <img className="mx-auto rounded-circle" src={post.image !== null ? post.image : "https://ssl.gstatic.com/50x50"} alt="image" onClick={() => this.getID(post.id_post)} />
+                                                                <div className="title_post" onClick={() => this.getID(post.id_post)}>{post.title}</div>
+                                                            </div>
+                                                            )
+                                                        }
+                                                    })}
                                                 </div>
                                             </div>
                                         </div>

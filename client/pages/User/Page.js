@@ -12,7 +12,8 @@ class Page extends Component {
             items: [],
             user_email: '',
             email: '',
-            image: ''
+            image: '',
+            content:''
         }
     }
     onChange = e => {
@@ -111,6 +112,7 @@ class Page extends Component {
         }, () => this.getItems(''))
     }
     render() {
+        console.log(this.state.content)// r cái chỗ mà m nói m lm xg hàng là cái nào, cho coi cái chỗ đó
         return (
             <LayoutUser title="Trang cá nhân">
                 <Nav_User />
@@ -204,7 +206,13 @@ class Page extends Component {
                                                     <h2 className="text-uppercase">{this.state.title}</h2>
                                                     <h3><p className="text-muted">{this.state.item}</p></h3>
                                                     <img className="img-fluid d-block mx-auto" src={this.state.image} alt="image" style={{ width: "380px", height: "300px" }} />
-                                                    <p>{this.state.content}</p>
+                                                    {
+                                                        this.state.content.split("\n").map(function (item, key) {
+                                                            return (
+                                                                <p key={key}>{item}</p>
+                                                            )
+                                                        })             
+                                                    }
                                                     <ul className="list-inline">
                                                         <li>Ngày đăng: {dateFormat(this.state.createdAt, "isoDate")}</li>
                                                         <li>Người đăng: {this.state.user_email}</li>

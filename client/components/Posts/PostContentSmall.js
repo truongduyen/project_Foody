@@ -71,12 +71,12 @@ class PostContentSmall extends Component {
                             </ol>
                             <div className="row">
                                 <div className="col-lg-8">
-                                    <img className="img-fluid rounded" src={post.image !== null ? post.image:"http://placehold.it/900x300"} style={{ width: "900px", height: "400px" }} alt="image" />
+                                    <img className="img-fluid rounded" src={post.image !== null ? post.image : "http://placehold.it/900x300"} style={{ width: "900px", height: "400px" }} alt="image" />
                                     <hr />
-                                    <p>Đăng ngày: {dateFormat(post.createdAt,"isoDate")}</p>
+                                    <p>Đăng ngày: {dateFormat(post.createdAt, "isoDate")}</p>
                                     <hr />
                                     <h2 className="text-uppercase row">{post.title}</h2>
-                                    {post.content.split("\n").map(function(item) {
+                                    {post.content.split("\n").map(function (item) {
                                         return (
                                             <div>{item}</div>
                                         )
@@ -118,12 +118,16 @@ class PostContentSmall extends Component {
                                         <div className="card-body">
                                             <div className="row">
                                                 <div className="col-lg-12 cmt ">
-                                                    {this.state.post.map((post, key) =>
-                                                        <div className="teamsmall form-inline" key={key} style={{ marginRight: "auto" }}>
-                                                            <img className="mx-auto rounded-circle" src={post.image !== null ? post.image : "https://ssl.gstatic.com/50x50" } alt="image" onClick={() => this.getID(post.id_post)} />
-                                                            <div className="title_post" onClick={() => this.getID(post.id_post)}>{post.title}</div>
-                                                        </div>
-                                                    )}
+                                                    {this.state.post.map((post, key) => {
+                                                        if (key < 5) {
+                                                            return (
+                                                                <div className="teamsmall form-inline" key={key} style={{ marginRight: "auto" }}>
+                                                                <img className="mx-auto rounded-circle" src={post.image !== null ? post.image : "https://ssl.gstatic.com/50x50"} alt="image" onClick={() => this.getID(post.id_post)} />
+                                                                <div className="title_post" onClick={() => this.getID(post.id_post)}>{post.title}</div>
+                                                            </div>
+                                                            )
+                                                        }
+                                                    })}
                                                 </div>
                                             </div>
                                         </div>

@@ -30,8 +30,7 @@ class Login extends Component {
         })
             .then(response => response.json())
             .then(result => {
-                // console.log(result)
-                if (result === null) {
+                if (result === false) {
                     alert('Email hoặc mật khẩu sai. Vui lòng nhập lại.')
                     location.reload()
                 }
@@ -49,7 +48,7 @@ class Login extends Component {
                     }
                 }
             })
-            .catch(err => console.log(err))
+            .catch(err => alert(err))
     }
     submitFormAdd = e => {
         e.preventDefault()

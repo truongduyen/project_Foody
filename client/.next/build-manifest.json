@@ -3,6 +3,10 @@
     "static/development/dll/dll_599a58a60c43245180de.js"
   ],
   "pages": {
+    "/": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
     "/_app": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
@@ -11,11 +15,31 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/posts/content_post": [
+    "/index": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/posts/content_postuser": [
+    "/login": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/next/dist/pages/_error": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/user": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/user/addpost": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/user/page": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/user/user_info": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

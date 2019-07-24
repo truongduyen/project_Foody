@@ -192,10 +192,10 @@ router.delete('/post', (req, res) => {
       post_id: req.body.id_post
     }
   })
-  .then(() => {
-    post.destroy({
-      where: {
-        id_post: req.body.id_post
+    .then(() => {
+      post.destroy({
+        where: {
+          id_post: req.body.id_post
         }
       })
     })
@@ -272,11 +272,18 @@ router.post('/login', (req, res) => {
     }
   })
     .then(result => {
-      bcrypt.compare(pw, result.password, (err, hash) => {
-        if (hash === true) {
-          res.send(JSON.stringify(result));
-        }
-      })
+      // console.log(result)
+      if (result) {
+        bcrypt.compare(pw, result.password, (err, hash) => {
+          if (hash === true) {
+            res.send(JSON.stringify(result));
+          } else {
+            res.send(JSON.stringify(false));
+          }
+        })
+      } else {
+        res.send(JSON.stringify(false));
+      }
     }
     )
     .catch(err => console.log(err))
@@ -337,7 +344,7 @@ router.get("/comment_update/:id_cmt", (req, res) => {
       res.send(dt)
     })
     .catch(err => console.log(err))
-  })
+})
 
 router.put("/comment_update/:id_cmt", (req, res) => {
   var dt = {
@@ -366,7 +373,7 @@ router.get("/comment_answer/:id_cmt", (req, res) => {
     .catch(err => console.log(err))
 })
 //====answer conment
-router.post("/comment_answer", (req,res) => {
+router.post("/comment_answer", (req, res) => {
   var { email_answer, content_cmt, cmt_email, post_id, name } = req.body;
   cmt.create({ email_answer, content_cmt, cmt_email, post_id, name })
     .then(dt => {

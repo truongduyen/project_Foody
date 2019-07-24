@@ -33,7 +33,7 @@ class Content_Member extends Component {
                         </div>
                        
                         <div className="teamsmall">
-                            <img className="mx-auto rounded-circle" src="/static/images/member1.jpg" alt="image" />
+                            <img className="mx-auto rounded-circle" src="/static/images/avatar5.jpg" alt="image" />
                             <h8>Thúy Hằng</h8>
                             <br />
                             <span className="heading">Yêu thích: </span>
@@ -57,7 +57,7 @@ class Content_Member extends Component {
                         </div>
                         
                         <div className="teamsmall">
-                            <img className="mx-auto rounded-circle" src="/static/images/member.jpg" alt="image" />
+                            <img className="mx-auto rounded-circle" src="/static/images/avatar.jpg" alt="image" />
                             <h8>Anh Thư</h8>
                             <br />
                             <span className="heading">Yêu thích: </span>
@@ -69,7 +69,7 @@ class Content_Member extends Component {
                         </div>
                        
                         <div className="teamsmall">
-                            <img className="mx-auto rounded-circle" src="/static/images/member1.jpg" alt="image" />
+                            <img className="mx-auto rounded-circle" src="/static/images/avatar2.jpg" alt="image" />
                             <h8>Thiên Kỳ</h8>
                             <br />
                             <span className="heading">Yêu thích: </span>

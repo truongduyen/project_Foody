@@ -14,7 +14,7 @@ class Member extends Component {
                     <div className="row">
                         <div className="col-sm-4">
                             <div className="team-member">
-                                <img className="mx-auto rounded-circle" src="/static/images/member.jpg" alt="image" />
+                                <img className="mx-auto rounded-circle" src="/static/images/avatar2.jpg" alt="image" />
                                 <h4>Thiên Kỳ</h4>
                                 <ul className="list-inline social-buttons">
                                     <li className="list-inline-item">
@@ -37,7 +37,7 @@ class Member extends Component {
                         </div>
                         <div className="col-sm-4">
                             <div className="team-member">
-                                <img className="mx-auto rounded-circle" src="/static/images/member.jpg" alt="image" />
+                                <img className="mx-auto rounded-circle" src="/static/images/avatar.jpg" alt="image" />
                                 <h4>Anh Thư</h4>
                                 <ul className="list-inline social-buttons">
                                     <li className="list-inline-item">
@@ -60,7 +60,7 @@ class Member extends Component {
                         </div>
                         <div className="col-sm-4">
                             <div className="team-member">
-                                <img className="mx-auto rounded-circle" src="/static/images/member2.jpg" alt="image" />
+                                <img className="mx-auto rounded-circle" src="/static/images/avatar3.jpg" alt="image" />
                                 <h4>Ngọc Trưởng</h4>
                                 <ul className="list-inline social-buttons">
                                     <li className="list-inline-item">

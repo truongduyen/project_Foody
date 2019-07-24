@@ -19,7 +19,31 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
+    "/next/dist/pages/_error": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/posts/content_postuser": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/user/addpost": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/user/member_user": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
     "/user/page": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/user/post_user": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/user/user_info": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

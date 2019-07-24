@@ -18,16 +18,6 @@ class Page extends Component {
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
-    setUpdateItem = (post) => {
-        this.setState({
-            id_post: post.id_post,
-            title: post.title,
-            content: post.content,
-            item: post.item,
-            image: post.img
-            // user_email: post.email
-        })
-    }
     getItems(keyword) {
         // console.log(this.state.email)
         let url = 'http://localhost:4000/post/' + this.state.email
@@ -50,6 +40,16 @@ class Page extends Component {
             createdAt: post.createdAt
         })
         // console.log(image)  
+    }
+    setUpdateItem = (post) => {
+        this.setState({
+            id_post: post.id_post,
+            title: post.title,
+            content: post.content,
+            item: post.item,
+            image: post.img
+            // user_email: post.email
+        })
     }
     submitFormUpdate = e => {
         e.preventDefault()

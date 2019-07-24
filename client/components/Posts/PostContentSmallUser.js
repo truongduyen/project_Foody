@@ -178,10 +178,11 @@ class PostContentSmallUser extends Component {
                             </ol>
                             <div className="row">
                                 <div className="col-lg-8">
-                                    <img className="img-fluid rounded" src={post.image} alt="image" style={{ width: "900px", height: "400px" }} />
+                                    <img className="img-fluid rounded" src={post.image !== null ? post.image:"http://placehold.it/900x300"} alt="image" style={{ width: "900px", height: "400px" }} />
                                     <hr />
                                     <p>Đăng ngày: {dateFormat(post.createdAt,"isoDate")}</p>
                                     <hr />
+                                    <h2 className="text-uppercase row">{post.title}</h2>
                                     {post.content.split("\n").map(function (item, key) {
                                         return (
                                             <div key={key}>{item}</div>
@@ -259,7 +260,7 @@ class PostContentSmallUser extends Component {
                                                 <div className="col-lg-12 cmt ">
                                                     {this.state.post.map((post, key) =>
                                                         <div className="teamsmall form-inline" key={key} style={{ marginRight: "auto" }}>
-                                                            <img className="mx-auto rounded-circle" src={post.image} alt="image" onClick={() => this.getID(post.id_post)} />
+                                                            <img className="mx-auto rounded-circle" src={post.image !== null ? post.image : "https://ssl.gstatic.com/50x50" } alt="image" onClick={() => this.getID(post.id_post)} />
                                                             <div className="title_post" onClick={() => this.getID(post.id_post)}>{post.title}</div>
                                                         </div>
                                                     )}

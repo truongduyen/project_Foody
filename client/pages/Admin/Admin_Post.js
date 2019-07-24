@@ -14,7 +14,6 @@ class Admin_Post extends Component {
             title: '',
             content: '',
             image:'',
-            img: '',
             item: '',
             user_email: '',
             email: ''
@@ -37,15 +36,6 @@ class Admin_Post extends Component {
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value })
         // console.log(this.state.image)
-    }
-    setUpdateItem = (post) => {
-        this.setState({
-            id_post: post.id_post,
-            title: post.title,
-            content: post.content,
-            item: post.item,
-            image: post.img
-        })
     }
     submitFormAdd = e => {
         e.preventDefault()
@@ -89,6 +79,15 @@ class Admin_Post extends Component {
                 })
                 .catch(err => console.log(err))
         }
+    }
+    setUpdateItem = (post) => {
+        this.setState({
+            id_post: post.id_post,
+            title: post.title,
+            content: post.content,
+            item: post.item,
+            image: post.img
+        })
     }
     submitFormUpdate = e => {
         e.preventDefault()
